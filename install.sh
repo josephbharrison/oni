@@ -108,9 +108,9 @@ function configure_environment(){
     nvim_config_dir=${config_dir}/nvim
     if [[ $BASE_ONLY != true ]];then
         git clone $MY_REPO $nvim_config_dir &> /dev/null || return 1
-        return 0
     else
         git clone $ASTRONVIM_REPO $nvim_config_dir &> /dev/null || return 1
+        return 0
     fi
 
     # Configure tmux
@@ -124,11 +124,11 @@ function configure_environment(){
 
     # Configure starship
     mkdir -p $config_dir/starship
-    cp $extras_dir/starship/* $config_dir/starship/
-    cp $extras_dir/starship/default.toml $config_dir/starship.toml
+    cp -f $extras_dir/starship/* $config_dir/starship/
+    cp -r $extras_dir/starship/default.toml $config_dir/starship.toml
 
     # Configure bash
-    cp $extras_dir/bash/.bash_profile ${HOME}/.bash_profile
+    cp -f $extras_dir/bash/.bash_profile ${HOME}/.bash_profile
 
     return 0
 }
