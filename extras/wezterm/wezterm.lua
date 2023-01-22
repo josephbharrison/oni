@@ -194,14 +194,11 @@ local colorschemes = {
 	kanagawa = {
 		foreground = color("fujiWhite"),
 		background = color("sumiInk1"),
-
 		cursor_bg = color("oldWhite"),
 		cursor_fg = color("oldWhite"),
 		cursor_border = color("oldWhite"),
-
 		selection_fg = color("oldWhite"),
 		selection_bg = color("waveBlue2"),
-
 		scrollbar_thumb = color("sumiInk0"),
 		split = color("sumiInk0"),
 
@@ -324,7 +321,12 @@ end
 local tmuxActions = {
 	cmd_d = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "|" }) }),
 	cmd_shift_d = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "-" }) }),
+	cmd_t = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "c" }) }),
 	cmd_w = act.SendKey({ key = "d", mods = "CTRL" }),
+	cmd_shift_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
+	cmd_shift_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
+	cmd_ctrl_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
+	cmd_ctrl_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
 }
 
 -- dictionary contains all possible key mappings
@@ -369,6 +371,26 @@ local keymap = {
 		mods = "CMD",
 		action = act.ActivatePaneDirection("Next"),
 	},
+	cmd_ctrl_LeftBracket = {
+		key = "[",
+		mods = "CMD|CTRL",
+		action = act.ActivateTabRelative(-1),
+	},
+	cmd_ctrl_RightBracket = {
+		key = "]",
+		mods = "CMD|CTRL",
+		action = act.ActivateTabRelative(1),
+	},
+	cmd_shift_LeftBracket = {
+		key = "{",
+		mods = "CMD",
+		action = act.ActivateTabRelative(-1),
+	},
+	cmd_shift_RightBracket = {
+		key = "}",
+		mods = "CMD",
+		action = act.ActivateTabRelative(1),
+	},
 	cmd_w = {
 		key = "w",
 		mods = "CMD",
@@ -388,6 +410,11 @@ local keymap = {
 		key = "k",
 		mods = "CMD|SHIFT",
 		action = UpdateKeyTable(),
+	},
+	cmd_t = {
+		key = "t",
+		mods = "CMD",
+		action = act.SpawnTab("CurrentPaneDomain"),
 	},
 	cmd_shift_t = {
 		key = "t",
