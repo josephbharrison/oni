@@ -118,14 +118,6 @@ local config = {
         "░ ░ ░ ▒     ░   ░ ░ ░ ▒ ░      ░  ░ ▒ ░░      ░   ",
         "    ░ ░           ░   ░        ░    ░         ░   ",
     },
-    -- header = {
-    --     " ",
-    --     "    ███    ██ ██    ██ ██ ███    ███",
-    --     "    ████   ██ ██    ██ ██ ████  ████",
-    --     "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-    --     "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-    --     "    ██   ████   ████   ██ ██      ██",
-    -- },
     -- Default theme configuration
     default_theme = {
         -- Modify the color palette for the default theme
@@ -267,6 +259,7 @@ local config = {
             ["<leader>ht3"] = harpoon.term_3,
             ["<leader>ht4"] = harpoon.term_4,
             ["<leader>hT"] = harpoon.telescope,
+            ["<leader>T"] = { "<cmd>TransparentToggle<cr>", desc = "New tab" },
             -- zen-mode mappings
             ["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" },
             -- control commands
@@ -303,6 +296,24 @@ local config = {
             --     require("lsp_signature").setup()
             --   end,
             -- },
+            {
+                "xiyaowong/nvim-transparent",
+                as = "transparent",
+                config = function()
+                    require("transparent").setup {
+                        enable = true,
+                        extra_groups = {
+                            "BufferLineTabClose",
+                            "BufferLineBufferSelected",
+                            "BufferLineFill",
+                            "BufferLineBackground",
+                            "BufferLineSeparator",
+                            "BufferLineIndicatorSelected",
+                        },
+                        exclude = {},
+                    }
+                end,
+            },
             {
                 "rebelot/kanagawa.nvim",
                 as = "kanagawa",
@@ -564,6 +575,7 @@ local config = {
                     -- third key is the key to bring up next level and its displayed
                     -- group name in which-key top level menu
                     ["b"] = { name = "Buffer" },
+                    ["T"] = { name = "Toggle Transparency" },
                     ["h"] = {
                         name = "Harpoon",
                         ["t"] = { name = "Terminal" },
