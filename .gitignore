@@ -1,0 +1,6 @@
+docs
+ginit.vim
+lua/packer_compiled.lua
+spell
+.DS_Store
+.luarc.json
