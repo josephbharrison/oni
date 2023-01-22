@@ -119,7 +119,7 @@ function configure_environment(){
 
     # Configure wezterm
     mkdir -p $config_dir/wezterm
-    cp $extras_dir/wezterm/wezterm.lua $config_dir/wezterm/wezterm.lua
+    cp $extras_dir/wezterm/* $config_dir/wezterm/
 
     # Configure starship
     mkdir -p $config_dir/starship

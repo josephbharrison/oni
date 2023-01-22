@@ -471,6 +471,12 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(name or "")
 end)
 
+local function background(image)
+	local image_path = string.format("%s/%s", wezterm.config_dir, image)
+	wezterm.log_info(image_path)
+	return image_path
+end
+
 local config = {
 	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
 	font_size = 20,
@@ -485,6 +491,13 @@ local config = {
 		wezterm = getKeys("wezterm"),
 	},
 	keys = getKeys("default"),
+	window_background_image = background("background.png"),
+
+	window_background_image_hsb = {
+		brightness = 0.03,
+		hue = -09.2,
+		saturation = 0.4,
+	},
 }
 
 wezterm.log_info("config: ", config)
