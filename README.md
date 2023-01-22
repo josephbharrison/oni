@@ -28,19 +28,9 @@
 
 ## Installation
 
-1. Install neovim
-
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/install.sh)"
 ```
-
-2. Set preferred **NerdFont** in **iTerm2**
-
-   > Preferences > Profile > Text > Font
-
-3. (Optionally) Import **iTerm2** [profile](profiles/iterm2/Afterglow.json)
-
-   > Preferences > Profile > Other Actions... > Import JSON Profiles...
 
 ## User Guide
 
