@@ -107,13 +107,25 @@ local config = {
 
     -- Set dashboard header
     header = {
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+
+        " ▒█████   ███▄    █   ██▓ ██▒   █▓  ██▓ ███▄ ▄███▓",
+        "▒██▒  ██▒ ██ ▀█   █ ▒▓██▒▓██░   █▒▒▓██▒▓██▒▀█▀ ██▒",
+        "▒██░  ██▒▓██  ▀█ ██▒▒▒██▒ ▓██  █▒░▒▒██▒▓██    ▓██░",
+        "▒██   ██░▓██▒  ▐▌██▒░░██░  ▒██ █░░░░██░▒██    ▒██ ",
+        "░ ████▓▒░▒██░   ▓██░░░██░   ▒▀█░  ░░██░▒██▒   ░██▒",
+        "░ ▒░▒░▒░ ░ ▒░   ▒ ▒  ░▓     ░ ▐░   ░▓  ░ ▒░   ░  ░",
+        "  ░ ▒ ▒░ ░ ░░   ░ ▒░░ ▒ ░   ░ ░░  ░ ▒ ░░  ░      ░",
+        "░ ░ ░ ▒     ░   ░ ░ ░ ▒ ░      ░  ░ ▒ ░░      ░   ",
+        "    ░ ░           ░   ░        ░    ░         ░   ",
     },
+    -- header = {
+    --     " ",
+    --     "    ███    ██ ██    ██ ██ ███    ███",
+    --     "    ████   ██ ██    ██ ██ ████  ████",
+    --     "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+    --     "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+    --     "    ██   ████   ████   ██ ██      ██",
+    -- },
     -- Default theme configuration
     default_theme = {
         -- Modify the color palette for the default theme
@@ -566,6 +578,25 @@ local config = {
     -- augroups/autocommands and custom filetypes also this just pure lua so
     -- anything that doesn't fit in the normal config locations above can go here
     polish = function()
+        -- Set up custom filetypes
+        -- vim.filetype.add {
+        --   extension = {
+        --     foo = "fooscript",
+        --   },
+        --   filename = {
+        --     ["Foofile"] = "fooscript",
+        --   },
+        --   pattern = {
+        --     ["~/%.config/foo/.*"] = "fooscript",
+        --   },
+        -- }
+        --
+
+        -- -- clangd offset encoding work-around
+        -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+        -- capabilities.offsetEncoding = { "utf-16" }
+        -- require("lspconfig").clangd.setup { capabilities = capabilities }
+
         -- Global DAP configuration
         local dap = require "dap"
         require("dap.ext.vscode").load_launchjs()
