@@ -1,4 +1,4 @@
-# Integrate Development Environment for Mac OS X
+# Mac OS X - Integrated Development Environment
 
 ![desktop][desktop]
 
