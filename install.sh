@@ -6,7 +6,7 @@ now=$(date +%s)
 # GLOBAL PARAMETERS
 FONTS="hack mononoki go-mono jetbrains-mono"
 ASTRONVIM_REPO=https://github.com/AstroNvim/AstroNvim
-MY_REPO=https://github.com/josephbharrison/nvim
+MY_REPO=https://github.com/josephbharrison/oni
 
 # install base configuration only
 [[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
@@ -108,6 +108,7 @@ function configure_environment(){
     nvim_config_dir=${config_dir}/nvim
     if [[ $BASE_ONLY != true ]];then
         git clone $MY_REPO $nvim_config_dir &> /dev/null || return 1
+        return 0
     else
         git clone $ASTRONVIM_REPO $nvim_config_dir &> /dev/null || return 1
     fi
@@ -119,7 +120,7 @@ function configure_environment(){
 
     # Configure wezterm
     mkdir -p $config_dir/wezterm
-    cp $extras_dir/wezterm/* $config_dir/wezterm/
+    cp -f $extras_dir/wezterm/* $config_dir/wezterm/
 
     # Configure starship
     mkdir -p $config_dir/starship
