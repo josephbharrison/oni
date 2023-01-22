@@ -31,7 +31,7 @@
 1. Install neovim
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/nvim/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/install.sh)"
 ```
 
 2. Set preferred **NerdFont** in **iTerm2**
@@ -86,7 +86,8 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 
 ![screen][screen]
 
-[desktop]: https://raw.githubusercontent.com/josephbharrison/nvim/main/images/desktop.png
-[screen]: https://raw.githubusercontent.com/josephbharrison/nvim/main/images/screen.png
-[mappings]: https://raw.githubusercontent.com/josephbharrison/nvim/main/images/mappings.png
+[desktop]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop.png
+[screen]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/screen.png
+[mappings]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/mappings.png
+
 # oni
