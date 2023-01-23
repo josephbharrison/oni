@@ -6,7 +6,7 @@ A cross-platform personalized development evironment (PDE)
 
 ## Includes
 
-- [**NeoVim**](https://astronvim.github.io) A highly customized variant of AstroNvim NeoVim
+- [**NeoVim**](https://neovim.io) A highly customized variant of AstroNvim (https://astronvim.github.io) NeoVim
 - [**WezTerm**](https://wezfurlong.org/wezterm/)
 - [**tmux**](https://github.com/tmux/tmux/wiki)
 - [**Languages:**](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
