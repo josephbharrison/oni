@@ -3,6 +3,10 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local colors = {
+	oniWhite = {
+		rgb = "#ECE7DA",
+		desc = "Terminal foreground",
+	},
 	fujiWhite = {
 		rgb = "#DCD7BA",
 		desc = "Default foreground",
@@ -192,7 +196,7 @@ end
 
 local colorschemes = {
 	kanagawa = {
-		foreground = color("fujiWhite"),
+		foreground = color("oniWhite"),
 		background = color("sumiInk1"),
 		cursor_bg = color("oldWhite"),
 		cursor_fg = color("oldWhite"),
@@ -263,6 +267,7 @@ local colorschemes = {
 			[51] = color("peachRed"), --      #FF5D62
 			[52] = color("surimiOrange"), --  #FFA066
 			[53] = color("katanaGray"), --    #717C7C
+			[54] = color("oniWhite"), --      #E7E7DA
 		},
 	},
 }
