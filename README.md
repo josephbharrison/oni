@@ -1,4 +1,4 @@
-# Mac OS X - Integrated Development Environment
+# Oni - Personalized Development Environment
 
 ![desktop][desktop]
 
