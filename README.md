@@ -80,9 +80,11 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 
 ## Screenshots
 
+![desktop2][desktop2]
 ![screen][screen]
 
 [desktop]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop.png
+[desktop2]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop2.png
 [screen]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/screen.png
 [mappings]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/mappings.png
 
