@@ -479,7 +479,7 @@ end
 
 local config = {
 	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
-	font_size = 20,
+	font_size = 16,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
 	enable_tab_bar = false,
 	use_fancy_tab_bar = false,
