@@ -4,7 +4,7 @@
 
 ## Includes
 
-- [**AstroNvim**](https://astronvim.github.io) variant for Mac OS X
+- [**AstroNvim**](https://astronvim.github.io) Customized NeoVim
 - [**WezTerm**](https://wezfurlong.org/wezterm/)
 - [**tmux**](https://github.com/tmux/tmux/wiki)
 - [**Languages:**](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
