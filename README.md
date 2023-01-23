@@ -4,7 +4,7 @@
 
 ## Includes
 
-- [**AstroNvim**](https://astronvim.github.io) Customized NeoVim
+- [**NeoVim**](https://astronvim.github.io) A highly customized variant of AstroNvim NeoVim
 - [**WezTerm**](https://wezfurlong.org/wezterm/)
 - [**tmux**](https://github.com/tmux/tmux/wiki)
 - [**Languages:**](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
@@ -28,9 +28,13 @@
 
 ## Installation
 
+### Mac OS X
+
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/install.sh)"
 ```
+
+### Linux (Coming Soon!)
 
 ## User Guide
 
