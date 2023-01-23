@@ -609,6 +609,11 @@ local config = {
         -- capabilities.offsetEncoding = { "utf-16" }
         -- require("lspconfig").clangd.setup { capabilities = capabilities }
 
+        -- Transparency setting
+        require("notify").setup {
+            background_colour = "#000000",
+        }
+
         -- Global DAP configuration
         local dap = require "dap"
         require("dap.ext.vscode").load_launchjs()
