@@ -158,10 +158,25 @@ function install(){
 install
 
 echo
-echo "Installation complete."
+echo "Installation complete. To begin, run: "
 echo
-echo "Start wezterm, then run:"
+echo "  `wezterm`   # Truecolor GPU terminal emulator"
+echo "  `tmux`      # Terminal multiplexor"
+echo "  `nvim`      # NeoVim code editor"
 echo
-echo "  nvim"
+echo
+echo "Configurations"
+echo
+echo "  tmux        ${HOME}/.config/tmux/tmux.conf           `tmux; CTRL-a; SHIFT-I`"
+echo "  neovim      ${HOME}/.config/nvim/lua/user/init.lua   `nvim +PackerSync`"
+echo "  wezterm     ${HOME}/.config/wezterm/wezterm.lua"
+echo "  starship    ${HOME}/.config/starship.toml"
+echo 
+echo 
+echo "Key Mappings"
+echo 
+echo "  `neovim` `:help map`"
+echo "  `tmux list-keys`"
+echo "  `wezterm show-keys`"
 echo
 
