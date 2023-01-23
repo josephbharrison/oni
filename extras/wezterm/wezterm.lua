@@ -323,6 +323,7 @@ local tmuxActions = {
 	cmd_shift_d = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "-" }) }),
 	cmd_t = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "c" }) }),
 	cmd_w = act.SendKey({ key = "d", mods = "CTRL" }),
+	cmd_shift_Enter = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "m" }) }),
 	cmd_shift_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
 	cmd_shift_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
 	cmd_ctrl_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
