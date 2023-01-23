@@ -148,7 +148,7 @@ function packer_sync(){
 }
 
 function install(){
-    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment packer_sync"
+    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment"
     for installer in $installers
     do
         $installer && ok || fail
