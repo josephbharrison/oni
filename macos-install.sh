@@ -148,7 +148,7 @@ function packer_sync(){
 }
 
 function install(){
-    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment"
+    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment packer_sync"
     for installer in $installers
     do
         $installer && ok || fail
@@ -162,6 +162,6 @@ echo "Installation complete."
 echo
 echo "Start wezterm, then run:"
 echo
-echo "  nvim +PackerSync"
+echo "  nvim"
 echo
 
