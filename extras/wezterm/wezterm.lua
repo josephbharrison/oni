@@ -347,6 +347,11 @@ local keymap = {
 		mods = "CMD|SHIFT",
 		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
+	cmd_k = {
+		key = "k",
+		mods = "CMD",
+		action = act.ClearScrollback("ScrollbackOnly"),
+	},
 	cmd_RightArrow = {
 		key = "RightArrow",
 		mods = "CMD",
