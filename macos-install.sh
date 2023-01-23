@@ -158,8 +158,10 @@ function install(){
 install
 
 echo
-echo "Installation complete, run:"
+echo "Installation complete."
 echo
-echo "  wezterm start nvim +PackerSync"
+echo "Start wezterm, then run:"
+echo
+echo "  nvim +PackerSync"
 echo
 
