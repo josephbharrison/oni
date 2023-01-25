@@ -166,7 +166,7 @@ local checkEnv = function(e, t)
 	if envvar == nil then
 		envvar = "NOT_FOUND"
 	end
-	wezterm.log_info(envvar)
+	-- wezterm.log_info(envvar)
 	return envvar == t
 end
 
@@ -274,14 +274,14 @@ local colorschemes = {
 
 local UpdateKeyTable = function()
 	if isTmux() then
-		wezterm.log_info("activating tmux keytable")
+		-- wezterm.log_info("activating tmux keytable")
 		return act.ActivateKeyTable({
 			name = "tmux",
 			one_shot = false,
 			replace_current = true,
 		})
 	else
-		wezterm.log_info("activating wezterm keytable")
+		-- wezterm.log_info("activating wezterm keytable")
 		return act.ActivateKeyTable({
 			name = "wezterm",
 			one_shot = false,
@@ -462,13 +462,13 @@ local function getKeys(name)
 		end
 		table.insert(newKeys, newKey)
 	end
-	wezterm.log_info("name: ", name, "newKeys: ", newKeys)
+	-- wezterm.log_info("name: ", name, "newKeys: ", newKeys)
 	return newKeys
 end
 
 wezterm.on("window-focus-changed", function(window, pane)
 	if isTmux() then
-		wezterm.log_info("term type: tmux")
+		-- wezterm.log_info("term type: tmux")
 		UpdateKeyTable()
 	end
 end)
@@ -484,7 +484,7 @@ end)
 
 local function background(image)
 	local image_path = string.format("%s/%s", wezterm.config_dir, image)
-	wezterm.log_info(image_path)
+	-- wezterm.log_info(image_path)
 	return image_path
 end
 
@@ -503,7 +503,6 @@ local config = {
 	},
 	keys = getKeys("default"),
 	window_background_image = background("background.png"),
-
 	window_background_image_hsb = {
 		brightness = 0.03,
 		hue = -09.2,
@@ -511,9 +510,8 @@ local config = {
 	},
 }
 
-wezterm.log_info("config: ", config)
-
-local envvars = os.capture("printenv", true)
-wezterm.log_info(envvars)
+-- wezterm.log_info("config: ", config)
+-- local envvars = os.capture("printenv", true)
+-- wezterm.log_info(envvars)
 
 return config
