@@ -11,6 +11,10 @@ MY_REPO=https://github.com/josephbharrison/oni
 # install base configuration only
 [[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
 
+TMP_DIR=${HOME}/tmp
+SOURCE_DIR=${TMP_DIR}/oni
+CONFIG_DIR=${HOME}/.config
+
 # Verify homebrew install
 function check_prereqs(){
     echo -en "Checking prereqs: "
@@ -88,51 +92,44 @@ function install_neovim(){
 
 # Configure NeoVim
 function configure_environment(){
+    mkdir -p $TMP_DIR
     echo -en "Configuring environment: "
-    tmp_dir=${HOME}/tmp
-    source_dir=${tmp_dir}/oni
-    config_dir=${HOME}/.config
-    mkdir -p $tmp_dir
 
     # Backup existing configurations
-    [[ -d $config_dir ]] && cp -r $config_dir ${config_dir}.${now}.bak
-    mkdir -p $config_dir
+    [[ -d $CONFIG_DIR ]] && cp -r $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
+    mkdir -p $CONFIG_DIR
 
     # Download configurations
-    [[ -d $source_dir ]] && rm -rf $source_dir
-    git clone $MY_REPO $source_dir &> /dev/null || return 1
+    [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
+    git clone $MY_REPO $SOURCE_DIR &> /dev/null || return 1
 
     # Configure nvim
     nvim_site_dir=${HOME}/.local/share/nvim/site
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     if [[ $BASE_ONLY != true ]];then
-        nvim_config_dir=${config_dir}/nvim
-        [[ -d $nvim_config_dir ]] && rm -rf $nvim_config_dir
-        cp -r $source_dir/nvim $nvim_config_dir || return 1
+        [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
+        cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
     else
-        git clone $ASTRONVIM_REPO $nvim_config_dir &> /dev/null || return 1
+        git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim &> /dev/null || return 1
     fi
 
     # Configure tmux
-    mkdir -p $config_dir/tmux
-    cp $source_dir/tmux/tmux.conf $config_dir/tmux/tmux.conf 
-    git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm &> /dev/null || return 1
+    mkdir -p $CONFIG_DIR/tmux
+    cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
+    git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm &> /dev/null || return 1
 
     # Configure wezterm
-    mkdir -p $config_dir/wezterm
-    cp -f $source_dir/wezterm/* $config_dir/wezterm/
+    mkdir -p $CONFIG_DIR/wezterm
+    cp -f $SOURCE_DIR/wezterm/* $CONFIG_DIR/wezterm/
 
     # Configure starship
-    mkdir -p $config_dir/starship
-    cp -f $source_dir/starship/* $config_dir/starship/
-    cp $source_dir/starship/default.toml $config_dir/starship.toml
+    mkdir -p $CONFIG_DIR/starship
+    cp -f $SOURCE_DIR/starship/* $CONFIG_DIR/starship/
+    cp $SOURCE_DIR/starship/default.toml $CONFIG_DIR/starship.toml
 
     # Configure bash
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
-    cp -f $source_dir/bash/.bash_profile ${HOME}/.bash_profile
-
-    # Remove source files
-    [[ -d $source_dir ]] && rm -rf $source_dir
+    cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
 
     return 0
 }
@@ -157,30 +154,28 @@ function install(){
     do
         $installer && ok || fail
     done
+    
 }
 
-install
+function getting_started(){
+    echo
+    echo "Configurations"
+    echo
+    echo "  tmux        ${HOME}/.config/tmux/tmux.conf           tmux; CTRL-a; SHIFT-I"
+    echo "  neovim      ${HOME}/.config/nvim/lua/user/init.lua   nvim +PackerSync"
+    echo "  wezterm     ${HOME}/.config/wezterm/wezterm.lua"
+    echo "  starship    ${HOME}/.config/starship.toml"
+    echo 
+    echo 
+    echo "Key Mappings"
+    echo 
+    echo "  neovim :help map"
+    echo "  tmux list-keys"
+    echo "  wezterm show-keys"
+    echo
+}
 
-echo
-echo "Installation complete. To begin, run: "
-echo
-echo "  `wezterm`   # Truecolor GPU terminal emulator"
-echo "  `tmux`      # Terminal multiplexor"
-echo "  `nvim`      # NeoVim code editor"
-echo
-echo
-echo "Configurations"
-echo
-echo "  tmux        ${HOME}/.config/tmux/tmux.conf           `tmux; CTRL-a; SHIFT-I`"
-echo "  neovim      ${HOME}/.config/nvim/lua/user/init.lua   `nvim +PackerSync`"
-echo "  wezterm     ${HOME}/.config/wezterm/wezterm.lua"
-echo "  starship    ${HOME}/.config/starship.toml"
-echo 
-echo 
-echo "Key Mappings"
-echo 
-echo "  `neovim` `:help map`"
-echo "  `tmux list-keys`"
-echo "  `wezterm show-keys`"
-echo
+install && echo "Installation complete"
+
+wezterm start -- source $SOURCE_DIR/macos-install.sh && getting_started
 
