@@ -96,7 +96,7 @@ function configure_environment(){
     echo -en "Configuring environment: "
 
     # Backup existing configurations
-    [[ -d $CONFIG_DIR ]] && cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
+    [[ -d $CONFIG_DIR ]] && cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak &> /dev/null
     mkdir -p $CONFIG_DIR
 
     # Download configurations
