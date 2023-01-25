@@ -180,7 +180,7 @@ function getting_started(){
     echo
 }
 
-echo $@
+echo "stuff $@" && exit 0
 if [[ $1 == "install" ]]; then
     install && wezterm start -- source $SOURCE_DIR/macos-install.sh && getting_started
 fi
