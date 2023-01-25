@@ -33,7 +33,7 @@ A cross-platform personalized development evironment (PDE)
 ### Mac OS
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/macos-install.sh) install"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/macos-install.sh)"
 ```
 
 ### Linux (Coming Soon!)
