@@ -161,27 +161,25 @@ function install(){
 function getting_started(){
     echo
     echo
-    echo "Oni successfully installed!"
+    echo " Oni successfully installed!"
     echo
     echo
-    echo "Configurations"
+    echo " Configurations"
     echo
-    echo "  tmux        ${HOME}/.config/tmux/tmux.conf           tmux; CTRL-a; SHIFT-I"
-    echo "  neovim      ${HOME}/.config/nvim/lua/user/init.lua   nvim +PackerSync"
-    echo "  wezterm     ${HOME}/.config/wezterm/wezterm.lua"
-    echo "  starship    ${HOME}/.config/starship.toml"
+    echo "   tmux        ${HOME}/.config/tmux/tmux.conf"
+    echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
+    echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
+    echo "   starship    ${HOME}/.config/starship.toml"
     echo 
     echo 
-    echo "Key Mappings"
+    echo " Key Mappings"
     echo 
-    echo "  neovim :help map"
-    echo "  tmux list-keys"
-    echo "  wezterm show-keys"
+    echo "   neovim :help map"
+    echo "   tmux list-keys"
+    echo "   wezterm show-keys"
+    echo
     echo
 }
 
-echo "stuff $@" && exit 0
-if [[ $1 == "install" ]]; then
-    install && wezterm start -- source $SOURCE_DIR/macos-install.sh && getting_started
-fi
+install && export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG\n\n'; bash"
 
