@@ -1,5 +1,3 @@
-# [  ](bg:dark-blue fg:bold white)\
-# [  ](bg:dark-blue fg:bold white)\
 format = """
 [](bg:none fg:none)\
 [  ](bg:dark-blue fg:bold white)\
@@ -28,7 +26,7 @@ error_symbol = "[❯](bold red)" # used if previous command failed
 
 [directory]
 read_only = " "
-style = "bg:light-yellow fg:bold black"
+style = "bg:light-yellow fg:black"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -40,9 +38,7 @@ truncation_symbol = "…/"
 "ﮟ Documents" = ""
 "ﮟ Desktop" = ""
 "ﮟ Downloads" = "ﰮ"
-
 [docker_context]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 [git_branch]
@@ -55,23 +51,18 @@ style = 'bg:dark-magenta'
 format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [golang]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 [lua]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 [nodejs]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 [python]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 [rust]
-format = "[$symbol$context$version]($style) "
 symbol = " "
 
 ## Custom palettes

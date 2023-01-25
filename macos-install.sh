@@ -89,46 +89,50 @@ function install_neovim(){
 # Configure NeoVim
 function configure_environment(){
     echo -en "Configuring environment: "
+    tmp_dir=${HOME}/tmp
+    source_dir=${tmp_dir}/oni
     config_dir=${HOME}/.config
-    extras_dir=${config_dir}/nvim/extras
+    mkdir -p $tmp_dir
 
-    # Backup configuration
-    [[ -d $config_dir ]] && mv -f $config_dir ${config_dir}.${now}.bak
-    mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
-
-    # Create config directory
+    # Backup existing configurations
+    [[ -d $config_dir ]] && cp -r $config_dir ${config_dir}.${now}.bak
     mkdir -p $config_dir
 
-    # Backup nvim packages
-    nvim_local_dir=${HOME}/.local/share/nvim
-    nvim_site_dir=${nvim_local_dir}/site
-    [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
+    # Download configurations
+    [[ -d $source_dir ]] && rm -rf $source_dir
+    git clone $MY_REPO $source_dir &> /dev/null || return 1
 
-    # Install nvim configuration
-    nvim_config_dir=${config_dir}/nvim
+    # Configure nvim
+    nvim_site_dir=${HOME}/.local/share/nvim/site
+    [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     if [[ $BASE_ONLY != true ]];then
-        git clone $MY_REPO $nvim_config_dir &> /dev/null || return 1
+        nvim_config_dir=${config_dir}/nvim
+        [[ -d $nvim_config_dir ]] && rm -rf $nvim_config_dir
+        cp -r $source_dir/nvim $nvim_config_dir || return 1
     else
         git clone $ASTRONVIM_REPO $nvim_config_dir &> /dev/null || return 1
-        return 0
     fi
 
     # Configure tmux
     mkdir -p $config_dir/tmux
-    cp $extras_dir/tmux/tmux.conf $config_dir/tmux/tmux.conf 
+    cp $source_dir/tmux/tmux.conf $config_dir/tmux/tmux.conf 
     git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm &> /dev/null || return 1
 
     # Configure wezterm
     mkdir -p $config_dir/wezterm
-    cp -f $extras_dir/wezterm/* $config_dir/wezterm/
+    cp -f $source_dir/wezterm/* $config_dir/wezterm/
 
     # Configure starship
     mkdir -p $config_dir/starship
-    cp -f $extras_dir/starship/* $config_dir/starship/
-    cp -r $extras_dir/starship/default.toml $config_dir/starship.toml
+    cp -f $source_dir/starship/* $config_dir/starship/
+    cp $source_dir/starship/default.toml $config_dir/starship.toml
 
     # Configure bash
-    cp -f $extras_dir/bash/.bash_profile ${HOME}/.bash_profile
+    [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
+    cp -f $source_dir/bash/.bash_profile ${HOME}/.bash_profile
+
+    # Remove source files
+    [[ -d $source_dir ]] && rm -rf $source_dir
 
     return 0
 }
