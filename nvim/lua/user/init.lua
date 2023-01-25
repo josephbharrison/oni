@@ -338,6 +338,11 @@ local config = {
                 config = function() require("tokyonight").setup {} end,
             },
             {
+                "folke/todo-comments.nvim",
+                as = "todo-comments",
+                config = function() require("todo-comments").setup {} end,
+            },
+            {
                 "folke/twilight.nvim",
                 as = "twilight",
                 config = function()
