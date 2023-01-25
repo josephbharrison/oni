@@ -11,21 +11,17 @@ alias ll='ls -la'
 alias vi='nvim'
 
 # Homebrew
-if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then # Linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-else # MacOS
-    cmd /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-       . $(brew --prefix)/etc/bash_completion
-    fi
+cmd /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
+# alias brew='sudo -Hu josephbharrison brew'
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
 fi
 alias fb='/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
 # Local dev automation
 export CODE_HOME=${HOME}/code
-export ONI_HOME=${CODE_HOME}/oni
 export PROJECT=${PWD##*/}
-source ${ONI_HOME}/extras/.aliases
+source ${CODE_HOME}/k-lab/.aliases
 [[ -f ${CODE_HOME}/${PROJECT}/.aliases ]] && source ${CODE_HOME}/${PROJECT}/.aliases
 
 # Kubernetes
@@ -44,9 +40,6 @@ f="$GSDK/completion.bash.inc" && [[ -f $f ]] && source $f
 # Go
 cmd go && export PATH="$PATH:$(go env GOPATH)/bin"
 export GO111MODULE=on
-
-# Rust
-export PATH="$PATH:$HOME/.cargo/bin"
 
 # Azure (eww)
 export GOPRIVATE=dev.azure.com
@@ -70,8 +63,5 @@ alias password='tail -1 ~/Documents/passwords.txt'
 # Starship
 eval "$(starship init bash)"
 
-# Terminal overrides
 set -o vi
-export TERM="xterm-256color"
 
-. "$HOME/.cargo/env"
