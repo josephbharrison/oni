@@ -154,10 +154,15 @@ function install(){
     do
         $installer && ok || fail
     done
-    
+
+    install && echo "Installation complete"
 }
 
 function getting_started(){
+    echo
+    echo
+    echo "Oni successfully installed!"
+    echo
     echo
     echo "Configurations"
     echo
@@ -175,7 +180,7 @@ function getting_started(){
     echo
 }
 
-install && echo "Installation complete"
-
-wezterm start -- source $SOURCE_DIR/macos-install.sh && getting_started
+if [[ $1 == "install" ]]; then
+    install && wezterm start -- source $SOURCE_DIR/macos-install.sh && getting_started
+fi
 
