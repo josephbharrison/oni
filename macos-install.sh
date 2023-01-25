@@ -114,15 +114,18 @@ function configure_environment(){
     fi
 
     # Configure tmux
+    [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
     mkdir -p $CONFIG_DIR/tmux
     cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
     git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm &> /dev/null || return 1
 
     # Configure wezterm
+    [[ -d $CONFIG_DIR/wezterm ]] && rm -rf $CONFIG_DIR/wezterm
     mkdir -p $CONFIG_DIR/wezterm
     cp -f $SOURCE_DIR/wezterm/* $CONFIG_DIR/wezterm/
 
     # Configure starship
+    [[ -d $CONFIG_DIR/starship ]] && rm -rf $CONFIG_DIR/starship
     mkdir -p $CONFIG_DIR/starship
     cp -f $SOURCE_DIR/starship/* $CONFIG_DIR/starship/
     cp $SOURCE_DIR/starship/default.toml $CONFIG_DIR/starship.toml
@@ -155,14 +158,12 @@ function install(){
         $installer && ok || fail
     done
 
-    install && echo "Installation complete"
+    echo "Installation complete"
 }
 
 function getting_started(){
     echo
-    echo
     echo " Oni successfully installed!"
-    echo
     echo
     echo " Configurations"
     echo
@@ -170,7 +171,6 @@ function getting_started(){
     echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
     echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
     echo "   starship    ${HOME}/.config/starship.toml"
-    echo 
     echo 
     echo " Key Mappings"
     echo 
@@ -181,5 +181,5 @@ function getting_started(){
     echo
 }
 
-install && export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG\n\n'; bash"
+install && export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
 
