@@ -96,7 +96,7 @@ function configure_environment(){
     echo -en "Configuring environment: "
 
     # Backup existing configurations
-    [[ -d $CONFIG_DIR ]] && cp -r $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
+    [[ -d $CONFIG_DIR ]] && cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
     mkdir -p $CONFIG_DIR
 
     # Download configurations
@@ -106,8 +106,8 @@ function configure_environment(){
     # Configure nvim
     nvim_site_dir=${HOME}/.local/share/nvim/site
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
+    [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
     if [[ $BASE_ONLY != true ]];then
-        [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
         cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
     else
         git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim &> /dev/null || return 1
@@ -117,7 +117,7 @@ function configure_environment(){
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
     mkdir -p $CONFIG_DIR/tmux
     cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
-    git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm &> /dev/null || return 1
+    git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm &> /dev/null
 
     # Configure wezterm
     [[ -d $CONFIG_DIR/wezterm ]] && rm -rf $CONFIG_DIR/wezterm
