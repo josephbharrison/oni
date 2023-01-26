@@ -162,6 +162,7 @@ function install(){
 }
 
 function getting_started(){
+    cat $SOURCE_DIR/images/oninvim.ansi
     echo
     echo " Oni successfully installed!"
     echo
@@ -181,5 +182,5 @@ function getting_started(){
     echo
 }
 
-install && export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
+install && export MSG="$(getting_started)"; wezterm-gui start -- bash -c "echo -e '$MSG'; bash"
 
