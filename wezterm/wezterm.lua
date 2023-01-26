@@ -1,6 +1,12 @@
 local os = require("os")
 local wezterm = require("wezterm")
 local act = wezterm.action
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function()
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():toggle_fullscreen()
+end)
 
 local colors = {
 	oniWhite = {
@@ -508,6 +514,7 @@ local config = {
 		hue = -09.2,
 		saturation = 0.4,
 	},
+	native_macos_fullscreen_mode = true,
 }
 
 -- wezterm.log_info("config: ", config)
