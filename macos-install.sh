@@ -182,10 +182,7 @@ function getting_started(){
     echo
 }
 
-if [[ $NONINTERACTIVE == "" ]];then
-    install
-    export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
-else
-    NONINTERACTIVE=1 source $SOURCE_DIR/macos-install.sh
-fi
+install
+
+export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
 
