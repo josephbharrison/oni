@@ -4,6 +4,16 @@ A cross-platform personalized development evironment (PDE)
 
 ![desktop][desktop]
 
+## Installation
+
+### Mac OS
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/macos-install.sh)"
+```
+
+### Linux (Coming Soon!)
+
 ## Includes
 
 - [**NeoVim**](https://neovim.io) A highly customized variant of [AstroNvim](https://astronvim.github.io) NeoVim
@@ -27,16 +37,6 @@ A cross-platform personalized development evironment (PDE)
   - [mononoki](https://www.programmingfonts.org/#mononoki)
   - [go-mono](https://www.programmingfonts.org/#go-mono)
   - [jetbrains-mono](https://www.programmingfonts.org/#jetbrains-mono)
-
-## Installation
-
-### Mac OS
-
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/macos-install.sh)"
-```
-
-### Linux (Coming Soon!)
 
 ## User Guide
 
