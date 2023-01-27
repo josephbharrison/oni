@@ -510,7 +510,7 @@ local config = {
 	keys = getKeys("default"),
 	window_background_image = background("background.png"),
 	window_background_image_hsb = {
-		brightness = 0.03,
+		brightness = 0.02,
 		hue = -09.2,
 		saturation = 0.4,
 	},
