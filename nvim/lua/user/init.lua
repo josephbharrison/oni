@@ -262,6 +262,8 @@ local config = {
             ["<leader>ht3"] = harpoon.term_3,
             ["<leader>ht4"] = harpoon.term_4,
             ["<leader>hT"] = harpoon.telescope,
+            ["<F8>"] = '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Condition: "))<cr>',
+            ["<leader>Ds"] = '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Condition: "))<cr>',
             ["<leader>T"] = { "<cmd>TransparentToggle<cr>", desc = "New tab" },
             -- zen-mode mappings
             ["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" },
@@ -588,6 +590,10 @@ local config = {
                         name = "Harpoon",
                         ["t"] = { name = "Terminal" },
                         ["m"] = { name = "TMux" },
+                    },
+                    ["D"] = {
+                        name = "Debugger",
+                        ["s"] = { "Set Conditional Breakpoint (F8)" },
                     },
                 },
             },
