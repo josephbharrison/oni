@@ -514,7 +514,7 @@ local config = {
 		hue = -09.2,
 		saturation = 0.4,
 	},
-	initial_cols = 170,
+	initial_cols = 160,
 	initial_rows = 50,
 	-- native_macos_fullscreen_mode = true,
 }
