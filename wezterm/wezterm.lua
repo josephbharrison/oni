@@ -511,7 +511,7 @@ local config = {
 	window_background_image = background("background.png"),
 	window_background_image_hsb = {
 		brightness = 0.038,
-		hue = -09.137,
+		hue = -09.16,
 		saturation = 0.395,
 	},
 	initial_cols = 160,
