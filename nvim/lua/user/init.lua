@@ -264,7 +264,7 @@ local config = {
             ["<leader>hT"] = harpoon.telescope,
             ["<F8>"] = '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Condition: "))<cr>',
             ["<leader>Ds"] = '<cmd>lua require("dap").set_breakpoint(vim.fn.input("Condition: "))<cr>',
-            ["<leader>T"] = { "<cmd>TransparentToggle<cr>", desc = "New tab" },
+            ["<leader>T"] = { "<cmd>TransparentToggle<cr>", desc = "Toggle Transparency" },
             -- zen-mode mappings
             ["<leader>z"] = { "<cmd>ZenMode<cr>", desc = "Zen Mode" },
             -- control commands
@@ -585,7 +585,7 @@ local config = {
                     -- third key is the key to bring up next level and its displayed
                     -- group name in which-key top level menu
                     ["b"] = { name = "Buffer" },
-                    ["T"] = { name = "Toggle Transparency" },
+                    --["T"] = { name = "Toggle Transparency" },
                     ["h"] = {
                         name = "Harpoon",
                         ["t"] = { name = "Terminal" },
