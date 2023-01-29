@@ -468,13 +468,11 @@ local function getKeys(name)
 		end
 		table.insert(newKeys, newKey)
 	end
-	-- wezterm.log_info("name: ", name, "newKeys: ", newKeys)
 	return newKeys
 end
 
 wezterm.on("window-focus-changed", function(window, pane)
 	if isTmux() then
-		-- wezterm.log_info("term type: tmux")
 		UpdateKeyTable()
 	end
 end)
@@ -489,8 +487,10 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 local function background(image)
-	local image_path = string.format("%s/%s", wezterm.config_dir, image)
-	-- wezterm.log_info(image_path)
+	local image_path = nil
+	if image ~= nil then
+		image_path = string.format("%s/%s", wezterm.config_dir, image)
+	end
 	return image_path
 end
 
@@ -509,6 +509,7 @@ local config = {
 	},
 	keys = getKeys("default"),
 	window_background_image = background("background.png"),
+	-- window_background_image = nil, -- remove background image
 	window_background_image_hsb = {
 		brightness = 0.037,
 		hue = -09.133,
