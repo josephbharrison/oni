@@ -1,4 +1,5 @@
 local os = require("os")
+local math = require("math")
 local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
@@ -494,12 +495,108 @@ local function background(image)
 	return image_path
 end
 
+function Time()
+	-- local posix = require("posix")
+	-- local timersub, gettimeofday = posix.timersub, posix.gettimeofday
+	-- local began = gettimeofday()
+	-- local elapsed = timersub(gettimeofday(), began)
+	-- return elapsed.sec * 1000 + elapsed.usec / 1000
+	return os.time()
+end
+
+function RandomNumber(n)
+	-- print("Milliseconds: " .. socket.gettime()*1000)
+	math.randomseed(Time())
+	return math.random(0, n)
+end
+
+local fonts = {
+	-- UNPLEASANT PROGRAMMING FONTS
+	-- "BigBlue_Terminal",
+	-- "Literation",
+	-- "MesloLG",
+	-- "Symbols",
+	-- "Arimo",
+	-- "Tinos"
+	-- "Mplus",
+	-- "HeavyData",
+	-- "OpenDyslexic",
+	-- "Overpass",
+	-- "Ubuntu",
+	-- "ProggyCleanTT",
+	-- "GohuFont",
+	--
+	-- PLEASING, REQUIRES ALT TMUX CONF
+	-- "DaddyTimeMono",
+	-- "Mononoki",
+	-- "DroidSansMono",
+	-- "Monofur",
+	-- "Inconsolata",
+	-- "Hurmit",
+	-- "Iosevka",
+	-- "SpaceMono",
+	-- "Agave",
+	-- "Monoid",
+	-- "DejaVuSansMono",
+	-- "Anonymice",
+	-- "3270",
+	-- "BlexMono",
+	-- "FiraCode",
+	-- "BitstreamVeraSansMono",
+	-- "ProFont",
+	-- "InconsolataGo",
+	-- "FuraMono",
+	-- "IMWriting",
+	-- "UbuntuMono",
+	-- "Cousine",
+	-- "VictorMono",
+	-- "SauceCodePro",
+	-- "CaskaydiaCove",
+	-- "RobotoMono",
+	-- "InconsolataLGC",
+	-- "Lilex",
+	-- "CodeNewRoman",
+	-- "Hasklug",
+	-- "ShureTechMono",
+	-- "AurulentSansMono",
+	-- "Lekton",
+	-- "FantasqueSansMono",
+	-- "NotoMono",
+	-- "TerminessTTF",
+	--
+	-- Pleasing TMUX
+	"Hack",
+	"GoMono",
+	"JetBrainsMono",
+}
+
+function RandomFont(font)
+	local random_font = fonts[RandomNumber(#fonts)]
+	while random_font == font do
+		random_font = RandomFont(font)
+	end
+	return random_font
+end
+
+local RANDOM_FONT = RandomFont()
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	if tab.is_active then
+		return {
+			{ Background = { Color = "blue" } },
+			{ Text = " " .. RANDOM_FONT .. "   " },
+		}
+	end
+	return tab.active_pane.title
+end)
+
 local config = {
+	-- font = wezterm.font(RANDOM_FONT .. " Nerd Font", { weight = "Regular" }),
 	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
-	font_size = 12,
+	font_size = 16,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
 	enable_tab_bar = false,
-	use_fancy_tab_bar = false,
+	use_fancy_tab_bar = true,
 	force_reverse_video_cursor = true,
 	colors = colorschemes.kanagawa,
 	scrollback_lines = 5000,
@@ -521,8 +618,10 @@ local config = {
 	-- native_macos_fullscreen_mode = true,
 }
 
--- wezterm.log_info("config: ", config)
 -- local envvars = os.capture("printenv", true)
 -- wezterm.log_info(envvars)
-
+-- wezterm.log_info("random_font: ", config.font)
+wezterm.log_info("abcdefghijklmnopqrstuvwxyz")
+wezterm.log_info("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+wezterm.log_info("oO08 iIlL1 {} [] g9qCGQ ~-+=>")
 return config
