@@ -606,7 +606,7 @@ local config = {
                 hue = -09.133,
                 saturation = 0.433,
         },
-        window_background_opacity = 0.97,
+        window_background_opacity = 1.00,
         initial_cols = 160,
         initial_rows = 50,
         -- native_macos_fullscreen_mode = true,
