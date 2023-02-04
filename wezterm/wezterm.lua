@@ -584,32 +584,58 @@ end
 --      return tab.active_pane.title
 -- end)
 
+local background_hsb = {
+        brightness = 0.037,
+        hue = -09.133,
+        saturation = 0.433,
+        repeat_x = "repeat",
+        repeat_y = "repeat",
+}
+
+local background_image = wezterm.config_dir .. "/background.png"
+
 local config = {
         -- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
+        -- window_background_image = background("oni.png"),
+        -- window_background_image = nil, -- remove background image
+        -- window_background_image_hsb = {
+        --         brightness = 0.037,
+        --         hue = -09.133,
+        --         saturation = 0.433,
+        --         repeat_x = "repeat",
+        --         repeat_y = "repeat",
+        -- },
+        -- window_background_opacity = 1.00,
+        -- initial_cols = 160,
+        -- initial_rows = 50,
+        -- native_macos_fullscreen_mode = true,
+        -- force_reverse_video_cursor = true,
+        enable_tab_bar = false,
         font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
         font_size = 16,
         window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
-        enable_tab_bar = false,
         use_fancy_tab_bar = true,
-        force_reverse_video_cursor = true,
         colors = colorschemes.kanagawa,
         scrollback_lines = 5000,
+        enable_scroll_bar = true,
+        min_scroll_bar_height = '2cell',
+        background = {
+                {
+                        source = {
+                                File = background_image,
+                        },
+                        width = 1024,
+                        height = 1024,
+                        repeat_x = "Repeat",
+                        repeat_y = "Repeat",
+                        hsb = background_hsb,
+                },
+        },
         key_tables = {
                 tmux = getKeys("tmux"),
                 wezterm = getKeys("wezterm"),
         },
         keys = getKeys("default"),
-        window_background_image = background("background.png"),
-        -- window_background_image = nil, -- remove background image
-        window_background_image_hsb = {
-                brightness = 0.037,
-                hue = -09.133,
-                saturation = 0.433,
-        },
-        window_background_opacity = 1.00,
-        initial_cols = 160,
-        initial_rows = 50,
-        -- native_macos_fullscreen_mode = true,
 }
 
 -- local envvars = os.capture("printenv", true)
