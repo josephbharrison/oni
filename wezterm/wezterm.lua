@@ -1,11 +1,12 @@
 local os = require("os")
+local math = require("math")
 local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
 -- wezterm.on("gui-startup", function()
--- 	local tab, pane, window = mux.spawn_window(cmd or {})
--- 	window:gui_window():toggle_fullscreen()
+--      local tab, pane, window = mux.spawn_window(cmd or {})
+--      window:gui_window():toggle_fullscreen()
 -- end)
 
 local colors = {
@@ -468,13 +469,11 @@ local function getKeys(name)
 		end
 		table.insert(newKeys, newKey)
 	end
-	-- wezterm.log_info("name: ", name, "newKeys: ", newKeys)
 	return newKeys
 end
 
 wezterm.on("window-focus-changed", function(window, pane)
 	if isTmux() then
-		-- wezterm.log_info("term type: tmux")
 		UpdateKeyTable()
 	end
 end)
@@ -489,38 +488,154 @@ wezterm.on("update-right-status", function(window, pane)
 end)
 
 local function background(image)
-	local image_path = string.format("%s/%s", wezterm.config_dir, image)
-	-- wezterm.log_info(image_path)
+	local image_path = nil
+	if image ~= nil then
+		image_path = string.format("%s/%s", wezterm.config_dir, image)
+	end
 	return image_path
 end
 
+function Time()
+	-- local posix = require("posix")
+	-- local timersub, gettimeofday = posix.timersub, posix.gettimeofday
+	-- local began = gettimeofday()
+	-- local elapsed = timersub(gettimeofday(), began)
+	-- return elapsed.sec * 1000 + elapsed.usec / 1000
+	return os.time()
+end
+
+function RandomNumber(n)
+	-- print("Milliseconds: " .. socket.gettime()*1000)
+	math.randomseed(Time())
+	return math.random(0, n)
+end
+
+local fonts = {
+	-- -- NOT PREFERRED
+	-- "BigBlue_Terminal",
+	-- "Literation",
+	-- "MesloLG",
+	-- "Symbols",
+	-- "Arimo",
+	-- "Tinos"
+	-- "Mplus",
+	-- "HeavyData",
+	-- "OpenDyslexic",
+	-- "Overpass",
+	-- "Ubuntu",
+	-- "ProggyCleanTT",
+	-- "GohuFont",
+	--
+	-- -- REQUIRES ALT TMUX
+	-- "DaddyTimeMono",
+	-- "Mononoki",
+	-- "DroidSansMono",
+	-- "Monofur",
+	-- "Inconsolata",
+	-- "Hurmit",
+	-- "Iosevka",
+	-- "SpaceMono",
+	-- "Agave",
+	-- "Monoid",
+	-- "DejaVuSansMono",
+	-- "Anonymice",
+	-- "3270",
+	-- "BlexMono",
+	-- "FiraCode",
+	-- "BitstreamVeraSansMono",
+	-- "ProFont",
+	-- "InconsolataGo",
+	-- "FuraMono",
+	-- "IMWriting",
+	-- "UbuntuMono",
+	-- "Cousine",
+	-- "VictorMono",
+	-- "SauceCodePro",
+	-- "CaskaydiaCove",
+	-- "RobotoMono",
+	-- "InconsolataLGC",
+	-- "Lilex",
+	-- "CodeNewRoman",
+	-- "Hasklug",
+	-- "ShureTechMono",
+	-- "AurulentSansMono",
+	-- "Lekton",
+	-- "FantasqueSansMono",
+	-- "NotoMono",
+	-- "TerminessTTF",
+	--
+	-- -- PREFERRED
+	"Hack",
+	"GoMono",
+	"JetBrainsMono",
+}
+
+function RandomFont()
+	return fonts[RandomNumber(#fonts)]
+end
+
+-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+--      if tab.is_active then
+--              return {
+--                      { Background = { Color = "blue" } },
+--                      { Text = " " .. RandomFont() .. "   " },
+--              }
+--      end
+--      return tab.active_pane.title
+-- end)
+
+local background_hsb_0 = {
+	brightness = 0.037,
+	hue = -09.133,
+	saturation = 0.433,
+}
+
+local background_hsb_1 = {
+	brightness = 0.03,
+	hue = 1.15,
+	saturation = 0.35,
+}
+
+local background_image = wezterm.config_dir .. "/background.png"
+
 local config = {
-	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
-	font_size = 12,
-	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
+	initial_cols = 154,
+	initial_rows = 48,
 	enable_tab_bar = false,
-	use_fancy_tab_bar = false,
-	force_reverse_video_cursor = true,
+	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
+	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
+	font_size = 16,
+	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
+	use_fancy_tab_bar = true,
 	colors = colorschemes.kanagawa,
 	scrollback_lines = 5000,
+	enable_scroll_bar = true,
+	min_scroll_bar_height = "2cell",
+	background = {
+		{
+			source = {
+				File = background_image,
+			},
+			width = "58cell",
+			height = "29cell",
+			vertical_offset = "-1cell",
+			repeat_x = "Repeat",
+			repeat_y = "Repeat",
+			hsb = background_hsb_0,
+		},
+	},
 	key_tables = {
 		tmux = getKeys("tmux"),
 		wezterm = getKeys("wezterm"),
 	},
 	keys = getKeys("default"),
-	window_background_image = background("background.png"),
-	window_background_image_hsb = {
-		brightness = 0.035,
-		hue = -09.158,
-		saturation = 0.42,
-	},
-	initial_cols = 160,
-	initial_rows = 50,
-	-- native_macos_fullscreen_mode = true,
 }
 
--- wezterm.log_info("config: ", config)
 -- local envvars = os.capture("printenv", true)
 -- wezterm.log_info(envvars)
+-- wezterm.log_info("random_font: ", config.font)
+-- wezterm.log_info("abcdefghijklmnopqrstuvwxyz")
+-- wezterm.log_info("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+-- wezterm.log_info("oO08 iIlL1 {} [] g9qCGQ ~-+=>")
 
 return config
