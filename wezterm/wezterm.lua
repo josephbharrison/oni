@@ -511,7 +511,7 @@ function RandomNumber(n)
 end
 
 local fonts = {
-	-- NON-PREFERRED
+	-- -- NOT PREFERRED
 	-- "BigBlue_Terminal",
 	-- "Literation",
 	-- "MesloLG",
@@ -526,7 +526,7 @@ local fonts = {
 	-- "ProggyCleanTT",
 	-- "GohuFont",
 	--
-	-- PREFERRED, ALT TMUX CONF
+	-- -- REQUIRES ALT TMUX
 	-- "DaddyTimeMono",
 	-- "Mononoki",
 	-- "DroidSansMono",
@@ -564,7 +564,7 @@ local fonts = {
 	-- "NotoMono",
 	-- "TerminessTTF",
 	--
-	-- PREFERRED
+	-- -- PREFERRED
 	"Hack",
 	"GoMono",
 	"JetBrainsMono",
@@ -593,22 +593,10 @@ local background_hsb = {
 local background_image = wezterm.config_dir .. "/background.png"
 
 local config = {
-	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
-	-- window_background_image = background("oni.png"),
-	-- window_background_image = nil, -- remove background image
-	-- window_background_image_hsb = {
-	--         brightness = 0.037,
-	--         hue = -09.133,
-	--         saturation = 0.433,
-	--         repeat_x = "repeat",
-	--         repeat_y = "repeat",
-	-- },
-	-- window_background_opacity = 1.00,
-	-- initial_cols = 160,
-	-- initial_rows = 50,
-	-- native_macos_fullscreen_mode = true,
-	-- force_reverse_video_cursor = true,
+	initial_cols = 154,
+	initial_rows = 48,
 	enable_tab_bar = false,
+	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
 	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
 	font_size = 16,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
@@ -622,8 +610,8 @@ local config = {
 			source = {
 				File = background_image,
 			},
-			width = "58cell", -- math.floor(wezterm.get_dimensions() / (10 / 3)),
-			height = "29cell", -- math.floor(wezterm.get_dimensions() / (10 / 3)),
+			width = "58cell",
+			height = "29cell",
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
