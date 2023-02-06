@@ -4,7 +4,7 @@
 now=$(date +%s)
 
 # GLOBAL PARAMETERS
-FONTS="hack mononoki go-mono jetbrains-mono"
+FONTS="hack mononoki go-mono jetbrains-mono open-dyslexic"
 ASTRONVIM_REPO=https://github.com/AstroNvim/AstroNvim
 MY_REPO=https://github.com/josephbharrison/oni
 
