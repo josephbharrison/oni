@@ -340,6 +340,14 @@ local tmuxActions = {
 	cmd_shift_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
 	cmd_ctrl_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
 	cmd_ctrl_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
+	cmd_opt_i = act.Multiple({
+		act.SendKey({ key = "a", mods = "CTRL" }),
+		act.SendKey({ key = "x", mods = "CTRL" }),
+	}),
+	cmd_shift_i = act.Multiple({
+		act.SendKey({ key = "a", mods = "CTRL" }),
+		act.SendKey({ key = "x", mods = "OPT" }),
+	}),
 }
 
 -- dictionary contains all possible key mappings
@@ -451,6 +459,16 @@ local keymap = {
 			one_shot = false,
 			replace_current = true,
 		}),
+	},
+	cmd_opt_i = {
+		key = "i",
+		mods = "CMD|OPT",
+		action = UpdateKeyTable(),
+	},
+	cmd_shift_i = {
+		key = "i",
+		mods = "CMD|SHIFT",
+		action = UpdateKeyTable(),
 	},
 }
 
