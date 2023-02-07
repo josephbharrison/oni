@@ -584,10 +584,16 @@ end
 --      return tab.active_pane.title
 -- end)
 
-local background_hsb = {
+local background_hsb_0 = {
 	brightness = 0.037,
 	hue = -09.133,
 	saturation = 0.433,
+}
+
+local background_hsb_1 = {
+	brightness = 0.03,
+	hue = 1.15,
+	saturation = 0.35,
 }
 
 local background_image = wezterm.config_dir .. "/background.png"
@@ -615,7 +621,7 @@ local config = {
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-			hsb = background_hsb,
+			hsb = background_hsb_0,
 		},
 	},
 	key_tables = {
