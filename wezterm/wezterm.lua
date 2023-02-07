@@ -340,6 +340,7 @@ local tmuxActions = {
 	cmd_shift_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
 	cmd_ctrl_LeftBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "p" }) }),
 	cmd_ctrl_RightBracket = act.Multiple({ act.SendKey({ key = "a", mods = "CTRL" }), act.SendKey({ key = "n" }) }),
+	-- toggle command broadcast
 	cmd_opt_i = act.Multiple({
 		act.SendKey({ key = "a", mods = "CTRL" }),
 		act.SendKey({ key = "x", mods = "CTRL" }),
