@@ -590,11 +590,11 @@ local background_hsb_0 = {
 	saturation = 0.433,
 }
 
-local background_hsb_1 = {
-	brightness = 0.03,
-	hue = 1.15,
-	saturation = 0.35,
-}
+-- local background_hsb_1 = {
+-- 	brightness = 0.03,
+-- 	hue = 1.15,
+-- 	saturation = 0.35,
+-- }
 
 local background_image = wezterm.config_dir .. "/background.png"
 
