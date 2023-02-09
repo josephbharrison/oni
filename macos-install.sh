@@ -58,7 +58,7 @@ function install_fonts(){
 
 function install_tmux(){
     # Install tmux
-    res=$(brew list tmux)
+    res=$(null brew list tmux)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing tmux: "
         null brew install tmux || return 1
@@ -71,7 +71,7 @@ function install_tmux(){
 
 function install_tldr(){
     # Install tmux
-    res=$(brew list tmux)
+    res=$(null brew list tealdeer)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing tmux: "
         null brew install tealdear || return 1
@@ -85,7 +85,7 @@ function install_tldr(){
 
 function install_wezterm(){
     # Install wezterm
-    res=$(brew list wezterm-nightly)
+    res=$(null brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
         null brew tap wez/wezterm
@@ -99,7 +99,7 @@ function install_wezterm(){
 
 function install_neovim(){
     # Install dependencies
-    res=$(brew list nvim)
+    res=$(null brew list nvim)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing neovim: "
         null brew install nvim || return 1
