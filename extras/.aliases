@@ -51,19 +51,23 @@ alias vc='help="reset neovim config"; cp $ONI_HOME/nvim/lua/user/init.lua $CONFI
 alias colors='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
 alias ?='help="show alias help message"; show_help'
 
-# kuberetes aliases
-alias prod='help="switch to k8s PROD context"; kubectl config use-context ${PROD_CONTEXT}; export ENVIRONMENT=PROD'
-alias dev='help="switch to k8s DEV context"; kubectl config use-context ${DEV_CONTEXT}; export ENVIRONMENT=DEV'
-alias qa='help="switch to k8s QA context"; kubectl config use-context ${QA_CONTEXT}; export ENVIRONMENT=QA'
+# K8S shortcuts
 alias h='help="helm alias for current project"; project && helm -n $PROJECT'
 alias kt='help="tail k8s logs"; project; stern --color always --exclude "^.*healthz.*$" -n $PROJECT ".*" '
-alias kc='help="list k8s contexts"; kubectl config get-contexts'
 alias k='help="kubectl alias for current project"; project && kubectl -n $PROJECT'
 alias w='help="watch all k8s objects in current project"; project && watch -n5 "kubectl -n $PROJECT get all"'
 alias proxy='help="local proxy to current service"; project; $ONI_HOME/bin/kube-proxy.sh $PROJECT'
 alias forward='help="local forward of current service"; project; $ONI_HOME/bin/kube-forward.sh $PROJECT'
 alias top-pods='help="top readout of pods in current project"; project && watch -n5 "kubectl -n $PROJECT top pods"'
 alias top-nodes='help="top readout of nodes"; project && watch -n5 "kubectl -n $PROJECT top nodes"'
+alias kc='help="list k8s contexts"; kubectl config get-contexts'
+
+# K8S contexts
+alias prod='help="switch to PROD k8s context"; kubectl config use-context ${PROD_CONTEXT}; export ENVIRONMENT=PROD'
+alias qa='help="switch to QA k8s context"; kubectl config use-context ${QA_CONTEXT}; export ENVIRONMENT=QA'
+alias dev='help="switch to DEV k8s context"; kubectl config use-context ${DEV_CONTEXT}; export ENVIRONMENT=DEV'
+alias sb='help="switch to SANDBOX k8s context"; kubectl config use-context ${SANDBOX_CONTEXT}; export ENVIRONMENT=SANDBOX'
+alias local='help="switch to LOCAL k8s context"; kubectl config use-context ${LOCAL_CONTEXT}; export ENVIRONMENT=LOCAL'
 
 # kubectl alias with autocomplete
 complete -F __start_kubectl kubectl
