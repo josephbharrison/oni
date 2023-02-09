@@ -41,6 +41,22 @@ function ok(){
     echo "OK"
 }
 
+function brewster(){
+    package=$1
+    name=$2
+    [[ -z $name ]] && name=$package
+    # Install tmux
+    res=$(null brew list $package)
+    if [[ $? -ne 0 ]]; then
+        echo -en "Installing $name: "
+        null brew install $package || return 1
+    else
+        echo -en "Updating $name: "
+        null brew upgrade $package || return 1
+    fi
+    return 0
+}
+
 function install_fonts(){
     # Install fonts
     echo -en "Installing fonts: "
@@ -57,31 +73,19 @@ function install_fonts(){
 }
 
 function install_tmux(){
-    # Install tmux
-    res=$(null brew list tmux)
-    if [[ $? -ne 0 ]]; then
-        echo -en "Installing tmux: "
-        null brew install tmux || return 1
-    else
-        echo -en "Updating tmux: "
-        null brew upgrade tmux || return 1
-    fi
-    return 0
+    brewster tmux
 }
 
 function install_tldr(){
-    # Install tmux
-    res=$(null brew list tealdeer)
-    if [[ $? -ne 0 ]]; then
-        echo -en "Installing tmux: "
-        null brew install tealdear || return 1
-    else
-        echo -en "Updating tmux: "
-        null brew upgrade tmux || return 1
-    fi
+    brewster tealdeer tldr
     null tldr --update
     return 0
 }
+
+function install_fzf(){
+    brewster fzf
+}
+
 
 function install_wezterm(){
     # Install wezterm
@@ -98,22 +102,13 @@ function install_wezterm(){
 }
 
 function install_neovim(){
-    # Install dependencies
-    res=$(null brew list nvim)
-    if [[ $? -ne 0 ]]; then
-        echo -en "Installing neovim: "
-        null brew install nvim || return 1
-    else
-        echo -en "Updating neovim: "
-        null brew upgrade nvim || return 1
-    fi
-    return 0
+    brewster nvim neovim
 }
 
 # Configure NeoVim
 function configure_environment(){
     mkdir -p $TMP_DIR
-    echo -en "Configuring environment: "
+    echo -en "Configuring oni: "
 
     # Backup existing configurations
     [[ -d $CONFIG_DIR ]] && null cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
@@ -124,7 +119,7 @@ function configure_environment(){
     null git clone $MY_REPO $SOURCE_DIR || return 1
 
     # Configure nvim
-    nvim_site_dir=${HOME}/.local/share/nvim/site
+    nvim_site_dir="${HOME}/.local/share/nvim/site"
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
     if [[ $BASE_ONLY != true ]];then
@@ -173,7 +168,7 @@ function packer_sync(){
 }
 
 function install(){
-    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment"
+    installers="check_prereqs install_fonts install_tmux install_tldr install_fzf install_wezterm install_neovim configure_environment"
     for installer in $installers
     do
         $installer && ok || fail
