@@ -1,15 +1,25 @@
 #!/usr/bin/env bash
 export ONI=${CODE_HOME}/oni
 export CONFIG_DIR=${HOME}/.config
-export PROD=my-kubectl-prod-context
+export PROD=my-prod-context
 export DEV=my-dev-context
 export QA=my-qa-context
 
 function show_help(){
     a=$(alias $@)
     msg=$(echo -en "$a" | awk -F'help=' '{ print $2 }' | awk -F';' '{ print $1 }')
-    echo -en "\n$msg\n" | tr -d '"'
+    echo -en "$msg" | tr -d '"'
 }
+
+function show_all_help(){
+    aliases=$(alias | grep 'help=' | awk -F'=' '{ print $1 }' | awk '{ print $2 }')
+    for alias in $aliases
+    do
+        msg=$(show_help $alias)
+        printf "%15s    %-s\n" $alias "$msg"
+    done
+}
+
 
 # core aliases
 alias bc='help="clean up git branches"; branch-cleanup'
@@ -36,6 +46,7 @@ alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
 alias vc='help="reset neovim config"; cp $ONI/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
 alias colors='help="show terminal colors"; $ONI/bin/colors.sh'
 alias ?='help="show alias help message"; show_help'
+alias a='help="show all alias help messages"; show_all_help'
 
 # kuberetes aliases
 alias prod='help="switch to PROD"; kubectl config use-context ${PROD}; export ENVIRONMENT=PROD'
