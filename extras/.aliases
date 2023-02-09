@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 export ONI_HOME=${CODE_HOME}/oni
 export CONFIG_DIR=${HOME}/.config
+
 # run `kc` to see your kubernetes contexts
-source $HOME/.contexts
+source ${HOME}/.contexts # create this file in your $HOME directory
 [[ -e "${PROD_CONTEXT}"    ]] || export PROD_CONTEXT=my-prod-context
 [[ -e "${QA_CONTEXT}"      ]] || export QA_CONTEXT=my-qa-context
 [[ -e "${DEV_CONTEXT}"     ]] || export DEV_CONTEXT=my-dev-context
