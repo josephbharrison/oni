@@ -2,11 +2,15 @@
 export ONI=${CODE_HOME}/oni
 export CONFIG_DIR=${HOME}/.config
 # run `kc` to see your kubernetes contexts
-[[ -e ${PROD_CONTEXT} ]] || export PROD_CONTEXT=my-prod-context
-[[ -e ${DEV_CONTEXT}  ]] || export DEV_CONTEXT=my-dev-context
-[[ -e ${QA_CONTEXT}   ]] || export QA_CONTEXT=my-qa-context
+source $HOME/.contexts
+[[ -e "${PROD_CONTEXT}"    ]] || export PROD_CONTEXT=my-prod-context
+[[ -e "${QA_CONTEXT}"      ]] || export QA_CONTEXT=my-qa-context
+[[ -e "${DEV_CONTEXT}"     ]] || export DEV_CONTEXT=my-dev-context
+[[ -e "${SANDBOX_CONTEXT}" ]] || export SANDBOX_CONTEXT=my-sandbox-context
+[[ -e "${LOCAL_CONTEXT}"   ]] || export LOCAL_CONTEXT=my-local-context
 
 function show_help(){
+    [[ -z "$@" ]] && show_all_help && return 0
     a=$(alias $@)
     msg=$(echo -en "$a" | awk -F'help=' '{ print $2 }' | awk -F';' '{ print $1 }')
     echo -en "$msg" | tr -d '"'
@@ -46,7 +50,6 @@ alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
 alias vc='help="reset neovim config"; cp $ONI/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
 alias colors='help="show terminal colors"; $ONI/bin/colors.sh'
 alias ?='help="show alias help message"; show_help'
-alias a='help="show all alias help messages"; show_all_help'
 
 # kuberetes aliases
 alias prod='help="switch to k8s PROD context"; kubectl config use-context ${PROD_CONTEXT}; export ENVIRONMENT=PROD'
