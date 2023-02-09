@@ -21,7 +21,7 @@ alias fb='/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercont
 # Local dev automation
 export CODE_HOME=${HOME}/code
 export PROJECT=${PWD##*/}
-source ${CODE_HOME}/k-lab/.aliases
+source ${CODE_HOME}/oni/.aliases
 [[ -f ${CODE_HOME}/${PROJECT}/.aliases ]] && source ${CODE_HOME}/${PROJECT}/.aliases
 
 # Kubernetes
