@@ -163,7 +163,7 @@ function packer_count(){
 
 function packer_sync(){
     # HEADLESS INSTALL
-    echo -en "Updating packages: "
+    echo -en "Updating neovim packages: "
     null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
     while [[ $(packer_count) -gt 0 ]]
     do
@@ -172,7 +172,7 @@ function packer_sync(){
 }
 
 function install(){
-    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment packer_sync"
+    installers="check_prereqs install_fonts install_tmux install_wezterm install_neovim configure_environment"
     for installer in $installers
     do
         $installer && ok || fail
@@ -199,7 +199,9 @@ function getting_started(){
     echo "   tmux list-keys"
     echo "   wezterm show-keys"
     echo
-    echo
+    echo " Starting neovim ..."
+    sleep 5
+    nvim +PackerSync
 }
 
 install
