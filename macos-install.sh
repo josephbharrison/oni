@@ -205,6 +205,7 @@ function install(){
     if [[ $@ != *"--skip-configure"* ]]; then
         configure_oni
     fi
+
     echo "Installation complete"
 }
 
