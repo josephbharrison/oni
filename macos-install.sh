@@ -202,7 +202,7 @@ function install(){
         $step && ok || fail
     done
 
-    if [[ $1 != "--skip-configure" ]]; then
+    if [[ $@ != *"--skip-configure"* ]]; then
         configure_oni
     fi
     echo "Installation complete"
@@ -235,5 +235,9 @@ function getting_started(){
 # initialize main installer
 install $@
 
+# exit on optional input
+[[ -e $@ ]] && exit 0
+
+# launch wezterm with `getting_started` message
 export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
 
