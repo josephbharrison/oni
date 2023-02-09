@@ -14,6 +14,11 @@ MY_REPO=https://github.com/josephbharrison/oni
 TMP_DIR=${HOME}/tmp
 SOURCE_DIR=${TMP_DIR}/oni
 CONFIG_DIR=${HOME}/.config
+ 
+# null
+function null(){
+    "$@" &> /dev/null
+}
 
 # Verify homebrew install
 function check_prereqs(){
@@ -24,6 +29,7 @@ function check_prereqs(){
         echo "Installing homebrew: "
         /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
+    null brew update
 }
 
 function fail(){
@@ -40,11 +46,11 @@ function install_fonts(){
     echo -en "Installing fonts: "
     for font in $FONTS
     do
-        res=$(brew list --cask font-${font}-nerd-font &> /dev/null)
+        res=$(null brew list --cask font-${font}-nerd-font)
         if [[ $? -ne 0 ]]; then
-            sudo rm -f $HOME/Library/Fonts/${font}* &> /dev/null
-            brew tap homebrew/cask-fonts &> /dev/null && 
-            brew install --cask font-${font}-nerd-font &> /dev/null || return 1
+            null sudo rm -f $HOME/Library/Fonts/${font}*
+            null brew tap homebrew/cask-fonts && 
+            null brew install --cask font-${font}-nerd-font || return 1
         fi
     done
     return 0
@@ -55,11 +61,25 @@ function install_tmux(){
     res=$(brew list tmux)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing tmux: "
-        brew update &> /dev/null && brew install tmux &> /dev/null || return 1
+        null brew install tmux || return 1
     else
         echo -en "Updating tmux: "
-        brew upgrade tmux &> /dev/null || return 1
+        null brew upgrade tmux || return 1
     fi
+    return 0
+}
+
+function install_tldr(){
+    # Install tmux
+    res=$(brew list tmux)
+    if [[ $? -ne 0 ]]; then
+        echo -en "Installing tmux: "
+        null brew install tealdear || return 1
+    else
+        echo -en "Updating tmux: "
+        null brew upgrade tmux || return 1
+    fi
+    null tldr --update
     return 0
 }
 
@@ -68,11 +88,11 @@ function install_wezterm(){
     res=$(brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
-        brew tap wez/wezterm &> /dev/null
-        brew update &> /dev/null && brew install --cask wez/wezterm/wezterm-nightly &> /dev/null || return 1
+        null brew tap wez/wezterm
+        null brew install --cask wez/wezterm/wezterm-nightly || return 1
     else
         echo -en "Updating wezterm: "
-        brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest &> /dev/null | return 1
+        null brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest || return 1
     fi
     return 0
 }
@@ -82,10 +102,10 @@ function install_neovim(){
     res=$(brew list nvim)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing neovim: "
-        brew update &> /dev/null && brew install nvim &> /dev/null || return 1
+        null brew install nvim || return 1
     else
         echo -en "Updating neovim: "
-        brew upgrade nvim &> /dev/null || return 1
+        null brew upgrade nvim || return 1
     fi
     return 0
 }
@@ -96,12 +116,12 @@ function configure_environment(){
     echo -en "Configuring environment: "
 
     # Backup existing configurations
-    [[ -d $CONFIG_DIR ]] && cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak &> /dev/null
+    [[ -d $CONFIG_DIR ]] && null cp -rf $CONFIG_DIR ${CONFIG_DIR}.${now}.bak
     mkdir -p $CONFIG_DIR
 
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-    git clone $MY_REPO $SOURCE_DIR &> /dev/null || return 1
+    null git clone $MY_REPO $SOURCE_DIR || return 1
 
     # Configure nvim
     nvim_site_dir=${HOME}/.local/share/nvim/site
@@ -110,14 +130,14 @@ function configure_environment(){
     if [[ $BASE_ONLY != true ]];then
         cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
     else
-        git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim &> /dev/null || return 1
+        null git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim || return 1
     fi
 
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
     mkdir -p $CONFIG_DIR/tmux
     cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
-    git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm &> /dev/null
+    null git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
 
     # Configure wezterm
     [[ -d $CONFIG_DIR/wezterm ]] && rm -rf $CONFIG_DIR/wezterm
@@ -144,7 +164,7 @@ function packer_count(){
 function packer_sync(){
     # HEADLESS INSTALL
     echo -en "Updating packages: "
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &> /dev/null &
+    null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
     while [[ $(packer_count) -gt 0 ]]
     do
         sleep 1
