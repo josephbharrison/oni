@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+.idea/
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+.env
+.run
+.run/
+__debug_bin
+bin/
+google/
+vendor/
+vendors/
