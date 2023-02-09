@@ -4,11 +4,11 @@ export CONFIG_DIR=${HOME}/.config
 
 # run `kc` to see your kubernetes contexts
 source ${HOME}/.contexts # create this file in your $HOME directory
-[[ -e "${PROD_CONTEXT}"    ]] || export PROD_CONTEXT=my-prod-context
-[[ -e "${QA_CONTEXT}"      ]] || export QA_CONTEXT=my-qa-context
-[[ -e "${DEV_CONTEXT}"     ]] || export DEV_CONTEXT=my-dev-context
-[[ -e "${SANDBOX_CONTEXT}" ]] || export SANDBOX_CONTEXT=my-sandbox-context
-[[ -e "${LOCAL_CONTEXT}"   ]] || export LOCAL_CONTEXT=my-local-context
+[[ -z "${PROD_CONTEXT}"    ]] && export PROD_CONTEXT=my-prod-context
+[[ -z "${QA_CONTEXT}"      ]] && export QA_CONTEXT=my-qa-context
+[[ -z "${DEV_CONTEXT}"     ]] && export DEV_CONTEXT=my-dev-context
+[[ -z "${SANDBOX_CONTEXT}" ]] && export SANDBOX_CONTEXT=my-sandbox-context
+[[ -z "${LOCAL_CONTEXT}"   ]] && export LOCAL_CONTEXT=my-local-context
 
 function show_help(){
     [[ -z "$@" ]] && show_all_help && return 0
@@ -40,7 +40,8 @@ alias flush_redis='help="flush redis"; docker exec -it redis.${PROJECT} redis-cl
 alias g='help="lazy git push"; project && git add . && git commit -m "pipeline test" && git push'
 alias killall='help="kill all project apps"; for pid in $(ps -ef | grep -i $PROJECT | grep "__debug\|source" | grep -v "grep" | awk "{print $2}"); do kill -9  $pid; done'
 alias p='help="initialize project"; project && echo $PROJECT'
-alias post='help="curl post helper"; curl -H "Content-Type: application/json" -X POST'
+alias post='help="curl POST helper"; curl -H "Content-Type: application/json" -X POST'
+alias get='help="curl GET helper"; curl -H "Content-Type: application/json" -X GET'
 alias project='help="initialize project"; export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source $ONI_HOME/extras/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
 alias remake='help="go clean make all"; make clean && go mod vendor && go mod tidy && make all'
 alias reset='help="git reset project"; git reset --hard HEAD'
@@ -68,7 +69,7 @@ alias prod='help="switch to PROD k8s context"; kubectl config use-context ${PROD
 alias qa='help="switch to QA k8s context"; kubectl config use-context ${QA_CONTEXT}; export ENVIRONMENT=QA'
 alias dev='help="switch to DEV k8s context"; kubectl config use-context ${DEV_CONTEXT}; export ENVIRONMENT=DEV'
 alias sb='help="switch to SANDBOX k8s context"; kubectl config use-context ${SANDBOX_CONTEXT}; export ENVIRONMENT=SANDBOX'
-alias local='help="switch to LOCAL k8s context"; kubectl config use-context ${LOCAL_CONTEXT}; export ENVIRONMENT=LOCAL'
+alias loc='help="switch to LOCAL k8s context"; kubectl config use-context ${LOCAL_CONTEXT}; export ENVIRONMENT=LOCAL'
 
 # kubectl alias with autocomplete
 complete -F __start_kubectl kubectl
