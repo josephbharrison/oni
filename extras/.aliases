@@ -22,7 +22,7 @@ function show_all_help(){
 }
 
 # core aliases
-alias bc='help="clean up git branches"; branch-cleanup'
+alias brc='help="clean up git branches"; branch-cleanup'
 alias branch-cleanup='help="clean up git branches"; $ONI/bin/branch-cleanup.sh'
 alias branch='help="export current branch"; export BRANCH=$(git branch | grep "*" | awk "{ print \$2 }") && echo $BRANCH'
 alias branches='help="show all branches"; git branch -a | grep -v "remotes" | tr -d "*" | awk "{ print \$1 }"'
