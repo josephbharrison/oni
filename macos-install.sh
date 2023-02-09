@@ -186,22 +186,22 @@ function getting_started(){
     echo
     echo " Oni successfully installed!"
     echo
-    echo " Configurations"
+    echo " Configurations:"
     echo
     echo "   tmux        ${HOME}/.config/tmux/tmux.conf"
     echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
     echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
     echo "   starship    ${HOME}/.config/starship.toml"
     echo 
-    echo " Key Mappings"
+    echo " Mappings:"
     echo 
     echo "   neovim :help map"
     echo "   tmux list-keys"
     echo "   wezterm show-keys"
     echo
-    echo " Starting neovim ..."
-    sleep 5
-    nvim +PackerSync
+    echo " Run:"
+    echo
+    echo "   nvim +PackerSync"
 }
 
 install
