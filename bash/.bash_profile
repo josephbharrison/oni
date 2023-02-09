@@ -20,8 +20,9 @@ alias fb='/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercont
 
 # Local dev automation
 export CODE_HOME=${HOME}/code
+export ONI_HOME=${CODE_HOME}/oni
 export PROJECT=${PWD##*/}
-source ${CODE_HOME}/oni/.aliases
+source ${ONI_HOME}/extras/.aliases
 [[ -f ${CODE_HOME}/${PROJECT}/.aliases ]] && source ${CODE_HOME}/${PROJECT}/.aliases
 
 # Kubernetes

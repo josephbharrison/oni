@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-export ONI=${CODE_HOME}/oni
+export ONI_HOME=${CODE_HOME}/oni
 export CONFIG_DIR=${HOME}/.config
 # run `kc` to see your kubernetes contexts
 source $HOME/.contexts
@@ -27,10 +27,10 @@ function show_all_help(){
 
 # core aliases
 alias brc='help="clean up git branches"; branch-cleanup'
-alias branch-cleanup='help="clean up git branches"; $ONI/bin/branch-cleanup.sh'
+alias branch-cleanup='help="clean up git branches"; $ONI_HOME/bin/branch-cleanup.sh'
 alias branch='help="export current branch"; export BRANCH=$(git branch | grep "*" | awk "{ print \$2 }") && echo $BRANCH'
 alias branches='help="show all branches"; git branch -a | grep -v "remotes" | tr -d "*" | awk "{ print \$1 }"'
-alias config='help="configure the project defaults"; project; cd ${CODE_HOME}/${PROJECT} . && cat $ONI/extras/.gitignore.template > ./.gitignore'
+alias config='help="configure the project defaults"; project; cd ${CODE_HOME}/${PROJECT} . && cat $ONI_HOME/extras/.gitignore.template > ./.gitignore'
 alias d='help="list running containers in project"; project; echo -e "CONTAINER ID    NAMES";docker ps -a --format="table {{.ID}}    {{.Names}}" | grep $PROJECT'
 alias ff='help="tldr fuzzy finder"; tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias flush='help="flush all dev stores"; flush_etcd; flush_redis'
@@ -40,15 +40,15 @@ alias g='help="lazy git push"; project && git add . && git commit -m "pipeline t
 alias killall='help="kill all project apps"; for pid in $(ps -ef | grep -i $PROJECT | grep "__debug\|source" | grep -v "grep" | awk "{print $2}"); do kill -9  $pid; done'
 alias p='help="initialize project"; project && echo $PROJECT'
 alias post='help="curl post helper"; curl -H "Content-Type: application/json" -X POST'
-alias project='help="initialize project"; export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source $ONI/extras/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
+alias project='help="initialize project"; export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source $ONI_HOME/extras/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
 alias remake='help="go clean make all"; make clean && go mod vendor && go mod tidy && make all'
 alias reset='help="git reset project"; git reset --hard HEAD'
 alias src='help="source .env file"; set -o allexport; [[ -f .env ]] && source .env; set +o allexport'
 alias tag='help="show branch tag"; branch && [[ $BRANCH != "master" ]] || echo $(git tag | tail -1)'
 alias update='help="update python libraries"; project; pip uninstall -r requirements.txt --yes && pip install -r requirements.txt --upgrade --force --no-cache-dir'
 alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
-alias vc='help="reset neovim config"; cp $ONI/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
-alias colors='help="show terminal colors"; $ONI/bin/colors.sh'
+alias vc='help="reset neovim config"; cp $ONI_HOME/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI_HOME/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
+alias colors='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
 alias ?='help="show alias help message"; show_help'
 
 # kuberetes aliases
@@ -60,8 +60,8 @@ alias kt='help="tail k8s logs"; project; stern --color always --exclude "^.*heal
 alias kc='help="list k8s contexts"; kubectl config get-contexts'
 alias k='help="kubectl alias for current project"; project && kubectl -n $PROJECT'
 alias w='help="watch all k8s objects in current project"; project && watch -n5 "kubectl -n $PROJECT get all"'
-alias proxy='help="local proxy to current service"; project; $ONI/bin/kube-proxy.sh $PROJECT'
-alias forward='help="local forward of current service"; project; $ONI/bin/kube-forward.sh $PROJECT'
+alias proxy='help="local proxy to current service"; project; $ONI_HOME/bin/kube-proxy.sh $PROJECT'
+alias forward='help="local forward of current service"; project; $ONI_HOME/bin/kube-forward.sh $PROJECT'
 alias top-pods='help="top readout of pods in current project"; project && watch -n5 "kubectl -n $PROJECT top pods"'
 alias top-nodes='help="top readout of nodes"; project && watch -n5 "kubectl -n $PROJECT top nodes"'
 
