@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 export ONI=${CODE_HOME}/oni
 export CONFIG_DIR=${HOME}/.config
-export PROD=my-prod-context
-export DEV=my-dev-context
-export QA=my-qa-context
+# run `kc` to see your kubernetes contexts
+[[ -e ${PROD_CONTEXT} ]] || export PROD_CONTEXT=my-prod-context
+[[ -e ${DEV_CONTEXT}  ]] || export DEV_CONTEXT=my-dev-context
+[[ -e ${QA_CONTEXT}   ]] || export QA_CONTEXT=my-qa-context
 
 function show_help(){
     a=$(alias $@)
@@ -15,11 +16,10 @@ function show_all_help(){
     aliases=$(alias | grep 'help=' | awk -F'=' '{ print $1 }' | awk '{ print $2 }')
     for alias in $aliases
     do
-        msg=$(show_help $alias)
-        printf "%15s    %-s\n" $alias "$msg"
+        help_msg=$(show_help $alias)
+        printf "%15s    %-s\n" $alias "$help_msg"
     done
 }
-
 
 # core aliases
 alias bc='help="clean up git branches"; branch-cleanup'
@@ -49,9 +49,9 @@ alias ?='help="show alias help message"; show_help'
 alias a='help="show all alias help messages"; show_all_help'
 
 # kuberetes aliases
-alias prod='help="switch to PROD"; kubectl config use-context ${PROD}; export ENVIRONMENT=PROD'
-alias dev='help="switch to DEV"; kubectl config use-context ${DEV}; export ENVIRONMENT=DEV'
-alias qa='help="switch to QA"; kubectl config use-context ${QA}; export ENVIRONMENT=QA'
+alias prod='help="switch to k8s PROD context"; kubectl config use-context ${PROD_CONTEXT}; export ENVIRONMENT=PROD'
+alias dev='help="switch to k8s DEV context"; kubectl config use-context ${DEV_CONTEXT}; export ENVIRONMENT=DEV'
+alias qa='help="switch to k8s QA context"; kubectl config use-context ${QA_CONTEXT}; export ENVIRONMENT=QA'
 alias h='help="helm alias for current project"; project && helm -n $PROJECT'
 alias kt='help="tail k8s logs"; project; stern --color always --exclude "^.*healthz.*$" -n $PROJECT ".*" '
 alias kc='help="list k8s contexts"; kubectl config get-contexts'
