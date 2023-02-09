@@ -92,7 +92,7 @@ function install_wezterm(){
         null brew install --cask wez/wezterm/wezterm-nightly || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade --cask wezterm-nightly --no-quarantine --greedy-latest || return 1
+        null brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest || return 1
     fi
     return 0
 }
