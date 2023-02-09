@@ -186,8 +186,6 @@ function configure_oni(){
     return 0
 }
 
-
-
 # Main installer
 function install(){
     # oni components
@@ -198,15 +196,17 @@ function install(){
     done
 
     # initialize installers
-    steps="check_prereqs $installers configure_oni"
+    steps="check_prereqs $installers"
     for step in $steps
     do
         $step && ok || fail
     done
 
+    if [[ $1 != "--skip-configure" ]]; then
+        configure_oni
+    fi
     echo "Installation complete"
 }
-
 
 # Post install message
 function getting_started(){
@@ -233,7 +233,7 @@ function getting_started(){
 }
 
 # initialize main installer
-install
+install $@
 
 export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
 
