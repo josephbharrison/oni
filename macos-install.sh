@@ -138,6 +138,7 @@ function configure_environment(){
     mkdir -p $CONFIG_DIR/tmux
     cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
     null git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
+    null $CONFIG_DIR/tmux/plugins/tpm/bin/install_plugins
 
     # Configure wezterm
     [[ -d $CONFIG_DIR/wezterm ]] && rm -rf $CONFIG_DIR/wezterm
