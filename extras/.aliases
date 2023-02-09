@@ -1,41 +1,54 @@
 #!/usr/bin/env bash
-export LAB=${CODE_HOME}/k-lab
-export PROD=aks01-prod-eus
-export DEV=aks03-dev-eus
+export ONI=${CODE_HOME}/oni
+export CONFIG_DIR=${HOME}/.config
+export PROD=my-kubectl-prod-context
+export DEV=my-dev-context
+export QA=my-qa-context
 
-alias bc='branch-cleanup'
-alias branch-cleanup='${LAB}/branch-cleanup.sh'
-alias branch='export BRANCH=$(git branch | grep "*" | awk "{ print \$2 }") && echo $BRANCH'
-alias branches='git branch -a | grep -v "remotes" | tr -d "*" | awk "{ print \$1 }"'
-alias config='project; cd ${CODE_HOME}/${PROJECT} . && cat ${LAB}/.gitignore.template > ./.gitignore'
-alias d='project; echo -e "CONTAINER ID    NAMES";docker ps -a --format="table {{.ID}}    {{.Names}}" | grep $PROJECT'
-alias dev='kubectl config use-context ${DEV}; export ENVIRONMENT=DEV'
-alias flush='flush_etcd; flush_redis'
-alias flush_etcd='etcdctl del "" --prefix 2> /dev/null'
-alias flush_redis='docker exec -it redis.${PROJECT} redis-cli flushall 2> /dev/null'
-alias forward='project; ${LAB}/kube-forward.sh $PROJECT'
-alias g='project && git add . && git commit -m "pipeline test" && git push'
-alias h='project && helm -n $PROJECT'
-alias k='project && kubectl -n $PROJECT'
-alias kc='kubectl config get-contexts'
-alias killall='for pid in $(ps -ef | grep -i $PROJECT | grep "__debug\|source" | grep -v "grep" | awk "{print $2}"); do kill -9  $pid; done'
-alias kt='project; stern --color always --exclude "^.*healthz.*$" -n $PROJECT ".*" '
-alias p='project && echo $PROJECT'
-alias post='curl -H "Content-Type: application/json" -X POST'
-alias prod='kubectl config use-context ${PROD}; export ENVIRONMENT=PROD'
-alias project='export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source ${LAB}/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
-alias proxy='project; ${LAB}/kube-proxy.sh $PROJECT'
-alias remake='make clean && go mod vendor && go mod tidy && make all'
-alias reset='git reset --hard HEAD'
-alias src='set -o allexport; [[ -f .env ]] && source .env; set +o allexport'
-alias tag='branch && [[ $BRANCH != "master" ]] || echo $(git tag | tail -1)'
-alias top-nodes='project && watch -n5 "kubectl -n $PROJECT top nodes"'
-alias top-pods='project && watch -n5 "kubectl -n $PROJECT top pods"'
-alias update='project; pip uninstall -r requirements.txt --yes && pip install -r requirements.txt --upgrade --force --no-cache-dir'
-alias uuid='uuidgen | tr [:upper:] [:lower:]'
-alias vc='cp $CODE_HOME/nvim/lua/user/init.lua $HOME/.config/nvim/lua/user/init.lua && cp $CODE_HOME/nvim/init.lua $HOME/.config/nvim/init.lua'
-alias w='project && watch -n5 "kubectl -n $PROJECT get all"'
-alias colors='curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/e50a28ec54188d2413518788de6c6367ffcea4f7/print256colours.sh | bash'
+function show_help(){
+    a=$(alias $1 | xargs)
+    echo $help
+}
+
+# core aliases
+alias bc='help="clean up git branches"; branch-cleanup'
+alias branch-cleanup='$ONI/extras/branch-cleanup.sh'
+alias branch='help="export current branch"; export BRANCH=$(git branch | grep "*" | awk "{ print \$2 }") && echo $BRANCH'
+alias branches='help="show all branches"; git branch -a | grep -v "remotes" | tr -d "*" | awk "{ print \$1 }"'
+alias config='help="configure the project defaults"; project; cd ${CODE_HOME}/${PROJECT} . && cat $ONI/extras/.gitignore.template > ./.gitignore'
+alias d='help="list running containers in project"; project; echo -e "CONTAINER ID    NAMES";docker ps -a --format="table {{.ID}}    {{.Names}}" | grep $PROJECT'
+alias ff='help="tldr fuzzy finder"; tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+alias flush='help="flush all dev stores"; flush_etcd; flush_redis'
+alias flush_etcd='help="flush etcd"; etcdctl del "" --prefix 2> /dev/null'
+alias flush_redis='help="flush redis"; docker exec -it redis.${PROJECT} redis-cli flushall 2> /dev/null'
+alias g='help="lazy git push"; project && git add . && git commit -m "pipeline test" && git push'
+alias killall='help="kill all project apps"; for pid in $(ps -ef | grep -i $PROJECT | grep "__debug\|source" | grep -v "grep" | awk "{print $2}"); do kill -9  $pid; done'
+alias p='help="initialize project"; project && echo $PROJECT'
+alias post='help="curl post helper"; curl -H "Content-Type: application/json" -X POST'
+alias project='help="initialize project"; export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source $ONI/extras/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
+alias remake='help="go clean make all"; make clean && go mod vendor && go mod tidy && make all'
+alias reset='help="git reset project"; git reset --hard HEAD'
+alias src='help="source .env file"; set -o allexport; [[ -f .env ]] && source .env; set +o allexport'
+alias tag='help="show branch tag"; branch && [[ $BRANCH != "master" ]] || echo $(git tag | tail -1)'
+alias update='"update python libraries"; project; pip uninstall -r requirements.txt --yes && pip install -r requirements.txt --upgrade --force --no-cache-dir'
+alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
+alias vc='help="reset neovim config"; cp $ONI/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
+alias colors='help="show terminal colors"; $ONI/extras/colors.sh'
+alias h='help="show alias help message"; show_help '
+
+# kuberetes aliases
+alias prod='help="switch to PROD"; kubectl config use-context ${PROD}; export ENVIRONMENT=PROD'
+alias dev='help="switch to DEV"; kubectl config use-context ${DEV}; export ENVIRONMENT=DEV'
+alias qa='help="switch to QA"; kubectl config use-context ${QA}; export ENVIRONMENT=QA'
+alias h='help="helm alias for current project"; project && helm -n $PROJECT'
+alias kt='help="tail k8s logs"; project; stern --color always --exclude "^.*healthz.*$" -n $PROJECT ".*" '
+alias kc='help="list k8s contexts"; kubectl config get-contexts'
+alias k='help="kubectl alias for current project"; project && kubectl -n $PROJECT'
+alias w='help="watch all k8s objects in current project"; project && watch -n5 "kubectl -n $PROJECT get all"'
+alias proxy='help="local proxy to current service"; project; $ONI/extras/kube-proxy.sh $PROJECT'
+alias forward='help="local forward of current service"; project; $ONI/extras/kube-forward.sh $PROJECT'
+alias top-pods='help="top readout of pods in current project"; project && watch -n5 "kubectl -n $PROJECT top pods"'
+alias top-nodes='help="top readout of nodes"; project && watch -n5 "kubectl -n $PROJECT top nodes"'
 
 # kubectl alias with autocomplete
 complete -F __start_kubectl kubectl
