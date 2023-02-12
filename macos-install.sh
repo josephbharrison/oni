@@ -109,10 +109,10 @@ function install_wezterm(){
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
         null brew tap wez/wezterm
-        null brew install --cask wez/wezterm/wezterm-nightly || return 1
+        null brew install --cask wez/wezterm/wezterm-nightly --force || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest || return 1
+        null brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest --force || return 1
     fi
     return 0
 }
