@@ -618,12 +618,12 @@ local background_hsb_0 = {
 local background_image = wezterm.config_dir .. "/background.png"
 
 local config = {
-	initial_cols = 154,
-	initial_rows = 48,
+	initial_cols = 156,
+	initial_rows = 50,
 	enable_tab_bar = false,
 	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
 	font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
-	font_size = 16,
+	font_size = 14,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
 	use_fancy_tab_bar = true,
 	colors = colorschemes.kanagawa,

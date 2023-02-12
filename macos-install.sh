@@ -231,6 +231,7 @@ function getting_started(){
     echo " Run:"
     echo
     echo "   nvim +PackerSync"
+    echo
 }
 
 # initialize main installer
