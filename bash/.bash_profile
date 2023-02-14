@@ -64,5 +64,7 @@ alias password='tail -1 ~/Documents/passwords.txt'
 # Starship
 eval "$(starship init bash)"
 
+# Terminal overrides
 set -o vi
+export TERM="xterm-256color"
 
