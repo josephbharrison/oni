@@ -106,20 +106,20 @@ local config = {
     -- end,
 
     -- Set dashboard header
+    -- header = {
+    --     " █████   ███▄   ▒█  ██▓   ███▄   ▒█  ██▒   █▓ ██▓ ███▄ ▄███░",
+    --     "██▒  ██▒ ██ ▀▄  ▓█  ██▒   ██ ▀▄  ▓█  ██░   █▒ ██▒ ██▒▀█▀ ██▒",
+    --     "██░  ██▒ ██  ▀█ ██░ ██▒   ██  ▀█ ██░ ▓██  ▓█░ ██▒ ██    ▓██░",
+    --     "██   ██░ ██▒  ▐▌██▒ ██░   ██▒  ▐▌██▒  ▒██ █▒░ ██░ ██    ▒██ ",
+    --     "░████▓▒░ ██░   ▓██░ ██░   ██░   ▓██░   ▒▀█▓░  ██░ ██▒   ░██▒",
+    --     "  ░▒░▒░  ░▒░   ▒ ▒  ▒     ░▒░   ▒ ▒    ░ ▐░   ▒    ▒░   ░  ░",
+    -- },
     header = {
-        " █████   ███▄   ▒█  ██▓   ███▄   ▒█  ██▒   █▓ ██▓ ███▄ ▄███░",
-        "██▒  ██▒ ██ ▀▄  ▓█  ██▒   ██ ▀▄  ▓█  ██░   █▒ ██▒ ██▒▀█▀ ██▒",
-        "██░  ██▒ ██  ▀█ ██░ ██▒   ██  ▀█ ██░ ▓██  ▓█░ ██▒ ██    ▓██░",
-        "██   ██░ ██▒  ▐▌██▒ ██░   ██▒  ▐▌██▒  ▒██ █▒░ ██░ ██    ▒██ ",
-        "░████▓▒░ ██░   ▓██░ ██░   ██░   ▓██░   ▒▀█▓░  ██░ ██▒   ░██▒",
-        "  ░▒░▒░  ░▒░   ▒ ▒  ▒     ░▒░   ▒ ▒    ░ ▐░   ▒    ▒░   ░  ░",
-    },
-    header1 = {
-        "  ░░░░░░  ░░░    ░░ ░░ ░░    ░░ ░░ ░░░    ░░░ ",
-        " ▒▒    ▒▒ ▒▒▒▒   ▒▒ ▒▒ ▒▒    ▒▒ ▒▒ ▒▒▒▒  ▒▒▒▒ ",
-        " ▒▒    ▒▒ ▒▒ ▒▒  ▒▒ ▒▒ ▒▒    ▒▒ ▒▒ ▒▒ ▒▒▒▒ ▒▒ ",
-        " ▓▓    ▓▓ ▓▓  ▓▓ ▓▓ ▓▓  ▓▓  ▓▓  ▓▓ ▓▓  ▓▓  ▓▓ ",
-        "  ██████  ██   ████ ██   ████   ██ ██      ██ ",
+        "  ░░░░░░  ░░░    ░░ ░░   ░░░    ░░ ░░    ░░ ░░ ░░░    ░░░ ",
+        " ▒▒    ▒▒ ▒▒▒▒   ▒▒ ▒▒   ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒ ▒▒▒▒  ▒▒▒▒ ",
+        " ▒▒    ▒▒ ▒▒ ▒▒  ▒▒ ▒▒   ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒ ▒▒ ▒▒▒▒ ▒▒ ",
+        " ▓▓    ▓▓ ▓▓  ▓▓ ▓▓ ▓▓   ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓ ▓▓  ▓▓  ▓▓ ",
+        "  ██████  ██   ████ ██   ██   ████   ████   ██ ██      ██ ",
     },
     -- Default theme configuration
     default_theme = {
@@ -175,14 +175,17 @@ local config = {
     lsp = {
         -- enable servers that you already have installed without mason
         servers = {
-            -- "pyright"
+            "pyright",
         },
         formatting = {
             -- control auto formatting on save
             format_on_save = {
                 enabled = true, -- enable or disable format on save globally
                 allow_filetypes = { -- enable format on save for specified filetypes only
-                    -- "go",
+                    "go",
+                    "python",
+                    "rust",
+                    "javascript",
                 },
                 ignore_filetypes = { -- disable format on save for specified filetypes
                     -- "python",
@@ -451,12 +454,12 @@ local config = {
             -- Check supported formatters and linters
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-            config.sources = {
-                -- Set a formatter
-                -- null_ls.builtins.formatting.stylua,
-                -- null_ls.builtins.formatting.prettier,
-            }
-            return config -- return final config table
+            -- config.sources = {
+            --     -- Set a formatter
+            --     -- null_ls.builtins.formatting.stylua,
+            --     null_ls.builtins.formatting.prettier,
+            -- }
+            -- return config -- return final config table
         end,
         treesitter = { -- overrides `require("treesitter").setup(...)`
             -- ensure_installed = { "lua" },
@@ -491,6 +494,7 @@ local config = {
             -- ensure_installed = { "prettier", "stylua" },
             -- "protolint",
             ensure_installed = {
+                "prettier",
                 "gofumpt",
                 "goimports",
                 "prettier",
@@ -621,12 +625,23 @@ local config = {
         -- -- clangd offset encoding work-around
         -- local capabilities = vim.lsp.protocol.make_client_capabilities()
         -- capabilities.offsetEncoding = { "utf-16" }
-        -- require("lspconfig").clangd.setup { capabilities = capabilities }
+        -- local completion = require('completion')
+            -- on_attach=completion.on_attach,
+        require("lspconfig").pyright.setup {
+            venvPath = ".",
+            venv = "venv",
+            verboseOutput = true,
+        }
 
         -- Transparency setting
         require("notify").setup {
             background_colour = "#000000",
         }
+
+        -- Set comments to use italics
+        -- vim.highlight.create("Comment", { cterm = "italic", gui = "italic" }, false)
+        --
+        vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
         -- Global DAP configuration
         local dap = require "dap"
