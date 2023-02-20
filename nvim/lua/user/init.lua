@@ -174,9 +174,9 @@ local config = {
     -- Extend LSP configuration
     lsp = {
         -- enable servers that you already have installed without mason
-        servers = {
-            "pyright",
-        },
+        -- servers = {
+        --     "pyright",
+        -- },
         formatting = {
             -- control auto formatting on save
             format_on_save = {
@@ -210,24 +210,17 @@ local config = {
         -- end,
 
         -- override the mason server-registration function
-        -- server_registration = function(server, opts)
-        --   require("lspconfig")[server].setup(opts)
-        -- end,
+        server_registration = function(server, opts)
+          require("lspconfig")[server].setup(opts)
+        end,
 
         -- Add overrides for LSP server settings, the keys are the name of the server
         ["server-settings"] = {
-            -- example for addings schemas to yamlls
-            -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
-            --   settings = {
-            --     yaml = {
-            --       schemas = {
-            --         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-            --         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-            --         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-            --       },
-            --     },
-            --   },
-            -- },
+            pyright = {
+                autostart = true,
+                venvPath = ".",
+                venv = "venv",
+            },
         },
     },
 
@@ -498,7 +491,6 @@ local config = {
                 "gofumpt",
                 "goimports",
                 "prettier",
-                "pylint",
                 "revive",
             },
         },
@@ -622,16 +614,23 @@ local config = {
         -- }
         --
 
-        -- -- clangd offset encoding work-around
-        -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-        -- capabilities.offsetEncoding = { "utf-16" }
-        -- local completion = require('completion')
-            -- on_attach=completion.on_attach,
-        require("lspconfig").pyright.setup {
-            venvPath = ".",
-            venv = "venv",
-            verboseOutput = true,
-        }
+        -- require("lspconfig").pyright.setup ({
+        --     cmd = { "pyright-langserver", "--stdio" },
+        --     filetypes = { "python" },
+        --     settings = {
+        --         python = {
+        --             analysis = {
+        --                 autoSearchPaths = true,
+        --                 diagnosticMode = "workspace",
+        --                 useLibraryCodeForTypes = true,
+        --             },
+        --         },
+        --     },
+        --     venvPath = ".",
+        --     venv = "venv",
+        --     autoStart = true,
+        --     verboseOutput = true,
+        -- })
 
         -- Transparency setting
         require("notify").setup {
