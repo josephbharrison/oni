@@ -438,6 +438,18 @@ local config = {
                     }
                 end,
             },
+            -- {
+            --     "L3MON4D3/LuaSnip",
+            --     as = "luasnip",
+            --     config = function()
+            --         require("luasnip").setup {
+	        --             -- follow latest release.
+	        --             tag = "v<CurrentMajor>.*",
+	        --             -- install jsregexp (optional!:).
+	        --             run = "make install_jsregexp"
+            --         }
+            --     end,
+            -- },
         },
         -- All other entries override the require("<key>").setup({...}) call for default plugins
         ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
@@ -519,8 +531,12 @@ local config = {
     -- LuaSnip Options
     luasnip = {
         -- Extend filetypes
+        --
+        -- Equivalent to extend luasnip plugin
+        -- require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+        -- require('luasnip').filetype_extend("javascript", { "html" })
         filetype_extend = {
-            -- javascript = { "javascriptreact" },
+            javascript = { "javascriptreact", "html" },
         },
         -- Configure luasnip loaders (vscode, lua, and/or snipmate)
         vscode = {
