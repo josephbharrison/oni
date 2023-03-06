@@ -186,6 +186,9 @@ local config = {
                     "python",
                     "rust",
                     "javascript",
+                    "typescript",
+                    "javascriptreact",
+                    "react",
                 },
                 ignore_filetypes = { -- disable format on save for specified filetypes
                     -- "python",
@@ -476,6 +479,8 @@ local config = {
                 "proto",
                 "python",
                 "rust",
+                "javascript",
+                "javascriptreact",
             },
         },
         -- use mason-lspconfig to configure LSP installations
@@ -502,7 +507,6 @@ local config = {
                 "prettier",
                 "gofumpt",
                 "goimports",
-                "prettier",
                 "revive",
             },
         },
