@@ -480,7 +480,6 @@ local config = {
                 "python",
                 "rust",
                 "javascript",
-                "javascriptreact",
             },
         },
         -- use mason-lspconfig to configure LSP installations
