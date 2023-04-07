@@ -12,7 +12,10 @@ A cross-platform personalized development evironment (PDE)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/macos-install.sh)"
 ```
 
-### Linux (Coming Soon!)
+### Linux
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/linux-install.sh)"
+```
 
 ## Includes
 
