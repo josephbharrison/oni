@@ -66,9 +66,9 @@ function install_fonts(){
     do
         res=$(null brew list --cask font-${font}-nerd-font)
         if [[ $? -ne 0 ]]; then
-            [[ -f $HOME/Library/Fonts/${font}* ]]] && null sudo rm -f $HOME/Library/Fonts/${font}*
+            [[ -f $HOME/Library/Fonts/${font}* ]] && null sudo rm -f $HOME/Library/Fonts/${font}*
             null brew tap homebrew/cask-fonts && 
-            null brew install --cask font-${font}-nerd-font || return 1
+            null brew install --cask font-${font}-nerd-font --force || return 1
         fi
     done
     return 0
