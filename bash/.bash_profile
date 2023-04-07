@@ -11,10 +11,13 @@ alias ll='ls -la'
 alias vi='nvim'
 
 # Homebrew
-cmd /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
-# alias brew='sudo -Hu josephbharrison brew'
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then # Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else # MacOS
+    cmd /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+       . $(brew --prefix)/etc/bash_completion
+    fi
 fi
 alias fb='/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
@@ -42,6 +45,9 @@ f="$GSDK/completion.bash.inc" && [[ -f $f ]] && source $f
 cmd go && export PATH="$PATH:$(go env GOPATH)/bin"
 export GO111MODULE=on
 
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
 # Azure (eww)
 export GOPRIVATE=dev.azure.com
 
@@ -68,3 +74,4 @@ eval "$(starship init bash)"
 set -o vi
 export TERM="xterm-256color"
 
+. "$HOME/.cargo/env"
