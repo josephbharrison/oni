@@ -4,16 +4,16 @@
 now=$(date +%s)
 
 # GLOBAL PARAMETERS
-FONTS="hack mononoki go-mono jetbrains-mono sauce-code-pro open-dyslexic"
+FONTS="hack mononoki go-mono jetbrains-mono open-dyslexic"
 ASTRONVIM_REPO=https://github.com/AstroNvim/AstroNvim
 MY_REPO=https://github.com/josephbharrison/oni
 
 # install base configuration only
 [[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
 
-export TMP_DIR=${HOME}/tmp
-export SOURCE_DIR=${TMP_DIR}/oni
-export CONFIG_DIR=${HOME}/.config
+TMP_DIR=${HOME}/tmp
+SOURCE_DIR=${TMP_DIR}/oni
+CONFIG_DIR=${HOME}/.config
  
 # nullify output
 function null(){
@@ -23,12 +23,11 @@ function null(){
 # Prerequisite checker
 function check_prereqs(){
     echo -en "Checking prereqs: "
-    url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
     res=$(brew list)
     if [[ $? -ne 0 ]]; then
         echo "MISSING"
         echo "Installing homebrew: "
-        /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL ${url})"
+        /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     null brew update
 }
@@ -46,7 +45,7 @@ function ok(){
 
 # package installer
 function brewster(){
-    package="$1"
+    package=$1
     name=$2
     [[ -z $name ]] && name=$package
     res=$(null brew list $package)
@@ -63,13 +62,12 @@ function brewster(){
 # font installer
 function install_fonts(){
     echo -en "Installing fonts: "
-    url="https://github.com/ryanoasis/nerd-fonts.git"
     for font in $FONTS
     do
         if [[ $? -ne 0 ]]; then
-            null git clone --filter=blob:none --sparse ${url}
+            null git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git  
             null cd nerd-fonts
-            null install.sh $font
+            null install.sh 
         fi
     done
     return 0
@@ -102,17 +100,18 @@ function install_kubectl(){
     brewster kubectl
 }
 
+
 # wezterm installer
 function install_wezterm(){
     # Install wezterm
-    res=$(null brew list wezterm)
+    res=$(null brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
-        null brew tap wez/wezterm-linuxbrew || return 1
-        null brew install wezterm --force || return 1
+        null brew tap wez/wezterm
+        null brew install --cask wez/wezterm/wezterm-nightly --force || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade wezterm --force || return 1
+        null brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest --force || return 1
     fi
     return 0
 }
@@ -122,10 +121,19 @@ function install_neovim(){
     brewster nvim neovim
 }
 
-# Install language servers for neovim
-# Necessary on linux
-function install_lsp(){
-    brewster "go gopls rust-analyzer pyright eslint nvm yaml-language-server" lsp
+# Track packer installers
+function packer_count(){
+    echo $(ps -ef | grep -c "/[p]acker/")
+}
+
+# neovim package installer
+function packer_sync(){
+    null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
+    while [[ $(packer_count) -gt 0 ]]
+    do
+        sleep 1
+    done
+    return 0
 }
 
 # Configure Oni
@@ -139,15 +147,18 @@ function configure_oni(){
 
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-    # null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
+    null git clone $MY_REPO $SOURCE_DIR || return 1
 
-    null git clone --no-checkout $MY_REPO && git sparse-checkout init --cone && (cd $SOURCE_DIR && git read-tree -mu HEAD) || return 1
-
-    # Configure oni-nvim
+    # Configure nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
-    cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
+    if [[ $BASE_ONLY != true ]];then
+        cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
+    else
+        null git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim || return 1
+    fi
+    packer_sync
 
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
@@ -165,13 +176,11 @@ function configure_oni(){
     [[ -d $CONFIG_DIR/starship ]] && rm -rf $CONFIG_DIR/starship
     mkdir -p $CONFIG_DIR/starship
     cp -f $SOURCE_DIR/starship/* $CONFIG_DIR/starship/
-    cp $SOURCE_DIR/starship/starship.linux $CONFIG_DIR/starship.toml
+    cp $SOURCE_DIR/starship/default.toml $CONFIG_DIR/starship.toml
 
     # Configure bash
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
     cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
-
-    [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
 
     return 0
 }
@@ -179,7 +188,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts tmux tldr fzf kubectl stern wezterm neovim lsp"
+    components="fonts tmux tldr fzf kubectl stern wezterm neovim"
     for component in $components
     do
         installers="${installers} install_${component}"
@@ -200,8 +209,28 @@ function install(){
 }
 
 # Post install message
-function start(){
-    cat $SOURCE_DIR/images/startup-splash.ansi
+function getting_started(){
+    cat $SOURCE_DIR/images/oninvim.ansi
+    echo
+    echo " Oni successfully installed!"
+    echo
+    echo " Configurations:"
+    echo
+    echo "   tmux        ${HOME}/.config/tmux/tmux.conf"
+    echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
+    echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
+    echo "   starship    ${HOME}/.config/starship.toml"
+    echo 
+    echo " Mappings:"
+    echo 
+    echo "   neovim :help map"
+    echo "   tmux list-keys"
+    echo "   wezterm show-keys"
+    echo
+    echo " Run:"
+    echo
+    echo "   nvim +PackerSync"
+    echo
 }
 
 # initialize main installer
@@ -211,4 +240,5 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash && source ~/.bash_profile"
+export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
+
