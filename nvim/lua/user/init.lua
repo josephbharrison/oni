@@ -305,7 +305,6 @@ local config = {
                 as = "transparent",
                 config = function()
                     require("transparent").setup {
-                        enable = false,
                         extra_groups = {
                             "BufferLineTabClose",
                             "BufferLineBufferSelected",
@@ -314,7 +313,7 @@ local config = {
                             "BufferLineSeparator",
                             "BufferLineIndicatorSelected",
                         },
-                        exclude = {},
+                        exclude_groups = {},
                     }
                 end,
             },
