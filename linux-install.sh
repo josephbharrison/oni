@@ -100,18 +100,16 @@ function install_kubectl(){
     brewster kubectl
 }
 
-
 # wezterm installer
 function install_wezterm(){
     # Install wezterm
     res=$(null brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
-        null brew tap wez/wezterm-linuxbrew
-        null brew install --HEAD wezterm --force
+        null brew install --cask wezterm --force || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade --HEAD wezterm --force || return 1
+        null brew upgrade --cask wezterm --force || return 1
     fi
     return 0
 }
