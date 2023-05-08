@@ -5,11 +5,7 @@ now=$(date +%s)
 
 # GLOBAL PARAMETERS
 FONTS="hack mononoki go-mono jetbrains-mono open-dyslexic"
-ASTRONVIM_REPO=https://github.com/AstroNvim/AstroNvim
 MY_REPO=https://github.com/josephbharrison/oni
-
-# install base configuration only
-[[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
 
 TMP_DIR=${HOME}/tmp
 SOURCE_DIR=${TMP_DIR}/oni
@@ -108,11 +104,10 @@ function install_wezterm(){
     res=$(null brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
-        null brew tap wez/wezterm
-        null brew install --cask wez/wezterm/wezterm-nightly --force || return 1
+        null brew install --cask wezterm --force || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade --cask wez/wezterm/wezterm-nightly --no-quarantine --greedy-latest --force || return 1
+        null brew upgrade --cask wezterm --force || return 1
     fi
     return 0
 }
@@ -120,21 +115,6 @@ function install_wezterm(){
 # neovim installer
 function install_neovim(){
     brewster nvim neovim
-}
-
-# Track packer installers
-function packer_count(){
-    echo $(ps -ef | grep -c "/[p]acker/")
-}
-
-# neovim package installer
-function packer_sync(){
-    null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
-    while [[ $(packer_count) -gt 0 ]]
-    do
-        sleep 1
-    done
-    return 0
 }
 
 # Configure Oni
@@ -150,16 +130,11 @@ function configure_oni(){
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
     null git clone $MY_REPO $SOURCE_DIR || return 1
 
-    # Configure nvim
+    # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
-    if [[ $BASE_ONLY != true ]];then
-        cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
-    else
-        null git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim || return 1
-    fi
-    packer_sync
+    cp -r $SOURCE_DIR/oni-nvim $CONFIG_DIR/nvim || return 1
 
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
