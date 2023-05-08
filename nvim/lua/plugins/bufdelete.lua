@@ -1,3 +1,4 @@
 return {
-    "famiu/bufdelete.nvim",
+    'famiu/bufdelete.nvim'
 }
+

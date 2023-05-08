@@ -134,7 +134,7 @@ function configure_oni(){
     nvim_site_dir="${HOME}/.local/share/nvim/site"
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
-    cp -r $SOURCE_DIR/oni-nvim $CONFIG_DIR/nvim || return 1
+    cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
 
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
@@ -203,9 +203,6 @@ function getting_started(){
     echo "   tmux list-keys"
     echo "   wezterm show-keys"
     echo
-    echo " Run:"
-    echo
-    echo "   nvim +PackerSync"
     echo
 }
 

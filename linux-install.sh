@@ -119,21 +119,6 @@ function install_neovim(){
     brewster nvim neovim
 }
 
-# Track packer installers
-function packer_count(){
-    echo $(ps -ef | grep -c "/[p]acker/")
-}
-
-# neovim package installer
-function packer_sync(){
-    null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
-    while [[ $(packer_count) -gt 0 ]]
-    do
-        sleep 1
-    done
-    return 0
-}
-
 # Configure Oni
 function configure_oni(){
     mkdir -p $TMP_DIR
@@ -147,16 +132,11 @@ function configure_oni(){
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
     null git clone $MY_REPO $SOURCE_DIR || return 1
 
-    # Configure nvim
+    # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
     [[ -d $nvim_site_dir ]] && mv -f $nvim_site_dir ${nvim_site_dir}.${now}.bak
     [[ -d $CONFIG_DIR/nvim ]] && rm -rf $CONFIG_DIR/nvim
-    if [[ $BASE_ONLY != true ]];then
-        cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
-    else
-        null git clone $ASTRONVIM_REPO $CONFIG_DIR/nvim || return 1
-    fi
-    packer_sync
+    cp -r $SOURCE_DIR/nvim $CONFIG_DIR/nvim || return 1
 
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
@@ -224,10 +204,6 @@ function getting_started(){
     echo "   neovim :help map"
     echo "   tmux list-keys"
     echo "   wezterm show-keys"
-    echo
-    echo " Run:"
-    echo
-    echo "   nvim +PackerSync"
     echo
 }
 

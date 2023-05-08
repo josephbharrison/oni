@@ -1,5 +1,4 @@
 return {
-    "rafamadriz/friendly-snippets",
-    version = "*"
+    "rafamadriz/friendly-snippets"
 }
 

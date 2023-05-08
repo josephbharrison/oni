@@ -24,14 +24,3 @@ require("lazy").setup(plugins)
 
 -- Load user preferences
 require("user")
-
--- Highlight yanks
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('highlight_yank', {}),
-  desc = 'Hightlight selection on yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
-  end,
-})
-

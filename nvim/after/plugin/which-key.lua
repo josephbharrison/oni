@@ -1,5 +1,5 @@
 local wk = require("which-key")
 
 wk.register({
-	e = { desc = "Neovim Explorer" },
+	e = { desc = "Explore" },
 }, { prefix = "<leader>" })

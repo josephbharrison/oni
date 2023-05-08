@@ -15,8 +15,6 @@ local commands = {
 	["git_push"] = { "<cmd>Git push<cr>", desc = "Git push" },
 	["git_pull"] = { "<cmd>Git pull<cr>", desc = "Git pull" },
 	["git_init"] = { "<cmd>Git init<cr>", desc = "Git init" },
-	["git_diff_left"] = { "<cmd>diffget //2<cr>", desc = "Git init" },
-	["git_diff_right"] = { "<cmd>diffget //3<cr>", desc = "Git init" },
 }
 
 -- leader mappings
@@ -30,8 +28,6 @@ mappings = {
 	["<leader>gp"] = commands.git_pull,
 	["<leader>gP"] = commands.git_push,
 	["<leader>gi"] = commands.git_init,
-	["<leader>gh"] = commands.git_diff_left,
-	["<leader>gl"] = commands.git_diff_right,
 }
 
 -- map keys
