@@ -23,11 +23,12 @@ function null(){
 # Prerequisite checker
 function check_prereqs(){
     echo -en "Checking prereqs: "
+    url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
     res=$(brew list)
     if [[ $? -ne 0 ]]; then
         echo "MISSING"
         echo "Installing homebrew: "
-        /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL ${url})"
     fi
     null brew update
 }
@@ -62,10 +63,11 @@ function brewster(){
 # font installer
 function install_fonts(){
     echo -en "Installing fonts: "
+    url="https://github.com/ryanoasis/nerd-fonts.git"
     for font in $FONTS
     do
         if [[ $? -ne 0 ]]; then
-            null git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git  
+            null git clone --filter=blob:none --sparse ${url}
             null cd nerd-fonts
             null install.sh 
         fi
@@ -187,7 +189,7 @@ function install(){
 }
 
 # Post install message
-function getting_started(){
+function start(){
     cat $SOURCE_DIR/images/oninvim.ansi
     echo
     echo " Oni successfully installed!"
@@ -214,5 +216,5 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(getting_started)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
+export MSG="$(start)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
 
