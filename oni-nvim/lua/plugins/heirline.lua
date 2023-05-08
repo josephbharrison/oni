@@ -1,4 +1,0 @@
-return {
-    "rebelot/heirline.nvim",
-}
-
