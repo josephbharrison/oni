@@ -192,17 +192,16 @@ function getting_started(){
     echo
     echo " Configurations:"
     echo
-    echo "   tmux        ${HOME}/.config/tmux/tmux.conf"
-    echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
-    echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
-    echo "   starship    ${HOME}/.config/starship.toml"
+    echo "   tmux        ${HOME}/.config/tmuxtmux.conf"
+    echo "   neovim      ${HOME}/.config/nvim"
+    echo "   wezterm     ${HOME}/.config/wezterm"
+    echo "   starship    ${HOME}/.config/starship"
     echo 
     echo " Mappings:"
     echo 
     echo "   neovim :help map"
     echo "   tmux list-keys"
     echo "   wezterm show-keys"
-    echo
     echo
 }
 
