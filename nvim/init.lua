@@ -1,21 +1,37 @@
-local impatient_ok, impatient = pcall(require, "impatient")
-if impatient_ok then impatient.enable_profile() end
+-- fast loader
+vim.loader.enable()
 
-for _, source in ipairs {
-  "core.utils",
-  "core.options",
-  "core.bootstrap",
-  "core.diagnostics",
-  "core.autocmds",
-  "core.mappings",
-  "configs.which-key-register",
-} do
-  local status_ok, fault = pcall(require, source)
-  if not status_ok then vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) end
+-- lazy.nvim loader setup
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
+-- Load global mappings
+require("core.mappings")
 
-if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
-  vim.schedule(function() astronvim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
-end
+-- Install plugins
+local plugins = require("plugins")
+require("lazy").setup(plugins)
+
+-- Load user preferences
+require("user")
+
+-- Highlight yanks
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
+  end,
+})
+

@@ -117,21 +117,6 @@ function install_neovim(){
     brewster nvim neovim
 }
 
-# Track packer installers
-function packer_count(){
-    echo $(ps -ef | grep -c "/[p]acker/")
-}
-
-# neovim package installer
-function packer_sync(){
-    null nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &
-    while [[ $(packer_count) -gt 0 ]]
-    do
-        sleep 1
-    done
-    return 0
-}
-
 # Configure Oni
 function configure_oni(){
     mkdir -p $TMP_DIR
