@@ -33,7 +33,6 @@ local modules = {
   "toggleterm",
   "twilight",
   "zen-mode",
-  "resession",
   "nvim-window-picker",
 }
 
