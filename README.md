@@ -19,7 +19,7 @@ A cross-platform personalized development evironment (PDE)
 
 ## Includes
 
-- [**Oni-Nvim**](https://neovim.io) A highly customized (NeoVim)[https://neovim.io]
+- [**Oni-Nvim**](/oni-nvim) A highly customized [NeoVim](https://neovim.io)
 - [**WezTerm**](https://wezfurlong.org/wezterm/)
 - [**tmux**](https://github.com/tmux/tmux/wiki)
 - [**Language Servers:**](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
