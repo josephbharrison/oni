@@ -19,7 +19,7 @@ A cross-platform personalized development evironment (PDE)
 
 ## Includes
 
-- [**NeoVim**](https://neovim.io) A highly customized variant of [AstroNvim](https://astronvim.github.io) NeoVim
+- [**Oni-Nvim**](https://neovim.io) A highly customized (NeoVim)[https://neovim.io]
 - [**WezTerm**](https://wezfurlong.org/wezterm/)
 - [**tmux**](https://github.com/tmux/tmux/wiki)
 - [**Language Servers:**](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
@@ -32,9 +32,7 @@ A cross-platform personalized development evironment (PDE)
 - [**Themes:**](https://github.com/topics/neovim-theme)
   - [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) (default)
   - [folke/tokyonight](https://github.com/folke/tokyonight.nvim)
-  - [Shatur/neovim-ayu](https://github.com/Shatur/neovim-ayu)
-  - [EdenEast/nightfox.nvim](https://github.com/EdenEast/nightfox.nvim)
-  - [astronvim](https://astronvim.github.io)
+  - [catppuccin/nvim](https://github.com/catppuccin/nvim)
 - [**NerdFonts:**](https://www.nerdfonts.com)
   - [hack](https://www.programmingfonts.org/#hack) (default)
   - [mononoki](https://www.programmingfonts.org/#mononoki)
@@ -78,8 +76,6 @@ To view 'lead' mappings, open **nvim** and press `<Space>`:
 ### Advanced Configuration:
 
 Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
-
-> See [AstroNvim - Managing User Configuration](https://astronvim.github.io/Configuration/manage_user_config)
 
 ## Screenshots
 
