@@ -6,8 +6,6 @@ vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 -- Move selected visual mode lines with indent
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- Keep vim and exernal copy buffer separat
-vim.keymap.set("n", "Y", "yg$")
 -- Move lower line up, without EOL
 vim.keymap.set("n", "J", "mzJ`z")
 -- Up and Down half-page nav 
@@ -24,6 +22,7 @@ vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
 vim.keymap.set("n", "Q", "<nop>")
 
 -- -- remaps not yet used
+-- vim.keymap.set("n", "Y", "yg$") -- Keep vim and exernal copy buffer separat
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>") -- start tmux session
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
