@@ -41,10 +41,11 @@ wk.register({
 	z = { name = "Zen"},
 }, { prefix = "<leader>" })
 
+
 -- commands
 local commands = {
-    ["toggle"] = { function() zen.toggle(params) end, desc = "Zen mode" },
-    ["toggle_twilight"] = { function() params.plugins.twilight.enabled=true; zen.toggle(params) end, desc = "Zen mode with Twilight" },
+    ["toggle"] = { function() params.plugins.twilight.enabled = false; zen.toggle(params) end, desc = "Zen mode with Twilight" },
+    ["toggle_twilight"] = { function() params.plugins.twilight.enabled = true; zen.toggle(params) end, desc = "Zen mode with Twilight" },
 }
 
 -- leader mappings
