@@ -59,7 +59,8 @@ local i_mappings = {
 
 -- map keys
 lsp.on_attach(function(client, bufnr)
-	if client then
+    local print_client = false
+	if print_client then
 		print(client)
 	end
 	local opts = {buffer = bufnr, remap = false, desc = "none"}
