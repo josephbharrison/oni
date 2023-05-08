@@ -4,7 +4,7 @@ local zen = require("zen-mode")
 local params = {
     window = {
         backdrop = 0.70,
-        width = 84,
+        width = 90,
         options = {
             signcolumn = "no",
             number = true,
@@ -30,7 +30,7 @@ local params = {
         -- See alse also the Plugins/Wezterm section in this projects README
         wezterm = {
             enabled = true,
-            font = "+3", -- (10% increase per step)
+            font = "+6", -- (10% increase per step)
         },
     },
 }
