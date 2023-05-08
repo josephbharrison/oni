@@ -35,7 +35,7 @@ function fail(){
     exit 1
 }
 
-z OK response
+# OK response
 function ok(){
     echo "OK"
 }
