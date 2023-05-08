@@ -660,6 +660,7 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
                 window:perform_action(wezterm.action.IncreaseFontSize, pane)
                 number_value = number_value - 1
             end
+            overrides.font_size = number_value
             overrides.enable_tab_bar = false
         elseif number_value < 0 then
             window:perform_action(wezterm.action.ResetFontSize, pane)
