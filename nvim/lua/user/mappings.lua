@@ -17,9 +17,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- force format of current buffer
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)
 -- source current file
-vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
+vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end, {desc="Source file"})
 -- Noop Shift-Q
 vim.keymap.set("n", "Q", "<nop>")
+
+vim.keymap.set("n", "<leader>a", "gg\"+yG", {desc="Copy all"})
+vim.keymap.set("n", "<leader>S", "ggVG", {desc="Select all"})
 
 -- -- remaps not yet used
 -- vim.keymap.set("n", "Y", "yg$") -- Keep vim and exernal copy buffer separat
