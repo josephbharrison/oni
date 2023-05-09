@@ -28,12 +28,13 @@ local modules = {
   "nvim-dap-ui",
   "nvim-ts-autotag",
   "nvim-ts-context-commentstring",
+  "nvim-window-picker",
   "smart-splits",
   "todo-comments",
   "toggleterm",
   "twilight",
+  "vim-tmux-navigator",
   "zen-mode",
-  "nvim-window-picker",
 }
 
 local plugins = {}
