@@ -9,9 +9,7 @@ return {
         "MunifTanjim/nui.nvim",
     },
     config = function ()
-        -- Unless you are still migrating, remove the deprecated commands from v1.x
         vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-        -- If you want icons for diagnostic errors, you'll need to define them somewhere:
         vim.fn.sign_define("DiagnosticSignError",
         {text = " ", texthl = "DiagnosticSignError"})
         vim.fn.sign_define("DiagnosticSignWarn",
@@ -188,8 +186,8 @@ return {
                         ["H"] = "toggle_hidden",
                         ["/"] = "fuzzy_finder",
                         ["D"] = "fuzzy_finder_directory",
-                        ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
                         -- ["D"] = "fuzzy_sorter_directory",
+                        ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
                         ["f"] = "filter_on_submit",
                         ["<c-x>"] = "clear_filter",
                         ["[g"] = "prev_git_modified",
