@@ -9,15 +9,14 @@ local is_neotree_focused = function()
         local state = require("neo-tree.sources.manager").get_state(source)
         -- Check if the source has a state, if the state has a buffer and if the buffer is our current buffer
         if state and state.bufnr and state.bufnr == bufnr then
+            print("Neotree is focused!")
             return true
         end
     end
+    print("Neotree is not focused!")
     return false
 end
 
---  Will open and focus if explorer is closed
---  Will close if explorer is open and focused
---  Will focus if explorer is open and not focused
 local map_function = function()
     if not is_neotree_focused() then
         neotree.focus()
@@ -26,10 +25,10 @@ local map_function = function()
     end
 end
 
+
 -- commands
 local commands = {
-	-- ["explore"] = { function() map_function() end, desc = "File Explorer" },
-	["explore"] = { "<cmd>NeoTreeFocusToggle<CR>", desc = "File Explorer" },
+	["explore"] = { function() map_function() end, desc = "File Explorer" },
 }
 
 -- leader mappings

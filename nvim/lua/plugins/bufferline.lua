@@ -5,6 +5,7 @@ return {
         'nvim-tree/nvim-web-devicons',
         'nvim-tree/nvim-tree.lua',
     },
+    opts = {},
     config = function()
         require("bufferline").setup( {
             options = {

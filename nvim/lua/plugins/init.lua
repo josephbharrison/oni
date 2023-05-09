@@ -1,6 +1,6 @@
 local modules = {
+    "aerial",
     "alpha",
-    "arial",
     "better-escape",
     "bufdelete",
     "bufferline",
@@ -8,7 +8,7 @@ local modules = {
     "comment",
     "dressing",
     "friendly-snippets",
-    "fugative",
+    "fugitive",
     "gitsigns",
     "harpoon",
     "heirline",

@@ -1,7 +1,7 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
-        { "<leader>o", "<cmd>NeoTreeFocusToggle<cr>", desc = "Tree View" },
+        { "<leader>o", function() map_function() end, desc = "Tree View" },
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
