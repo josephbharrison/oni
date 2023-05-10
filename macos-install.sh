@@ -192,8 +192,7 @@ Oni successfully installed!
                                                  
    Configurations:                               
                                                  
-     tmux        ${HOME}/.config/tmuxtmux.conf   
-                                                 
+     tmux        ${HOME}/.config/tmux            
      wezterm     ${HOME}/.config/wezterm         
      starship    ${HOME}/.config/starship        
                                                  
