@@ -163,7 +163,7 @@ function configure_oni(){
     [[ -d $CONFIG_DIR/starship ]] && rm -rf $CONFIG_DIR/starship
     mkdir -p $CONFIG_DIR/starship
     cp -f $SOURCE_DIR/starship/* $CONFIG_DIR/starship/
-    cp $SOURCE_DIR/starship/default.toml $CONFIG_DIR/starship.toml
+    cp $SOURCE_DIR/starship/starship.linux $CONFIG_DIR/starship.toml
 
     # Configure bash
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
