@@ -122,6 +122,12 @@ function install_neovim(){
     brewster nvim neovim
 }
 
+# Install language servers for neovim
+# Necessary on linux
+function install_lsp(){
+    brewster gopls rust-analyzer pyright eslint
+}
+
 # Configure Oni
 function configure_oni(){
     mkdir -p $TMP_DIR
@@ -169,7 +175,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts tmux tldr fzf kubectl stern wezterm neovim"
+    components="fonts tmux tldr fzf kubectl stern wezterm neovim lsp"
     for component in $components
     do
         installers="${installers} install_${component}"
