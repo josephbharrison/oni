@@ -186,25 +186,28 @@ function install(){
     echo "Installation complete"
 }
 
+STARTUP_MSG="
+                                                 
+Oni successfully installed!                      
+                                                 
+   Configurations:                               
+                                                 
+     tmux        ${HOME}/.config/tmuxtmux.conf   
+                                                 
+     wezterm     ${HOME}/.config/wezterm         
+     starship    ${HOME}/.config/starship        
+                                                 
+   Mappings:                                     
+                                                 
+     neovim :help map                            
+     tmux list-keys                              
+     wezterm show-keys                           
+                                                 
+"
+
 # Post install message
 function start(){
-    cat $SOURCE_DIR/images/oninvim.ansi
-    echo
-    echo " Oni successfully installed!"
-    echo
-    echo " Configurations:"
-    echo
-    echo "   tmux        ${HOME}/.config/tmuxtmux.conf"
-    echo "   neovim      ${HOME}/.config/nvim"
-    echo "   wezterm     ${HOME}/.config/wezterm"
-    echo "   starship    ${HOME}/.config/starship"
-    echo 
-    echo " Mappings:"
-    echo 
-    echo "   neovim :help map"
-    echo "   tmux list-keys"
-    echo "   wezterm show-keys"
-    echo
+    cat $SOURCE_DIR/images/startup-splash.ansi
 }
 
 # initialize main installer
@@ -214,5 +217,5 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(start)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
+export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='black'}" start -- bash -c "echo -e '$MSG'; bash"
 

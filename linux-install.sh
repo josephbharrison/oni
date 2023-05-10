@@ -216,6 +216,12 @@ function start(){
     echo
 }
 
+# Post install message
+function start(){
+    cat $SOURCE_DIR/images/startup-splash.ansi
+}
+
+
 # initialize main installer
 install $@
 
@@ -223,5 +229,5 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(start)"; wezterm start -- bash -c "echo -e '$MSG'; bash"
+export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='black'}" start -- bash -c "echo -e '$MSG'; bash"
 
