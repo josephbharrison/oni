@@ -108,7 +108,8 @@ function install_wezterm(){
     res=$(null brew list wezterm-nightly)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
-        null brew install --cask wezterm --force || return 1
+        null brew tap wez/wezterm-linuxbrew || return 1
+        null brew install wezterm --force || return 1
     else
         echo -en "Updating wezterm: "
         null brew upgrade --cask wezterm --force || return 1
