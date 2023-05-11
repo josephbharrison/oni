@@ -635,8 +635,8 @@ local config = {
 			source = {
 				File = background_image,
 			},
-			width = "58cell",
-			height = "29cell",
+			width = "48cell",
+			height = "20cell",
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
