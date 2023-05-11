@@ -24,7 +24,7 @@ return {
         require("neo-tree").setup({
             source_selector = {
                 winbar = true,
-                statusline = true,
+                -- statusline = true,
                 content_layout = "center",
             },
             close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
