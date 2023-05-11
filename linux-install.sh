@@ -125,7 +125,7 @@ function install_neovim(){
 # Install language servers for neovim
 # Necessary on linux
 function install_lsp(){
-    brewster "gopls rust-analyzer pyright eslint" lsp
+    brewster "gopls rust-analyzer pyright eslint nvm" lsp
 }
 
 # Configure Oni
