@@ -46,7 +46,7 @@ function ok(){
 
 # package installer
 function brewster(){
-    package=$1
+    package="$1"
     name=$2
     [[ -z $name ]] && name=$package
     res=$(null brew list $package)
@@ -125,7 +125,7 @@ function install_neovim(){
 # Install language servers for neovim
 # Necessary on linux
 function install_lsp(){
-    brewster gopls rust-analyzer pyright eslint
+    brewster "gopls rust-analyzer pyright eslint" lsp
 }
 
 # Configure Oni
