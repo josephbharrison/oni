@@ -197,30 +197,8 @@ function install(){
 
 # Post install message
 function start(){
-    cat $SOURCE_DIR/images/oninvim.ansi
-    echo
-    echo " Oni successfully installed!"
-    echo
-    echo " Configurations:"
-    echo
-    echo "   tmux        ${HOME}/.config/tmux/tmux.conf"
-    echo "   neovim      ${HOME}/.config/nvim/lua/user/init.lua"
-    echo "   wezterm     ${HOME}/.config/wezterm/wezterm.lua"
-    echo "   starship    ${HOME}/.config/starship.toml"
-    echo 
-    echo " Mappings:"
-    echo 
-    echo "   neovim :help map"
-    echo "   tmux list-keys"
-    echo "   wezterm show-keys"
-    echo
-}
-
-# Post install message
-function start(){
     cat $SOURCE_DIR/images/startup-splash.ansi
 }
-
 
 # initialize main installer
 install $@

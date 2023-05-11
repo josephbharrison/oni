@@ -186,24 +186,6 @@ function install(){
     echo "Installation complete"
 }
 
-STARTUP_MSG="
-                                                 
-Oni successfully installed!                      
-                                                 
-   Configurations:                               
-                                                 
-     tmux        ${HOME}/.config/tmux            
-     wezterm     ${HOME}/.config/wezterm         
-     starship    ${HOME}/.config/starship        
-                                                 
-   Mappings:                                     
-                                                 
-     neovim :help map                            
-     tmux list-keys                              
-     wezterm show-keys                           
-                                                 
-"
-
 # Post install message
 function start(){
     cat $SOURCE_DIR/images/startup-splash.ansi
