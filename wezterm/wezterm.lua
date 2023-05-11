@@ -635,8 +635,8 @@ local config = {
 			source = {
 				File = background_image,
 			},
-			width = "48cell",
-			height = "20cell",
+			width = "58cell",
+			height = "29cell",
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
@@ -660,7 +660,6 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
                 window:perform_action(wezterm.action.IncreaseFontSize, pane)
                 number_value = number_value - 1
             end
-            overrides.font_size = number_value
             overrides.enable_tab_bar = false
         elseif number_value < 0 then
             window:perform_action(wezterm.action.ResetFontSize, pane)
