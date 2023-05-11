@@ -35,3 +35,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Italicize comments
+vim.api.nvim_set_hl(0, "Comment", { italic = true })

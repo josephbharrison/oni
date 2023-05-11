@@ -71,18 +71,16 @@ wk.register({
 
 -- commands
 local commands = {
-  ["debug_start"] = { function() require("dap").continue() end, desc = "Debugger: Start" },
-  ["debug_stop"] = { function() require("dap").terminate() end, desc = "Debugger: Stop" }, -- Shift+F5,
-  ["debug_restart"] = { function() require("dap").restart_frame() end, desc = "Debugger: Restart" }, -- Control+F5
+  ["debug_start"] = { function() require("dap").continue() end, desc = "Debugger: Start (F5)" },
+  ["debug_stop"] = { function() require("dap").terminate() end, desc = "Debugger: Stop (Shift+F5)" }, -- Shift+F5,
+  ["debug_restart"] = { function() require("dap").restart_frame() end, desc = "Debugger: Restart (Ctrl+F5)" }, -- Control+F5
   ["dubug_pause"] = { function() require("dap").pause() end, desc = "Debugger: Pause" },
   ["debug_breakpoint_toggle"] = { function() require("dap").toggle_breakpoint() end, desc = "Debugger: Toggle Breakpoint" },
   ["debug_step_over"] = { function() require("dap").step_over() end, desc = "Debugger: Step Over" },
   ["debug_stop_into"] = { function() require("dap").step_into() end, desc = "Debugger: Step Into" },
-  ["debug_setp_out"] = { function() require("dap").step_out() end, desc = "Debugger: Step Out" }, -- Shift+F11
+  ["debug_setp_out"] = { function() require("dap").step_out() end, desc = "Debugger: Step Out (Shift+F11)" }, -- Shift+F11
   ["debug_clear_breakpoints"] = { function() require("dap").clear_breakpoints() end, desc = "Clear Breakpoints" },
-  ["debug_continue"] = { function() require("dap").continue() end, desc = "Start/Continue (F5)" },
   ["debug_close"] = { function() require("dap").close() end, desc = "Close Session" },
-  ["debug_terminate"] = { function() require("dap").terminate() end, desc = "Terminate Session (S-F5)" },
   ["debug_repl_toggle"] = { function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
   ["debug_ui"] = { function() require("dapui").toggle() end, desc = "Toggle Debugger UI" },
   ["debug_hover"] = { function() require("dap.ui.widgets").hover() end, desc = "Debugger Hover" },
@@ -106,7 +104,7 @@ local mappings = {
     ["<leader>Do"] = commands.debug_step_over,
     ["<leader>DO"] = commands.debug_step_out,
     ["<leader>Dq"] = commands.debug_close,
-    ["<leader>DQ"] = commands.debug_terminate,
+    ["<leader>DQ"] = commands.debug_stop,
     ["<leader>Dp"] = commands.debug_pause,
     ["<leader>Dr"] = commands.debug_restart,
     ["<leader>DR"] = commands.debug_repl_toggle,
