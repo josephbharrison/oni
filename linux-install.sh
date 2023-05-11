@@ -105,7 +105,7 @@ function install_kubectl(){
 # wezterm installer
 function install_wezterm(){
     # Install wezterm
-    res=$(null brew list wezterm-nightly)
+    res=$(null brew list wezterm)
     if [[ $? -ne 0 ]]; then
         echo -en "Installing wezterm: "
         null brew tap wez/wezterm-linuxbrew || return 1
