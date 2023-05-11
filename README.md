@@ -16,6 +16,7 @@ A cross-platform personalized development evironment (PDE)
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/linux-install.sh)"
 ```
+![installer][installer]
 
 ## Includes
 
@@ -86,5 +87,6 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 [desktop2]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop2.png
 [screen]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/screen.png
 [mappings]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/mappings.png
+[installer]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/installer.png
 
 # oni
