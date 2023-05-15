@@ -610,9 +610,9 @@ local background_hsb_0 = {
 }
 
 -- local background_hsb_1 = {
--- 	brightness = 0.03,
--- 	hue = 1.15,
--- 	saturation = 0.35,
+--     brightness = 0.03,
+--     hue = 1.15,
+--     saturation = 0.35,
 -- }
 
 local background_image = wezterm.config_dir .. "/background.png"
@@ -622,9 +622,8 @@ local config = {
 	initial_rows = 34,
 	enable_tab_bar = false,
 	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
-	-- font = wezterm.font_with_fallback("Hack Nerd Font", "Hack", { weight = "Regular", italic = false }),
     font = wezterm.font_with_fallback({
-        {family="Hack Nerd Font", weight="Regular", italic=false},
+        {family="Hack Nerd Font", weight="Regular"},
         "Hack",
     }),
 	font_size = 16,
