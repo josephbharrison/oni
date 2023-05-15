@@ -69,7 +69,7 @@ function install_fonts(){
         if [[ $? -ne 0 ]]; then
             null git clone --filter=blob:none --sparse ${url}
             null cd nerd-fonts
-            null install.sh 
+            null install.sh $font
         fi
     done
     return 0
