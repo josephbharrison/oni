@@ -17,11 +17,12 @@ end
 
 local map_function = function()
     if not is_neotree_focused() then
-        neotree.focus()
+        neotree.focus("", true, true)
     else
-        neotree.close_all()
+        neotree.close_all("")
     end
 end
+
 
 
 -- commands
