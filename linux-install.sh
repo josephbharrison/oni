@@ -112,7 +112,7 @@ function install_wezterm(){
         null brew install wezterm --force || return 1
     else
         echo -en "Updating wezterm: "
-        null brew upgrade --cask wezterm --force || return 1
+        null brew upgrade wezterm --force || return 1
     fi
     return 0
 }
