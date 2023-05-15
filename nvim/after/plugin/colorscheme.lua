@@ -38,7 +38,7 @@ mappings = {
 	["<leader>std"] = commands.tokyonight_day,
 	["<leader>stm"] = commands.tokyonight_moon,
 	["<leader>stn"] = commands.tokyonight_night,
-	["<leader>sts"] = commands.tokyonight_storm,
+	["<leader>sts"] = commands.tokyonight_star,
 }
 
 -- map keys

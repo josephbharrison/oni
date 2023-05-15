@@ -16,6 +16,7 @@ local modules = {
     "indent-blankline",
     "lspkind",
     "lspzero",
+    "lspconfig",
     "neo-tree",
     "neoconf",
     "neodev",
