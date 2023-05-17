@@ -23,11 +23,10 @@ local map_function = function()
     end
 end
 
-
-
 -- commands
 local commands = {
-	["explore"] = { function() map_function() end, desc = "File Explorer" },
+	-- ["explore"] = { function() map_function() end, desc = "File Explorer" },
+	["explore"] = { "<cmd>NeoTreeFocusToggle<CR>", desc = "File Explorer" },
 }
 
 -- leader mappings
