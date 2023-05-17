@@ -15,11 +15,14 @@ local is_neotree_focused = function()
     return false
 end
 
+--  Will open and focus if explorer is closed
+--  Will close if explorer is open and focused
+--  Will focus if explorer is open and not focused
 local map_function = function()
     if not is_neotree_focused() then
-        neotree.focus("", true, true)
+        neotree.focus()
     else
-        neotree.close_all("")
+        neotree.close_all()
     end
 end
 
