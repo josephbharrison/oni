@@ -76,6 +76,6 @@ alias loc='help="switch to LOCAL k8s context"; kubectl config use-context ${LOCA
 complete -F __start_kubectl kubectl
 
 # Oni shortcuts
-alias cpnvim='help="copy running nvim config to oni"; cp -rf ~/.config/nvim/* ${ONI_HOME}/nvim'
-alias cptmux='help="copy running tmux config to oni"; cp -rf ~/.config/tmux/* ${ONI_HOME}/tmux'
-alias cpwezterm='help="copy running wezterm config to oni"; cp -rf ~/.config/wezterm/* ${ONI_HOME}/wezterm'
+alias cpnvim='help="copy running nvim config to oni"; cp -rf ~/.config/nvim/* ${ONI_HOME}/nvim; rm -rf ${ONI_HOME}/tmux/plugins'
+alias cptmux='help="copy running tmux config to oni"; cp -f ~/.config/tmux/* ${ONI_HOME}/tmux'
+alias cpwezterm='help="copy running wezterm config to oni"; cp -f ~/.config/wezterm/* ${ONI_HOME}/wezterm'
