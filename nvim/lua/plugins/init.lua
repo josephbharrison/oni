@@ -1,6 +1,7 @@
 local modules = {
     "aerial",
     "alpha",
+    "base16",
     "better-escape",
     "bufdelete",
     "bufferline",
