@@ -175,7 +175,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts tmux tldr fzf kubectl stern wezterm neovim lsp"
+    components="fonts tmux tldr fzf kubectl stern wezterm neovim lsp yaml-language-server"
     for component in $components
     do
         installers="${installers} install_${component}"
