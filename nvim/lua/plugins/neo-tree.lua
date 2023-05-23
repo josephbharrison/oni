@@ -183,7 +183,7 @@ return {
                     mappings = {
                         ["<bs>"] = "navigate_up",
                         ["."] = "set_root",
-                        ["H"] = "toggle_hidden",
+                        ["h"] = "toggle_hidden",
                         ["/"] = "fuzzy_finder",
                         ["D"] = "fuzzy_finder_directory",
                         -- ["D"] = "fuzzy_sorter_directory",
