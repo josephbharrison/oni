@@ -29,7 +29,7 @@ lsp.preset({
   manage_nvim_cmp = {
     set_sources = 'recommended',
     set_basic_mappings = true,
-    set_extra_mappings = false,
+    set_extra_mappings = true,
     use_luasnip = true,
     set_format = true,
     documentation_window = true,
@@ -53,6 +53,12 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 	["<C-y>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
+})
+
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }
 })
 
 lsp.setup_nvim_cmp({
