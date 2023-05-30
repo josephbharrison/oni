@@ -216,6 +216,7 @@ if is_available "nvim-colorizer.lua" then
 end
 
 
+-- Apply default mappings
 for mode, mappings in pairs(maps) do
 	for k, v in pairs(mappings) do
 		if v[1] and v["desc"] then
@@ -224,7 +225,7 @@ for mode, mappings in pairs(maps) do
 	end
 end
 
--- LSP buffer mappings
+-- Apply default LSP buffer mappings
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function()
