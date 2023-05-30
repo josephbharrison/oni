@@ -172,33 +172,6 @@ if is_available "telescope.nvim" then
   maps.n["<leader>lD"] = { function() require("telescope.builtin").diagnostics() end, desc = "Search diagnostics" }
 end
 
--- Terminal
-if is_available "toggleterm.nvim" then
-  if vim.fn.executable "lazygit" == 1 then
-    maps.n["<leader>gg"] = { function() toggle_term_cmd "lazygit" end, desc = "ToggleTerm lazygit" }
-    maps.n["<leader>tl"] = { function() toggle_term_cmd "lazygit" end, desc = "ToggleTerm lazygit" }
-  end
-  if vim.fn.executable "node" == 1 then
-    maps.n["<leader>tn"] = { function() toggle_term_cmd "node" end, desc = "ToggleTerm node" }
-  end
-  if vim.fn.executable "gdu" == 1 then
-    maps.n["<leader>tu"] = { function() toggle_term_cmd "gdu" end, desc = "ToggleTerm gdu" }
-  end
-  if vim.fn.executable "btm" == 1 then
-    maps.n["<leader>tt"] = { function() toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
-  end
-  if vim.fn.executable "python" == 1 then
-    maps.n["<leader>tp"] = { function() toggle_term_cmd "python" end, desc = "ToggleTerm python" }
-  end
-  maps.n["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" }
-  maps.n["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "ToggleTerm horizontal split" }
-  maps.n["<leader>tv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "ToggleTerm vertical split" }
-  maps.n["<F7>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" }
-  maps.t["<F7>"] = maps.n["<F7>"]
-  maps.n["<C-'>"] = maps.n["<F7>"]
-  maps.t["<C-'>"] = maps.n["<F7>"]
-end
-
 if is_available "nvim-dap" then
   -- modified function keys found with `showkey -a` in the terminal to get key code
   -- run `nvim -V3log +quit` and search through the "Terminal info" in the `log` file for the correct keyname
