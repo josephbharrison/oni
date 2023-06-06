@@ -1,3 +1,7 @@
 return {
-    "sbdchd/neoformat",
+  'sbdchd/neoformat',
+  dependencies = {
+      'prettier/vim-prettier',
+  },
 }
+
