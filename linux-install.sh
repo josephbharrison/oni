@@ -11,9 +11,9 @@ MY_REPO=https://github.com/josephbharrison/oni
 # install base configuration only
 [[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
 
-export TMP_DIR=${HOME}/tmp
-export SOURCE_DIR=${TMP_DIR}/oni
-export CONFIG_DIR=${HOME}/.config
+TMP_DIR=${HOME}/tmp
+SOURCE_DIR=${TMP_DIR}/oni
+CONFIG_DIR=${HOME}/.config
  
 # nullify output
 function null(){
@@ -139,9 +139,7 @@ function configure_oni(){
 
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-    # null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
-
-    null git clone --no-checkout $MY_REPO && git sparse-checkout init --cone && (cd $SOURCE_DIR && git read-tree -mu HEAD) || return 1
+    null git clone $MY_REPO $SOURCE_DIR || return 1
 
     # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
@@ -170,8 +168,6 @@ function configure_oni(){
     # Configure bash
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
     cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
-
-    [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
 
     return 0
 }
@@ -211,4 +207,4 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash && source ~/.bash_profile"
+export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash"
