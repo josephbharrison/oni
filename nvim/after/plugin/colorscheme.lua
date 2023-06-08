@@ -20,9 +20,9 @@ local commands = {
 	["tokyonight_moon"] = { "<cmd>colorscheme tokyonight-moon<cr>", desc = "moon" },
 	["tokyonight_night"] = { "<cmd>colorscheme tokyonight-night<cr>", desc = "night" },
 	["tokyonight_storm"] = { "<cmd>colorscheme tokyonight-storm<cr>", desc = "storm" },
-	["astro"] = { "<cmd>colorscheme astrotheme<cr>", desc = "astrotheme" },
-	["astro_dark"] = { "<cmd>colorscheme astrodark<cr>", desc = "astrodark" },
-	["astro_light"] = { "<cmd>colorscheme astrolight<cr>", desc = "astrodark" },
+	["astro"] = { "<cmd>colorscheme astrotheme<cr>", desc = "astro" },
+	["astro_dark"] = { "<cmd>colorscheme astrodark<cr>", desc = "dark" },
+	["astro_light"] = { "<cmd>colorscheme astrolight<cr>", desc = "light" },
 }
 
 -- leader mappings
