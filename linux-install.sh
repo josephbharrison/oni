@@ -169,8 +169,6 @@ function configure_oni(){
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
     cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
 
-    [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-
     return 0
 }
 
@@ -210,3 +208,5 @@ install $@
 
 # launch wezterm with `getting_started` message
 export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash && source ~/.bash_profile"
+
+[[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
