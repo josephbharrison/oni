@@ -139,9 +139,7 @@ function configure_oni(){
 
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-    # null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
-
-    null git clone --no-checkout $MY_REPO && git sparse-checkout init --cone && (cd $SOURCE_DIR && git read-tree -mu HEAD) || return 1
+    null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
 
     # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
