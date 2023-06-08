@@ -30,7 +30,7 @@ local params = {
         -- See alse also the Plugins/Wezterm section in this projects README
         wezterm = {
             enabled = true,
-            font = "+4", -- (10% increase per step)
+            font = "+8", -- (10% increase per step)
         },
     },
 }
