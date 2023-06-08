@@ -624,7 +624,7 @@ local config = {
 	enable_tab_bar = false,
 	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
     font = wezterm.font_with_fallback({
-        {family="SauceCodePro Nerd Font", weight="Regular"},
+        {family="SauceCodePro Nerd Font", weight="DemiBold"},
         "Hack",
     }),
 	font_size = 16,
