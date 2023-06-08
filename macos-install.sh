@@ -4,7 +4,7 @@
 now=$(date +%s)
 
 # GLOBAL PARAMETERS
-FONTS="hack mononoki go-mono jetbrains-mono open-dyslexic"
+FONTS="hack mononoki go-mono jetbrains-mono saucecodepro open-dyslexic"
 MY_REPO=https://github.com/josephbharrison/oni
 
 TMP_DIR=${HOME}/tmp
