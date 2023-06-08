@@ -169,6 +169,8 @@ function configure_oni(){
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
     cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
 
+    [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
+
     return 0
 }
 
