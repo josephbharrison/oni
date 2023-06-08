@@ -45,6 +45,9 @@ f="$GSDK/completion.bash.inc" && [[ -f $f ]] && source $f
 cmd go && export PATH="$PATH:$(go env GOPATH)/bin"
 export GO111MODULE=on
 
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
 # Azure (eww)
 export GOPRIVATE=dev.azure.com
 
@@ -71,3 +74,4 @@ eval "$(starship init bash)"
 set -o vi
 export TERM="xterm-256color"
 
+. "$HOME/.cargo/env"
