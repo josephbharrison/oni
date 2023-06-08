@@ -139,7 +139,7 @@ function configure_oni(){
 
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
-    null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
+    null git clone --depth=1 --filter=blob:none --sparse $MY_REPO $SOURCE_DIR || return 1
 
     # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
@@ -207,4 +207,4 @@ install $@
 [[ -e $@ ]] && exit 0
 
 # launch wezterm with `getting_started` message
-export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash"
+export MSG="$(start)"; wezterm --config background="{}" --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start -- bash -c "echo -e '$MSG'; bash && source ~/.bash_profile"
