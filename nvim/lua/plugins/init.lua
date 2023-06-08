@@ -1,6 +1,7 @@
 local modules = {
     "aerial",
     "alpha",
+    "astrotheme",
     "base16",
     "better-escape",
     "bufdelete",

@@ -20,10 +20,13 @@ local commands = {
 	["tokyonight_moon"] = { "<cmd>colorscheme tokyonight-moon<cr>", desc = "moon" },
 	["tokyonight_night"] = { "<cmd>colorscheme tokyonight-night<cr>", desc = "night" },
 	["tokyonight_storm"] = { "<cmd>colorscheme tokyonight-storm<cr>", desc = "storm" },
+	["astro"] = { "<cmd>colorscheme astrotheme<cr>", desc = "astrotheme" },
+	["astro_dark"] = { "<cmd>colorscheme astrodark<cr>", desc = "astrodark" },
+	["astro_light"] = { "<cmd>colorscheme astrolight<cr>", desc = "astrodark" },
 }
 
 -- leader mappings
-mappings = {
+local mappings = {
 	["<leader>s"] = false,
 	["<leader>sc"] = commands.cat,
 	["<leader>scf"] = commands.cat_frappe,
@@ -39,6 +42,9 @@ mappings = {
 	["<leader>stm"] = commands.tokyonight_moon,
 	["<leader>stn"] = commands.tokyonight_night,
 	["<leader>sts"] = commands.tokyonight_star,
+	["<leader>sa"] = commands.astro,
+	["<leader>sad"] = commands.astro_dark,
+	["<leader>sal"] = commands.astro_light,
 }
 
 -- map keys
