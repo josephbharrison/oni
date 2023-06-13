@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+TAG_A=$1
+TAG_B=$2
+FILE=$3
+
+UPDATE=false
+
+function usage(){
+    echo "diff-tag <tag1> <tag2> [file]" && exit 1
+}
+
+# nullify output
+function null(){
+    "$@" &> /dev/null
+}
+
+# fail and exit
+function fail(){
+    echo "FAIL"
+    exit 1
+}
+
+# OK response
+function ok(){
+    echo "OK"
+}
+
+# package installer
+function brewster(){
+    package=$1
+    name=$2
+    [[ -z $name ]] && name=$package
+    res=$(null brew list $package)
+    if [[ $? -ne 0 ]]; then
+        echo -en "Installing $name: "
+        null brew install $package || return 1
+    elif [[ $UPDATE == true ]];then
+        echo -en "Updating $name: "
+        null brew upgrade $package || return 1
+    fi
+    return 0
+}
+
+[[ -z $TAG_B ]] && usage
+
+(null brew list $package) || (brewster colordiff && ok || fail)
+
+# Create the directories for extraction
+mkdir -p ~/tmp/${TAG_A}
+mkdir -p ~/tmp/${TAG_B}
+
+# Extract each tag into its respective directory
+git archive ${TAG_A} | tar -x -C ~/tmp/${TAG_A}/
+git archive ${TAG_B} | tar -x -C ~/tmp/${TAG_B}/
+
+# Compare the directories
+if [[ ! -f ~/tmp/${TAG_A}/${FILE} ]]; then
+    colordiff -r --color -y --side-by-side ~/tmp/${TAG_A}/ ~/tmp/${TAG_B}/
+else
+    nvim -d ~/tmp/${TAG_A}/${FILE} ~/tmp/${TAG_B}/${FILE}
+fi
