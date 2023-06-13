@@ -56,7 +56,8 @@ git archive ${TAG_B} | tar -x -C ~/tmp/${TAG_B}/
 
 # Compare the directories
 if [[ ! -f ~/tmp/${TAG_A}/${FILE} ]]; then
-    colordiff -r --color -y --side-by-side ~/tmp/${TAG_A}/ ~/tmp/${TAG_B}/
+    # colordiff -r --color -y --side-by-side ~/tmp/${TAG_A}/ ~/tmp/${TAG_B}/
+    diff -r --side-by-side ~/tmp/${TAG_A}/ ~/tmp/${TAG_B}/
 else
     nvim -d ~/tmp/${TAG_A}/${FILE} ~/tmp/${TAG_B}/${FILE}
 fi
