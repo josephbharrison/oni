@@ -47,6 +47,7 @@ export GO111MODULE=on
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Azure (eww)
 export GOPRIVATE=dev.azure.com
@@ -74,4 +75,3 @@ eval "$(starship init bash)"
 set -o vi
 export TERM="xterm-256color"
 
-. "$HOME/.cargo/env"
