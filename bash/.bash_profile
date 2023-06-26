@@ -47,7 +47,7 @@ export GO111MODULE=on
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 # Azure (eww)
 export GOPRIVATE=dev.azure.com
@@ -64,7 +64,6 @@ export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH=/usr/local/opt/docker-compose/bin:${PATH}
 export PATH=/opt/homebrew/bin/docker-buildx:${PATH}
 
-
 ## iCloud
 alias password='tail -1 ~/Documents/passwords.txt'
 
@@ -75,3 +74,5 @@ eval "$(starship init bash)"
 set -o vi
 export TERM="xterm-256color"
 
+## Import Secrets
+[[ -f ~/.secrets ]] && source ~/.secrets
