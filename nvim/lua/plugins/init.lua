@@ -10,7 +10,7 @@ local modules = {
     "colorizer",
     "colorschemes",
     "comment",
-    -- "copilot",
+    "copilot",
     "dressing",
     "friendly-snippets",
     "fugitive",
