@@ -9,7 +9,7 @@ wk.register({
 -- ChatGPT functions
 local chatgpt = require("chatgpt")
 
--- harpoon commands
+-- ChatGPT commands
 local commands = {
 	["chat"] = { function() chatgpt.openChat() end, desc = "ChatGPT Chat" },
 	["auto_complete"] = { function() chatgpt.complete_code() end, desc = "Complete code" },
@@ -28,7 +28,7 @@ local commands = {
 	["run_code_reliability_analysis"] = { "<cmd>ChatGPTRun code_reliability_analysis<cr>", desc = "Code reliability analysis" },
 }
 
--- harpoon leader -> function mappings
+-- ChatGPT leader -> function mappings
 mappings = {
 	["<leader>G"] = false,
 	["<leader>Gg"] = commands.chat,
