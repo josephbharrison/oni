@@ -14,7 +14,7 @@ local commands = {
 	["chat"] = { function() chatgpt.openChat() end, desc = "ChatGPT Chat" },
 	["auto_complete"] = { function() chatgpt.complete_code() end, desc = "Complete code" },
 	["edit_with_instructions"] = { function() chatgpt.edit_with_instructions() end, desc = "Edit with instructions" },
-	["select_awesome_prompt"] = { function() chatgpt.select_awesome_prompt() end, desc = "Select awesome prompt" },
+	["select_awesome_prompt"] = { function() chatgpt.selectAwesomePrompt() end, desc = "Select awesome prompt" },
     ["run_grammar_correction"] = { "<cmd>ChatGPTRun grammar_correction<cr>", desc = "Grammar correction" },
 	["run_translate"] = { "<cmd>ChatGPTRun translate<cr>", desc = "Translate" },
 	["run_keywords"] = { "<cmd>ChatGPTRun keywords<cr>", desc = "Keywords" },
