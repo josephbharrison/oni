@@ -14,7 +14,7 @@ local commands = {
 	["chat"] = { function() chatgpt.openChat() end, desc = "ChatGPT Chat" },
 	["auto_complete"] = { function() chatgpt.complete_code() end, desc = "Complete code" },
 	["edit_with_instructions"] = { function() chatgpt.edit_with_instructions() end, desc = "Edit with instructions" },
-	["select_awesome_prompt"] = { function() chatgpt.edit_with_instructions() end, desc = "Select awesome prompt" },
+	["select_awesome_prompt"] = { function() chatgpt.select_awesome_prompt() end, desc = "Select awesome prompt" },
     ["run_grammar_correction"] = { "<cmd>ChatGPTRun grammar_correction<cr>", desc = "Grammar correction" },
 	["run_translate"] = { "<cmd>ChatGPTRun translate<cr>", desc = "Translate" },
 	["run_keywords"] = { "<cmd>ChatGPTRun keywords<cr>", desc = "Keywords" },
@@ -29,7 +29,7 @@ local commands = {
 }
 
 -- ChatGPT leader -> function mappings
-mappings = {
+local mappings = {
 	["<leader>G"] = false,
 	["<leader>Gg"] = commands.chat,
 	["<leader>Gc"] = commands.auto_complete,
@@ -50,7 +50,6 @@ mappings = {
 
 for k, v in pairs(mappings) do
 	if v then 
-
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end
