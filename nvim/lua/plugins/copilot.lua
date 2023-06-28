@@ -1,4 +1,4 @@
 return {
     "github/copilot.vim",
-    -- create a neovim copilot configuration for lazy
+    -- run `Copilot setup` to complete setup
 }
