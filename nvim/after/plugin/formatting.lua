@@ -45,11 +45,10 @@ vim.cmd [[
 
 -- Add cargo fmt for Rust files
 vim.cmd [[
-  autocmd BufWritePre *.rs lua FormatRustFile()
+  autocmd BufWritePost *.rs lua FormatRustFile()
 ]]
 
 function FormatRustFile()
-  vim.cmd 'write'
   vim.fn.system('cargo fmt')
   vim.cmd 'edit!'
 end
