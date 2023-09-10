@@ -26,12 +26,12 @@ function check_prereqs(){
         url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
         /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL ${url})"
     fi
-    null brew update
+    null brew update || (echo "try running brew update manually for more info" && return 1)
 }
 
 # fail and exit
 function fail(){
-    echo "FAIL"
+    echo "FAILED $@"
     exit 1
 }
 
@@ -176,7 +176,7 @@ function install(){
     steps="check_prereqs $installers"
     for step in $steps
     do
-        $step && ok || fail
+        $step && ok || fail $step
     done
 
     if [[ $@ != *"--skip-configure"* ]]; then

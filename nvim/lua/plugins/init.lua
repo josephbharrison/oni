@@ -38,6 +38,7 @@ local modules = {
     "treesitter",
     "treesitter-playground",
     "twilight",
+    "ufo",
     "undotree",
     "vim-tmux-navigator",
     "which-key",
