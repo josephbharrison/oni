@@ -25,7 +25,7 @@ error_symbol = "[❯](bold red)" # used if previous command failed
 
 
 [directory]
-read_only = " "
+read_only = "󰉐"
 style = "bg:light-yellow fg:bold black"
 format = "[$path]($style)"
 truncation_length = 3
