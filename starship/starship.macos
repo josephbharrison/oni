@@ -25,19 +25,18 @@ error_symbol = "[❯](bold red)" # used if previous command failed
 
 
 [directory]
-read_only = " "
+read_only = "󰉐"
 style = "bg:light-yellow fg:bold black"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[directory.substitutions]
-"~/" = "ﮟ "
-"~" = "ﮟ"
-"ﮟ code" = ""
-"ﮟ Documents" = ""
-"ﮟ Desktop" = ""
-"ﮟ Downloads" = "ﰮ"
+# [directory.substitutions]
+# "~" = " "
+# "code" = " 󰅨 "
+# "Documents" = " 󰝰 "
+# "Desktop" = " 󰨇 "
+# "Downloads" = " 󰉍 "
 
 [docker_context]
 format = "[$symbol$context$version]($style) "
