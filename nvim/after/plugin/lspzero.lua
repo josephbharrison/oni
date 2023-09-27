@@ -4,8 +4,8 @@ lsp.ensure_installed({
 	"tsserver",
 	"eslint",
 	"lua_ls",
-	"rust_analyzer",
 	"gopls",
+    "rust_analyzer",
 	"pyright",
     "yamlls",
 })
@@ -18,7 +18,6 @@ lsp.preset({
   call_servers = 'local',
   configure_diagnostics = true,
   setup_servers_on_start = true,
-  -- set_lsp_keymaps = false,
   sign_icons = {
     error = '',
     warn = '',
@@ -45,24 +44,16 @@ lsp.configure("yamlls", {
   }
 })
 
--- LSP commands
-local cmp = require("cmp")
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	["<C-Space>"] = cmp.mapping.complete(),
-})
-
-cmp.setup({
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
-  }
-})
-
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
+-- configure language servers here --
+lsp.configure("rust_analyzer", {
+    filetypes = {"rust"},
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true
+            }
+        }
+    }
 })
 
 -- mapping commands
@@ -122,3 +113,26 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+-- cmp commands
+local cmp = require("cmp")
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_action = require('lsp-zero').cmp_action()
+local cmp_mappings = lsp.defaults.cmp_mappings({
+	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+	["<C-y>"] = cmp.mapping.confirm({ select = true }),
+	["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+})
+
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }
+})
+
+lsp.setup_nvim_cmp({
+	mapping = cmp_mappings
+})
