@@ -1,6 +1,8 @@
 return {
     'mhartington/formatter.nvim',
     dependencies = {
-        {'prettier/vim-prettier'}
+        {'prettier/vim-prettier'},
+        {'MunifTanjim/prettier.nvim'}
     }
 }
+

@@ -1,6 +1,7 @@
 local lsp = require("lsp-zero")
 
 lsp.ensure_installed({
+    "java_language_server",
 	"tsserver",
 	"eslint",
 	"lua_ls",
