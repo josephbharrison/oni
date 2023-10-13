@@ -75,9 +75,21 @@ function install_fonts(){
     return 0
 }
 
+# rust toolchain installer
+function install_rust(){
+    echo -en "Installing rust tools: "
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    return 0
+}
+
 # tmux installer
 function install_tmux(){
     brewster tmux
+}
+
+# pass installer
+function install_pass(){
+    brewster pass
 }
 
 # tldr installer
@@ -175,7 +187,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts tmux tldr fzf kubectl stern wezterm neovim lsp"
+    components="fonts rust tmux pass tldr fzf kubectl stern wezterm neovim lsp"
     for component in $components
     do
         installers="${installers} install_${component}"
