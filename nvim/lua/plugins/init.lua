@@ -1,4 +1,5 @@
 local modules = {
+    "harpoon",
     "aerial",
     "alpha",
     "astrotheme",
@@ -6,7 +7,7 @@ local modules = {
     "better-escape",
     "bufdelete",
     "bufferline",
-    -- "chatgpt",
+    "chatgpt",
     "colorizer",
     "colorschemes",
     "comment",
@@ -16,7 +17,6 @@ local modules = {
     "friendly-snippets",
     "fugitive",
     "gitsigns",
-    "harpoon",
     "heirline",
     "hover",
     "indent-blankline",
