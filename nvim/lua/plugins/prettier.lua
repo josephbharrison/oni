@@ -19,8 +19,8 @@ return {
                 tab_width = 2,
                 trailing_comma = "es5",
                 use_tabs = false,
-                -- vue_indent_script_and_style = false,
-                -- jsx_bracket_same_line = false,
+                vue_indent_script_and_style = false,
+                jsx_bracket_same_line = false,
             },
         })
     end
