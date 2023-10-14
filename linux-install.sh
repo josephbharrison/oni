@@ -78,7 +78,7 @@ function install_fonts(){
 # rust toolchain installer
 function install_rust(){
     echo -en "Installing rust tools: "
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y &> /dev/null || return 1
     return 0
 }
 
