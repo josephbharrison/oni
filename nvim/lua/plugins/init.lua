@@ -1,4 +1,5 @@
 local modules = {
+    "which-key",
     "harpoon",
     "aerial",
     "alpha",
@@ -46,7 +47,6 @@ local modules = {
     "ufo",
     "undotree",
     "vim-tmux-navigator",
-    "which-key",
     "zen-mode",
 }
 
