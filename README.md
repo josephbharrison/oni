@@ -56,16 +56,16 @@ To view 'lead' mappings, open **nvim** and press `<Space>`:
 
 ### Navigation:
 
-| Key Mapping  | Description                   |
-| ------------ | ----------------------------- |
-| `<Space>` e  | Toggle explorer (tree view)   |
-| `<Space>` ff | Fuzzy finder (find/open file) |
-| `<Shift>` l  | Next buffer (tab)             |
-| `<Shift>` h  | Prev buffer (tab)             |
-| `<Ctrl>` l   | Next window, right            |
-| `<Ctrl>` h   | Next window, left             |
-| `<Ctrl>` j   | Next window, down             |
-| `<Ctrl>` k   | Next window, up               |
+| Key Mapping  | Description                      |
+| ------------ | -------------------------------- |
+| `<Space>` o  | Open file explorer (tree view)   |
+| `<Space>` ff | Fuzzy finder (find/open file)    |
+| `<Shift>` l  | Next buffer (tab)                |
+| `<Shift>` h  | Prev buffer (tab)                |
+| `<Ctrl>` l   | Next window, right               |
+| `<Ctrl>` h   | Next window, left                |
+| `<Ctrl>` j   | Next window, down                |
+| `<Ctrl>` k   | Next window, up                  |
 
 > Download the [NeoVim Cheet Sheet][cheatsheet] for more NeoVim commands
 
