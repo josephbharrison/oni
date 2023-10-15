@@ -213,5 +213,4 @@ install $@
 export MSG="$(start)"; wezterm \
     --config background="{}" \
     --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start \
-    -- bash -c "echo -e '$MSG'; bash --rcfile ~/.bash_profile"
-
+    -- bash -c "echo -e '$MSG'; source ~/.bash_profile; bash"
