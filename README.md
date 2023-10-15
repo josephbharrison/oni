@@ -90,6 +90,6 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 [screen]: images/screen.png
 [mappings]: images/mappings.png
 [installer]: images/installer.png
-[cheatsheet]: extras/NeoVim Cheat Sheet.pdf
+[cheatsheet]: https://github.com/josephbharrison/oni/blob/ef73eec93fd6570a766c0724426b1a77c3e332b5/extras/NeoVim%20Cheat%20Sheet.pdf
 
 # oni
