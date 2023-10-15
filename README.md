@@ -67,7 +67,7 @@ To view 'lead' mappings, open **nvim** and press `<Space>`:
 | `<Ctrl>` j   | Next window, down             |
 | `<Ctrl>` k   | Next window, up               |
 
-> See [NeoVim Cheet Sheet.pdf](extras/NeoVim%20Cheat%20Sheet.pdf)
+> Download the [NeoVim Cheet Sheet][cheatsheet] for more NeoVim commands
 
 ## Configuration
 
@@ -90,5 +90,6 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 [screen]: images/screen.png
 [mappings]: images/mappings.png
 [installer]: images/installer.png
+[cheatsheet]: extras/NeoVim%20Cheat%20Sheet.pdf
 
 # oni
