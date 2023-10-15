@@ -67,7 +67,7 @@ To view 'lead' mappings, open **nvim** and press `<Space>`:
 | `<Ctrl>` j   | Next window, down             |
 | `<Ctrl>` k   | Next window, up               |
 
-See [NeoVim Cheet Sheet.pdf](/extras/NeoVim\ Cheat\ Sheet.pdf)
+> See [NeoVim Cheet Sheet.pdf](/extras/NeoVim%20Cheat%20Sheet.pdf)
 
 ## Configuration
 
