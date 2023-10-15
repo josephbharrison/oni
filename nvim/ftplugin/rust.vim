@@ -1,1 +1,1 @@
-colorscheme astrodark
+colorscheme onirust
