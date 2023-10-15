@@ -33,6 +33,7 @@ local modules = {
     "nvim-ts-autotag",
     "nvim-ts-context-commentstring",
     "nvim-window-picker",
+    "onitheme",
     "prettier",
     "rust-tools",
     "smart-splits",
