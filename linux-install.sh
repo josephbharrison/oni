@@ -221,5 +221,5 @@ install $@
 # launch wezterm with `getting_started` message
 export MSG="$(start)"; wezterm \
     --config background="{}" \
-    --config colors="{background='rgba(0,0,0,0.67)', selection_fg = 'none', selection_bg = 'rgba(50% 50% 50% 50%)',}" start \
-    -- bash --rcfile ~/.bash_profile -c "echo -e '$MSG'; bash"
+    --config colors="{background='rgba(5,5,5,0.67)', selection_fg = 'none', selection_bg = 'rgba(66% 66% 66% 66%)',}" start \
+    -- bash --rcfile ~/.bash_profile -c "echo -e '$MSG'; source ~/.bash_profile; bash --rcfile ~/.bash_profile"
