@@ -23,6 +23,10 @@ local commands = {
 	["astro"] = { "<cmd>colorscheme astrotheme<cr>", desc = "astro" },
 	["astro_dark"] = { "<cmd>colorscheme astrodark<cr>", desc = "dark" },
 	["astro_light"] = { "<cmd>colorscheme astrolight<cr>", desc = "light" },
+	["oni"] = { "<cmd>colorscheme onitheme<cr>", desc = "oni" },
+	["oni_dark"] = { "<cmd>colorscheme onidark<cr>", desc = "dark" },
+	["oni_light"] = { "<cmd>colorscheme onilight<cr>", desc = "light" },
+	["oni_rust"] = { "<cmd>colorscheme onirust<cr>", desc = "rust" },
 }
 
 -- leader mappings
@@ -45,6 +49,10 @@ local mappings = {
 	["<leader>sa"] = commands.astro,
 	["<leader>sad"] = commands.astro_dark,
 	["<leader>sal"] = commands.astro_light,
+	["<leader>so"] = commands.oni,
+	["<leader>sod"] = commands.oni_dark,
+	["<leader>sol"] = commands.oni_light,
+	["<leader>sor"] = commands.oni_rust,
 }
 
 -- map keys

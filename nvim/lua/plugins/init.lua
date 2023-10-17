@@ -1,4 +1,6 @@
 local modules = {
+    "which-key",
+    "harpoon",
     "aerial",
     "alpha",
     "astrotheme",
@@ -6,7 +8,7 @@ local modules = {
     "better-escape",
     "bufdelete",
     "bufferline",
-    -- "chatgpt",
+    "chatgpt",
     "colorizer",
     "colorschemes",
     "comment",
@@ -16,7 +18,6 @@ local modules = {
     "friendly-snippets",
     "fugitive",
     "gitsigns",
-    "harpoon",
     "heirline",
     "hover",
     "indent-blankline",
@@ -32,6 +33,7 @@ local modules = {
     "nvim-ts-autotag",
     "nvim-ts-context-commentstring",
     "nvim-window-picker",
+    "onitheme",
     "prettier",
     "rust-tools",
     "smart-splits",
@@ -46,7 +48,6 @@ local modules = {
     "ufo",
     "undotree",
     "vim-tmux-navigator",
-    "which-key",
     "zen-mode",
 }
 

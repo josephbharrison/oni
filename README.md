@@ -58,16 +58,18 @@ To view 'lead' mappings, open **nvim** and press `<Space>`:
 
 ### Navigation:
 
-| Key Mapping  | Description                   |
-| ------------ | ----------------------------- |
-| `<Space>` e  | Toggle explorer (tree view)   |
-| `<Space>` ff | Fuzzy finder (find/open file) |
-| `<Shift>` l  | Next buffer (tab)             |
-| `<Shift>` h  | Prev buffer (tab)             |
-| `<Ctrl>` l   | Next window, right            |
-| `<Ctrl>` h   | Next window, left             |
-| `<Ctrl>` j   | Next window, down             |
-| `<Ctrl>` k   | Next window, up               |
+| Key Mapping  | Description                      |
+| ------------ | -------------------------------- |
+| `<Space>` o  | Open file explorer (tree view)   |
+| `<Space>` ff | Fuzzy finder (find/open file)    |
+| `<Shift>` l  | Next buffer (tab)                |
+| `<Shift>` h  | Prev buffer (tab)                |
+| `<Ctrl>` l   | Next window, right               |
+| `<Ctrl>` h   | Next window, left                |
+| `<Ctrl>` j   | Next window, down                |
+| `<Ctrl>` k   | Next window, up                  |
+
+> Download the [NeoVim Cheet Sheet][cheatsheet] for more NeoVim commands
 
 ## Configuration
 
@@ -85,11 +87,20 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 ![desktop2][desktop2]
 ![screen][screen]
 
+<<<<<<< HEAD
 [logo]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/logo.png
 [desktop]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop.png
 [desktop2]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop2.png
 [screen]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/screen.png
 [mappings]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/mappings.png
 [installer]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/installer.png
+=======
+[desktop]: images/desktop.png
+[desktop2]: images/desktop2.png
+[screen]: images/screen.png
+[mappings]: images/mappings.png
+[installer]: images/installer.png
+[cheatsheet]: https://github.com/josephbharrison/oni/blob/ef73eec93fd6570a766c0724426b1a77c3e332b5/extras/NeoVim%20Cheat%20Sheet.pdf
+>>>>>>> e1650abdefae93473fc48a81ae9fef6f34e50a80
 
 # oni

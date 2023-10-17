@@ -1,5 +1,6 @@
 -- which-key labels
 local wk = require("which-key")
+
 wk.register({
 	h = { name = "Harpoon"},
 	hm = { name = "Harpoon Tmux"},
