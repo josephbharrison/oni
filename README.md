@@ -1,10 +1,9 @@
 # Oni
+A cross-platform personalized development evironment with a ronin inspired aesthetic.
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/josephbharrison/oni/main/images/logo-small.png"/>
 </p>
-A cross-platform personalized development evironment with a ronin inspired aesthetic.
-
-![logo-small][logo-small]
 
 ![desktop][desktop]
 
