@@ -3,7 +3,8 @@
 </p>
 
 # Oni
-A cross-platform personalized NeoVim development evironment with a ronin inspired aesthetic.
+A NeoVim personalized development evironment with a ronin aesthetic.
+
 
 ![desktop][desktop]
 
