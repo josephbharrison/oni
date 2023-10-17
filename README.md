@@ -1,8 +1,6 @@
 # Oni
-
-![logo][logo]
-
 A cross-platform personalized development evironment with a ronin inspired aesthetic.
+![logo-small][logo-small]
 
 ![desktop][desktop]
 
@@ -88,6 +86,7 @@ Update the _user_ configuration file: `~/.config/nvim/lua/user/init.lua`
 ![screen][screen]
 
 [logo]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/logo.png
+[logo-small]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/logo-small.png
 [desktop]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop.png
 [desktop2]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/desktop2.png
 [screen]: https://raw.githubusercontent.com/josephbharrison/oni/main/images/screen.png
