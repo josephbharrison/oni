@@ -611,10 +611,10 @@ local foreground_hsb_0 = {
 }
 
 local background_hsb_0 = {
-	brightness = 0.010,
+	brightness = 0.020,
 	-- hue = 1.000,
- 	hue = -09.133,
-	saturation = 0.25,
+ 	hue = 1.00,
+	saturation = 0.33,
 }
 
 local background_hsb_1 = {
@@ -682,7 +682,7 @@ local config = {
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.29,
+            opacity = 0.75,
 			hsb = background_hsb_0,
 		},
 		{
