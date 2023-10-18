@@ -16,15 +16,21 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 -- force format of current buffer
 vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)
--- source current file
-vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end, {desc="Source file"})
 -- Noop Shift-Q
 vim.keymap.set("n", "Q", "<nop>")
+
+-- Fold toggle
+vim.keymap.set("n", "<leader><leader>", "za", {desc="Toggle fold"})
 
 vim.keymap.set("n", "<leader>a", "gg\"+yG", {desc="Copy all"})
 vim.keymap.set("n", "<leader>S", "ggVG", {desc="Select all"})
 
+-- -- remaps not longer used (usefule during dev)
+-- source current file
+-- vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end, {desc="Source file"})
+--
 -- -- remaps not yet used
+--
 -- vim.keymap.set("n", "Y", "yg$") -- Keep vim and exernal copy buffer separat
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>") -- start tmux session
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
