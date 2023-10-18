@@ -605,7 +605,7 @@ end
 -- end)
 
 local foreground_hsb_0 = {
-	brightness = 1.20,
+	brightness = 0.95,
 	hue = 1.000,
 	saturation = 1.000,
 }
@@ -682,7 +682,7 @@ local config = {
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.95,
+            opacity = 0.29,
 			hsb = background_hsb_0,
 		},
 		{
@@ -691,7 +691,7 @@ local config = {
 			},
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.20,
+            opacity = 0.38,
 			hsb = background_hsb_1,
 		},
 		{
@@ -700,7 +700,7 @@ local config = {
 			},
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.45,
+            opacity = 0.25,
 			hsb = foreground_hsb_0,
 		},
 	},
