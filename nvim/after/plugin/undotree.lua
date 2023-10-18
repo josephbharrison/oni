@@ -1,8 +1,8 @@
 -- which-key labels
-local wk = require("which-key")
-wk.register({
-	u = { name = "Undo"},
-}, { prefix = "<leader>" })
+-- local wk = require("which-key")
+-- wk.register({
+-- 	u = { name = "Undo"},
+-- }, { prefix = "<leader>" })
 
 -- commands
 local commands = {
