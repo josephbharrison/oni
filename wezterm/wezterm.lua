@@ -605,7 +605,7 @@ end
 -- end)
 
 local foreground_hsb_0 = {
-	brightness = 0.95,
+	brightness = 0.92,
 	hue = 1.000,
 	saturation = 1.000,
 }
@@ -670,7 +670,7 @@ local config = {
 			},
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.98,
+            opacity = 0.96,
 			hsb = foreground_hsb_0,
 		},
 		{
