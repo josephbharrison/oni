@@ -604,11 +604,30 @@ end
 --      return tab.active_pane.title
 -- end)
 
-local background_hsb_0 = {
-	brightness = 0.037,
-	hue = -09.133,
-	saturation = 0.433,
+local foreground_hsb_0 = {
+	brightness = 1.20,
+	hue = 1.000,
+	saturation = 1.000,
 }
+
+local background_hsb_0 = {
+	brightness = 0.010,
+	-- hue = 1.000,
+ 	hue = -09.133,
+	saturation = 0.25,
+}
+
+local background_hsb_1 = {
+	brightness = 0.25,
+	hue = 1.000,
+	saturation = 1.000,
+}
+
+-- local background_hsb_0 = {
+-- 	brightness = 0.037,
+-- 	hue = -09.133,
+-- 	saturation = 0.433,
+-- }
 
 -- local background_hsb_1 = {
 --     brightness = 0.03,
@@ -617,25 +636,26 @@ local background_hsb_0 = {
 -- }
 
 local background_image = wezterm.config_dir .. "/background.png"
+local dark_tile = wezterm.config_dir .. "/dark_tile.png"
+local purple_tile = wezterm.config_dir .. "/purple_tile.png"
 
 local config = {
 	initial_cols = 112,
 	initial_rows = 34,
 	enable_tab_bar = false,
 	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
+    --[[ font = wezterm.font_with_fallback({
+        {family="SauceCodePro Nerd Font", weight="DemiBold"},
+        "Hack",
+    }), ]]
     font = wezterm.font_with_fallback({
         {family="Hack Nerd Font", weight="Regular"},
         {family="SauceCodePro Nerd Font", weight="DemiBold"},
-        "Hack",
-    }),
-    --[[ font = wezterm.font_with_fallback({
-        {family="SauceCodePro Nerd Font", weight="DemiBold"},
-        {family="Hack Nerd Font", weight="Regular"},
         "Hack Nerd Font",
         "SauceCodePro Nerd Font",
         "Hack",
         "SauceCodePro",
-    }), ]]
+    }),
 	font_size = 16,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
 	use_fancy_tab_bar = true,
@@ -646,6 +666,15 @@ local config = {
 	background = {
 		{
 			source = {
+				File = dark_tile,
+			},
+			repeat_x = "Repeat",
+			repeat_y = "Repeat",
+            opacity = 0.98,
+			hsb = foreground_hsb_0,
+		},
+		{
+			source = {
 				File = background_image,
 			},
 			width = "58cell",
@@ -653,7 +682,26 @@ local config = {
 			vertical_offset = "-1cell",
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
+            opacity = 0.95,
 			hsb = background_hsb_0,
+		},
+		{
+			source = {
+				File = purple_tile,
+			},
+			repeat_x = "Repeat",
+			repeat_y = "Repeat",
+            opacity = 0.20,
+			hsb = background_hsb_1,
+		},
+		{
+			source = {
+				File = dark_tile,
+			},
+			repeat_x = "Repeat",
+			repeat_y = "Repeat",
+            opacity = 0.45,
+			hsb = foreground_hsb_0,
 		},
 	},
 	key_tables = {
