@@ -623,18 +623,19 @@ local config = {
 	initial_rows = 34,
 	enable_tab_bar = false,
 	-- font = wezterm.font(RandomFont() .. " Nerd Font", { weight = "Regular" }),
-    --[[ font = wezterm.font_with_fallback({
+    font = wezterm.font_with_fallback({
+        {family="Hack Nerd Font", weight="Regular"},
         {family="SauceCodePro Nerd Font", weight="DemiBold"},
         "Hack",
-    }), ]]
-    font = wezterm.font_with_fallback({
+    }),
+    --[[ font = wezterm.font_with_fallback({
         {family="SauceCodePro Nerd Font", weight="DemiBold"},
         {family="Hack Nerd Font", weight="Regular"},
         "Hack Nerd Font",
         "SauceCodePro Nerd Font",
         "Hack",
         "SauceCodePro",
-    }),
+    }), ]]
 	font_size = 16,
 	window_padding = { left = 4, right = 4, top = 4, bottom = 0 },
 	use_fancy_tab_bar = true,
