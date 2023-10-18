@@ -1,7 +1,7 @@
 local modules = {
     "which-key",
     "harpoon",
-    "aerial",
+    -- "aerial", -- prefer symbol-outline
     "alpha",
     "astrotheme",
     "base16",
