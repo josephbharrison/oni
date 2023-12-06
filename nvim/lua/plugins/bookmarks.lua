@@ -5,6 +5,7 @@ return {
         {"<tab><tab>", mode = {"n"}, desc = "Bookmarks"},
         {"<tab>b", mode = {"n"}, desc = "Add Bookmarks"},
         {"<tab>o", mode = {"n"}, desc = "Order Bookmarks"},
+        {"<tab>d", mode = {"n"}, desc = "Delete Bookmark"},
     },
     dependencies = { 'nvim-web-devicons' },
     config = function()
