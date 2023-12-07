@@ -57,6 +57,22 @@ lsp.configure("rust_analyzer", {
     }
 })
 
+
+-- local lsp_config = require("lspconfig")
+--
+-- lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+--
+-- lsp_config['omnisharp'].setup {
+--     handlers = {
+--         ["textDocument/definition"] = require('omnisharp_extended').handler,
+--     },
+--     cmd = { '~/.cache/omnisharp-vim/omnisharp-roslyn/run', '--languageserver' },
+--     on_init = function(client)
+--       client.server_capabilities.semanticTokensProvider = nil
+--     end
+-- }
+--
+
 -- mapping commands
 local commands = {
 	["goto_def"] = { function() vim.lsp.buf.definition() end, desc = "Goto definition" },

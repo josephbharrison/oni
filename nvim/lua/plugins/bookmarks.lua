@@ -16,7 +16,7 @@ return {
                 order = "<tab>o",
                 delete_on_virt = "<tab>d",
             },
-            preview_ratio = 0.33
+            preview_ratio = 0.40
         })
         require("telescope").load_extension("bookmarks")
     end

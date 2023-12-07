@@ -1,7 +1,6 @@
 local modules = {
-    "which-key",
-    "harpoon",
     -- "aerial", -- prefer symbol-outline
+    "ale",
     "alpha",
     "astrotheme",
     "base16",
@@ -19,6 +18,7 @@ local modules = {
     "friendly-snippets",
     "fugitive",
     "gitsigns",
+    "harpoon",
     "heirline",
     "hover",
     "indent-blankline",
@@ -50,6 +50,7 @@ local modules = {
     "ufo",
     "undotree",
     "vim-tmux-navigator",
+    "which-key",
     "zen-mode",
 }
 
