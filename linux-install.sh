@@ -157,8 +157,10 @@ function configure_oni(){
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
     null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
-    mkdir -p $CODE_DIR
-    cp -r $SOURCE_DIR $CODE_DIR/oni
+    if [[ ! -d $CODE_DIR/oni ]]; then
+        mkdir -p $CODE_DIR
+        cp -r $SOURCE_DIR $CODE_DIR/oni
+    fi
 
     # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
