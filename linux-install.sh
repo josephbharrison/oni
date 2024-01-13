@@ -82,6 +82,11 @@ function install_rust(){
     return 0
 }
 
+# starship installer
+function install_starship(){
+    brewster starship
+}
+
 # tmux installer
 function install_tmux(){
     brewster tmux
@@ -152,6 +157,8 @@ function configure_oni(){
     # Download configurations
     [[ -d $SOURCE_DIR ]] && rm -rf $SOURCE_DIR
     null git clone --depth=1 $MY_REPO $SOURCE_DIR || return 1
+    mkdir -p $CODE_DIR
+    cp -r $SOURCE_DIR $CODE_DIR/oni
 
     # Configure oni-nvim
     nvim_site_dir="${HOME}/.local/share/nvim/site"
@@ -187,7 +194,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts rust tmux pass tldr fzf kubectl stern wezterm neovim lsp"
+    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim lsp"
     for component in $components
     do
         installers="${installers} install_${component}"
