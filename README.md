@@ -13,10 +13,9 @@ A NeoVim personalized development evironment with a ronin aesthetic.
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/josephbharrison/oni/HEAD/install.sh)"
 ```
+![installer][installer]
 
 > **Supported Operating Systems:** MacOS, Linux
-
-![installer][installer]
 
 ## Includes
 
