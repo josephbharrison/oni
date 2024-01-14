@@ -30,7 +30,7 @@ local params = {
         -- See alse also the Plugins/Wezterm section in this projects README
         wezterm = {
             enabled = true,
-            font = "+8", -- (10% increase per step)
+            font = "+7", -- (10% increase per step)
         },
     },
 }
@@ -67,4 +67,3 @@ for k, v in pairs(mappings) do
         vim.keymap.set('n', k, v[1], {desc=v["desc"]})
     end
 end
-
