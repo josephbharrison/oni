@@ -6,17 +6,17 @@ wk.register({
 
 -- commands
 local commands = {
-	
+
 	["git_menu"] = { "<cmd>Git<cr>", desc = "Git Menu" },
 	["git_add"] = { "<cmd>Git add<cr>", desc = "Git add" },
-	["git_commit"] = { "<cmd>Git commt<cr>", desc = "Git commit" },
+	["git_commit"] = { "<cmd>Git commit<cr>", desc = "Git commit" },
 	["git_diff"] = { "<cmd>Git diff<cr>", desc = "Git diff" },
 	["git_merge"] = { "<cmd>Git merge<cr>", desc = "Git merge" },
 	["git_push"] = { "<cmd>Git push<cr>", desc = "Git push" },
 	["git_pull"] = { "<cmd>Git pull<cr>", desc = "Git pull" },
 	["git_init"] = { "<cmd>Git init<cr>", desc = "Git init" },
-	["git_diff_left"] = { "<cmd>diffget //2<cr>", desc = "Git init" },
-	["git_diff_right"] = { "<cmd>diffget //3<cr>", desc = "Git init" },
+	["git_diff_left"] = { "<cmd>diffget //2<cr>", desc = "Git left" },
+	["git_diff_right"] = { "<cmd>diffget //3<cr>", desc = "Git right" },
 }
 
 -- leader mappings
@@ -36,7 +36,7 @@ mappings = {
 
 -- map keys
 for k, v in pairs(mappings) do
-	if v then 
+	if v then
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end
