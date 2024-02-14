@@ -86,10 +86,10 @@ function fold_comments()
     else
       -- If it's a block comment (or any other line matched by the pattern), toggle the fold without additional checks
       vim.api.nvim_command('normal! za')
-    end
 
-    -- Move cursor to the next line to continue search
-    vim.api.nvim_command('normal j')
+      -- Move cursor to the next line to continue search
+      vim.api.nvim_command('normal j')
+    end
   end
 
   -- Restore the initial cursor position
