@@ -37,7 +37,7 @@ alias ff='help="tldr fuzzy finder"; tldr --list | fzf --preview "tldr {1} --colo
 alias flush='help="flush all dev stores"; flush-etcd; flush-redis'
 alias flush-etcd='help="flush etcd"; etcdctl del "" --prefix 2> /dev/null'
 alias flush-redis='help="flush redis"; docker exec -it redis.${PROJECT} redis-cli flushall 2> /dev/null'
-alias g='help="lazy git push"; project && git add . && git commit -m "pipeline test" && git push'
+alias g='help="lazy git push"; project && git add . && git commit -m "pipeline test" && git pull && git push'
 alias killall='help="kill all project apps"; for pid in $(ps -ef | grep -i $PROJECT | grep "__debug\|source" | grep -v "grep" | awk "{print $2}"); do kill -9  $pid; done'
 alias p='help="initialize project"; project && echo $PROJECT'
 alias post='help="curl POST helper"; curl -H "Content-Type: application/json" -X POST'

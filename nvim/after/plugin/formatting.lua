@@ -9,7 +9,7 @@ vim.g.neoformat_enabled_javascript = {'prettier'}
 vim.g.neoformat_enabled_typescript = {'prettier'}
 
 -- Set up Prettier options for js and ts
-local prettier_args = {'--stdin-filepath', '%:p', '--tab-width=2', '--jsx-single-quote', '--single-quote', '--trailing-comma=all', '--print-width=80'};
+local prettier_args = {'--stdin-filepath', '%:p', '--tab-width=2', '--jsx-single-quote', '--single-quote', '--embedded-language-formatting=auto', '--trailing-comma=es5', '--print-width=80'};
 vim.g.neoformat_javascriptreact_prettier = { exe = 'prettier', args = prettier_args, stdin = 1 }
 vim.g.neoformat_typescriptreact_prettier = { exe = 'prettier', args = prettier_args, stdin = 1 }
 

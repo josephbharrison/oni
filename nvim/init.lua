@@ -47,7 +47,42 @@ local function preview_location_callback(_, method, result)
   end
 end
 
-function peek_definition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+function fold_comments()
+  -- Save the initial cursor position
+  local initial_cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+  -- Define the search pattern for comments
+  local search_pattern = [[\v^\s*(//|\*/)]]
+
+  -- Move to the beginning of the document to start search from the top
+  vim.api.nvim_command('1')
+
+  -- Keep track of the current position to avoid infinite loops
+  local current_line = 0
+  local last_line = vim.api.nvim_buf_line_count(0)
+
+  while true do
+    -- Perform the search from the current cursor position
+    local found_line = vim.fn.search(search_pattern, 'W')
+
+    -- Break the loop if no more comments are found or if we have returned to the start
+    if found_line == 0 or found_line < current_line or found_line == last_line then
+      break
+    end
+
+    -- Update current_line to the line where the comment was found
+    current_line = found_line
+
+    -- Toggle fold at the current comment line
+    vim.api.nvim_command('normal! za')
+
+    -- Move cursor to the next line to continue search
+    vim.api.nvim_command('normal j')
+  end
+
+  -- Restore the initial cursor position
+  vim.api.nvim_win_set_cursor(0, initial_cursor_pos)
 end
+
+-- Map the function to a key, e.g., <leader>m
+vim.api.nvim_set_keymap('n', '<leader>m', ':lua fold_comments()<CR>', {noremap = true, silent = true})
