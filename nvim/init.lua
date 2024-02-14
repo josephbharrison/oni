@@ -66,15 +66,27 @@ function fold_comments()
     local found_line = vim.fn.search(search_pattern, 'W')
 
     -- Break the loop if no more comments are found or if we have returned to the start
-    if found_line == 0 or found_line < current_line or found_line == last_line then
+    if found_line == 0 or found_line <= current_line or found_line >= last_line then
       break
     end
 
     -- Update current_line to the line where the comment was found
     current_line = found_line
 
-    -- Toggle fold at the current comment line
-    vim.api.nvim_command('normal! za')
+    -- Determine if the current line is a single-line comment (//)
+    local is_single_line_comment = vim.fn.getline(found_line):match("^%s*//")
+
+    if is_single_line_comment then
+      -- Check if the next line is also a single-line comment
+      local next_line_comment = vim.fn.getline(found_line + 1):match("^%s*//")
+      if next_line_comment then
+        -- Toggle fold only if the next line is also a single-line comment
+        vim.api.nvim_command('normal! za')
+      end
+    else
+      -- If it's a block comment (or any other line matched by the pattern), toggle the fold without additional checks
+      vim.api.nvim_command('normal! za')
+    end
 
     -- Move cursor to the next line to continue search
     vim.api.nvim_command('normal j')
