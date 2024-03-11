@@ -5,16 +5,12 @@ now=$(date +%s)
 
 # GLOBAL PARAMETERS
 FONTS="hack mononoki go-mono jetbrains-mono sauce-code-pro open-dyslexic"
-ASTRONVIM_REPO=https://github.com/AstroNvim/AstroNvim
 MY_REPO=https://github.com/josephbharrison/oni
-
-# install base configuration only
-[[ $1 == "base" ]] && echo "Installing base astronvim only" && BASE_ONLY=true
 
 export TMP_DIR=${HOME}/tmp
 export SOURCE_DIR=${TMP_DIR}/oni
 export CONFIG_DIR=${HOME}/.config
- 
+
 # nullify output
 function null(){
     "$@" &> /dev/null
@@ -171,7 +167,7 @@ function configure_oni(){
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
     mkdir -p $CONFIG_DIR/tmux
-    cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
+    cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf
     null git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
     null $CONFIG_DIR/tmux/plugins/tpm/bin/install_plugins
 
