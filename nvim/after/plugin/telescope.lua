@@ -12,13 +12,13 @@ local commands = {
 	["fuzzy_finder"] = { telescope.find_files , desc = "Find files" },
 	["git_finder"] = { telescope.git_files,  desc = "Find Git" },
 	["grep_finder"] = {
-		function() 
-			builtin.grep_string({ search = vim.fn.input("Grep > ") }); 
+		function()
+			builtin.grep_string({ search = vim.fn.input("Grep > ") });
 		end, desc = "Grep files" },
 	}
 
 -- leader mappings
-mappings = {
+local mappings = {
 	["<leader>f"] = false,
 	["<leader>ff"] = commands.fuzzy_finder,
 	["<leader>fg"] = commands.git_finder,
@@ -26,7 +26,7 @@ mappings = {
 }
 
 for k, v in pairs(mappings) do
-	if v then 
+	if v then
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end
