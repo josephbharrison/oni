@@ -68,7 +68,7 @@ function pipster(){
         null pip install $package || return 1
     else
         echo -en "Updating $name: "
-        null pip inst $package --upgrade || return 1
+        null pip install $package --upgrade || return 1
     fi
     return 0
 }
