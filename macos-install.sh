@@ -11,7 +11,7 @@ TMP_DIR=${HOME}/tmp
 SOURCE_DIR=${TMP_DIR}/oni
 CONFIG_DIR=${HOME}/.config
 CODE_DIR=${HOME}/code
- 
+
 # nullify output
 function null(){
     "$@" &> /dev/null
@@ -41,7 +41,7 @@ function ok(){
     echo "OK"
 }
 
-# package installer
+# brew package installer
 function brewster(){
     package=$1
     name=$2
@@ -57,6 +57,22 @@ function brewster(){
     return 0
 }
 
+# pip package installer
+function pipster(){
+    package=$1
+    name=$2
+    [[ -z $name ]] && name=$package
+    res=$(null pip list $package)
+    if [[ $? -ne 0 ]]; then
+        echo -en "Installing $name: "
+        null pip install $package || return 1
+    else
+        echo -en "Updating $name: "
+        null pip inst $package --upgrade || return 1
+    fi
+    return 0
+}
+
 # font installer
 function install_fonts(){
     echo -en "Installing fonts: "
@@ -66,7 +82,7 @@ function install_fonts(){
         if [[ $? -ne 0 ]]; then
             [[ -f $HOME/Library/Fonts/${font}* ]] \
                 && null sudo rm -f $HOME/Library/Fonts/${font}*
-            null brew tap homebrew/cask-fonts && 
+            null brew tap homebrew/cask-fonts &&
             null brew install --cask font-${font}-nerd-font --force || return 1
         fi
     done
@@ -107,6 +123,11 @@ function install_fzf(){
     brewster fzf
 }
 
+# ueberzug installer
+function install_ueberzug(){
+    brewster jstkdng/programs/ueberzugppy
+}
+
 # stern installer
 function install_stern(){
     brewster stern
@@ -116,7 +137,6 @@ function install_stern(){
 function install_kubectl(){
     brewster kubectl
 }
-
 
 # wezterm installer
 function install_wezterm(){
@@ -135,6 +155,46 @@ function install_wezterm(){
 # neovim installer
 function install_neovim(){
     brewster nvim neovim
+}
+
+# pip installer
+function install_pip(){
+    pipster pip pip
+}
+
+# pynvim installer
+function install_pynvim(){
+    pipster pynvim
+}
+
+# pillow installer
+function install_pillow(){
+    pipster pillow
+}
+
+# jupyter installer
+function install_jupyter(){
+    pipster jupyterlab jupyter-lab
+}
+
+# pnglatex installer
+function install_pnglatex(){
+    pipster pnglatex
+}
+
+# pip installer
+function install_cairosvg(){
+    pipster cairosvg
+}
+
+# plotly installer
+function install_plotly(){
+    pipster plotly
+}
+
+# kaleido installer
+function install_kaleido(){
+    pipster kaleido
 }
 
 # Configure Oni
@@ -163,7 +223,7 @@ function configure_oni(){
     # Configure tmux
     [[ -d $CONFIG_DIR/tmux ]] && rm -rf $CONFIG_DIR/tmux
     mkdir -p $CONFIG_DIR/tmux
-    cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf 
+    cp $SOURCE_DIR/tmux/tmux.conf $CONFIG_DIR/tmux/tmux.conf
     null git clone https://github.com/tmux-plugins/tpm $CONFIG_DIR/tmux/plugins/tpm
     null $CONFIG_DIR/tmux/plugins/tpm/bin/install_plugins
 
@@ -188,7 +248,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim"
+    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug pip pynvim jupyter pillow cairosvg pnglatex plotly kaleido"
     for component in $components
     do
         installers="${installers} install_${component}"
