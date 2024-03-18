@@ -15,24 +15,30 @@ local commands = {
 	["evalOp"] = { ":MagmaEvaluateOperator<cr>", desc = "Evaluate Operator" },
 	["evalLine"] = { ":MagmaEvaluateLine<cr>", desc = "Evaluate Line" },
 	["evalVis"] = { ":<C-u>MagmaEvaluateVisual<cr>", desc = "Evaluate Visual" },
-	["evalCell"] = { ":MagmaReevaluateCell<cr>", desc = "Reevaluate Cell" },
+	["evalCell"] = { ":MagmaReevaluateCell<cr>", desc = "Evaluate Cell" },
 	["delCell"] = { ":MagmaDelete<cr>", desc = "Delete Cell" },
 	["showOutput"] = { ":MagmaShowOutput<cr>", desc = "Show Output" },
 	["restart"] = { ":MagmaRestart!<cr>", desc = "Restart" },
 	["save"] = { ":MagmaSave<cr>", desc = "Save" },
+	["load"] = { ":MagmaLoad<cr>", desc = "Load" },
+	["enterOutput"] = { ":MagmaEnterOutput<cr>", desc = "Enter Output" },
+	["deinit"] = { ":MagmaDeinit<cr>", desc = "Deinit" },
 }
 
 -- harpoon leader -> function mappings
 local mappings = {
 	["<leader>m"] = false,
 	["<leader>mi"] = commands.init,
+	["<leader>mD"] = commands.deinit,
 	["<leader>mo"] = commands.evalOp,
 	["<leader>ml"] = commands.evalLine,
 	["<leader>mc"] = commands.evalCell,
 	["<leader>md"] = commands.delCell,
 	["<leader>ms"] = commands.showOutput,
 	["<leader>mr"] = commands.restart,
-	["<leader>mm"] = commands.save,
+	["<leader>mS"] = commands.save,
+	["<leader>mL"] = commands.load,
+	["<leader>mO"] = commands.enterOutput,
 }
 
 for k, v in pairs(mappings) do
@@ -42,4 +48,4 @@ for k, v in pairs(mappings) do
 end
 
 -- Apply specific mapping for visual mode
-vim.keymap.set('v', '<C-o>', commands.evalVis[1], {desc=commands.evalVis["desc"]})
+vim.keymap.set('v', '<C-m>', commands.evalVis[1], {desc=commands.evalVis["desc"]})
