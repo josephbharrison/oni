@@ -5,10 +5,14 @@ wk.register({
 	m = { name = "Magma"},
 }, { prefix = "<leader>" })
 
+vim.g.magma_automatically_open_output = false
+vim.g.magma_image_provider = "kitty"
+vim.cmd('silent! UpdateRemotePlugins')
+
 -- harpoon commands
 local commands = {
 	["init"] = { ":MagmaInit<cr>", desc = "Init" },
-	["evalOp"] = { ":MagmaEvaluateOperation<cr>", desc = "Evaluate Operation" },
+	["evalOp"] = { ":MagmaEvaluateOperator<cr>", desc = "Evaluate Operator" },
 	["evalLine"] = { ":MagmaEvaluateLine<cr>", desc = "Evaluate Line" },
 	["evalVis"] = { ":<C-u>MagmaEvaluateVisual<cr>", desc = "Evaluate Visual" },
 	["evalCell"] = { ":MagmaReevaluateCell<cr>", desc = "Reevaluate Cell" },
@@ -24,7 +28,6 @@ local mappings = {
 	["<leader>mi"] = commands.init,
 	["<leader>mo"] = commands.evalOp,
 	["<leader>ml"] = commands.evalLine,
-	["<leader>mv"] = commands.evalVis,
 	["<leader>mc"] = commands.evalCell,
 	["<leader>md"] = commands.delCell,
 	["<leader>ms"] = commands.showOutput,
@@ -37,3 +40,6 @@ for k, v in pairs(mappings) do
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end
+
+-- Apply specific mapping for visual mode
+vim.keymap.set('v', '<C-o>', commands.evalVis[1], {desc=commands.evalVis["desc"]})

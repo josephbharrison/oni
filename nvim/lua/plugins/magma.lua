@@ -1,7 +1,7 @@
 return {
-    'dccsillag/magma-nvim',
-    run = ':UpdateRemotePlugins',
+    'josephbharrison/magma-nvim',
     config = function()
+
         function MagmaInitPython()
             vim.cmd[[
             :MagmaInit python3
@@ -29,7 +29,5 @@ return {
         :command MagmaInitFSharp lua MagmaInitFSharp()
         ]]
 
-        vim.g.magma_automatically_open_output = false
-        vim.g.magma_image_provider = "ueberzug"
     end
 }
