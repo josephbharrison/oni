@@ -125,7 +125,7 @@ function install_fzf(){
 
 # ueberzug installer
 function install_ueberzug(){
-    brewster jstkdng/programs/ueberzugppy
+    brewster jstkdng/programs/ueberzugpp ueberzug
 }
 
 # stern installer
