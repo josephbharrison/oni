@@ -14,7 +14,7 @@ executeByOSType() {
             echo "Unsupported OS: FreeBSD"
             ;;
         CYGWIN*|MINGW32*|MSYS*|MINGW*)
-            echo "Unsupported OS: Windows (Cygwin/MinGW)"
+            echo "Unsupported OS: Windows"
             ;;
         *)
             echo "Unsupported OS: $OS_TYPE"
