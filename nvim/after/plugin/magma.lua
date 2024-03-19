@@ -6,12 +6,13 @@ wk.register({
 }, { prefix = "<leader>" })
 
 vim.cmd('silent! UpdateRemotePlugins')
-vim.g.magma_automatically_open_output = false
+vim.g.magma_automatically_open_output = true
 vim.g.magma_image_provider = "kitty"
 
--- harpoon commands
+-- magma commands
 local commands = {
 	["init"] = { ":MagmaInit<cr>", desc = "Init" },
+	["initPython"] = { ":MagmaInitPython<cr>", desc = "InitPython" },
 	["evalOp"] = { ":MagmaEvaluateOperator<cr>", desc = "Evaluate Operator" },
 	["evalLine"] = { ":MagmaEvaluateLine<cr>", desc = "Evaluate Line" },
 	["evalVis"] = { ":<C-u>MagmaEvaluateVisual<cr>", desc = "Evaluate Visual" },
@@ -23,9 +24,11 @@ local commands = {
 	["load"] = { ":MagmaLoad<cr>", desc = "Load" },
 	["enterOutput"] = { ":MagmaEnterOutput<cr>", desc = "Enter Output" },
 	["deinit"] = { ":MagmaDeinit<cr>", desc = "Deinit" },
+	["nextCell"] = { ":execute  'normal! }j'<cr>", desc = "Next Cell" },
+	["prioCell"] = { ":execute  'normal! {{j'<cr>", desc = "Prior Cell" },
 }
 
--- harpoon leader -> function mappings
+-- magma leader -> function mappings
 local mappings = {
 	["<leader>m"] = false,
 	["<leader>mi"] = commands.init,
@@ -39,6 +42,7 @@ local mappings = {
 	["<leader>mS"] = commands.save,
 	["<leader>mL"] = commands.load,
 	["<leader>mO"] = commands.enterOutput,
+	["<leader>mp"] = commands.initPython,
 }
 
 for k, v in pairs(mappings) do
@@ -49,3 +53,6 @@ end
 
 -- Apply specific mapping for visual mode
 vim.keymap.set('v', '<C-m>', commands.evalVis[1], {desc=commands.evalVis["desc"]})
+vim.keymap.set('n', '<C-m>', commands.evalLine[1], {desc=commands.evalLine["desc"]})
+vim.keymap.set('n', '<C-n>', commands.nextCell[1], {desc=commands.nextCell["desc"]})
+vim.keymap.set('n', '<C-b>', commands.prioCell[1], {desc=commands.prioCell["desc"]})
