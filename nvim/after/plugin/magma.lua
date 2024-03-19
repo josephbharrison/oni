@@ -5,9 +5,9 @@ wk.register({
 	m = { name = "Magma"},
 }, { prefix = "<leader>" })
 
+vim.cmd('silent! UpdateRemotePlugins')
 vim.g.magma_automatically_open_output = false
 vim.g.magma_image_provider = "kitty"
-vim.cmd('silent! UpdateRemotePlugins')
 
 -- harpoon commands
 local commands = {
