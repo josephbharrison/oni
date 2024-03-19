@@ -53,7 +53,7 @@ alias tag='help="show branch tag"; branch && [[ $BRANCH != "master" ]] || echo $
 alias update='help="update python libraries"; project; pip uninstall -r requirements.txt --yes && pip install -r requirements.txt --upgrade --force --no-cache-dir'
 alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
 alias nvc='help="reset neovim config"; cp $ONI_HOME/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI_HOME/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
-alias colors='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
+alias palette='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
 alias dt='help="show diff in git tags"; $ONI_HOME/bin/diff-tags'
 alias '?'='help="show alias help message: ? [alias]"; show_help'
 
