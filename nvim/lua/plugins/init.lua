@@ -8,7 +8,7 @@ local modules = {
     "bookmarks",
     "bufdelete",
     "bufferline",
-    "chatgpt",
+    -- "chatgpt",
     "colorizer",
     "colorschemes",
     "comment",
