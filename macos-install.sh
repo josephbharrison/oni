@@ -242,6 +242,10 @@ function configure_oni(){
     [[ -f ~/.bash_profile ]] && mv -f ~/.bash_profile ~/.bash_profile.${now}.bak
     cp -f $SOURCE_DIR/bash/.bash_profile ${HOME}/.bash_profile
 
+    # Configure zsh
+    [[ -f ~/.zshrc ]] && mv -f ~/.zshrc ~/.zshrc.${now}.bak
+    cp -f $SOURCE_DIR/zsh/.zshrc ${HOME}/.zshrc
+
     return 0
 }
 
