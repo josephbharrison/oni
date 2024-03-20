@@ -23,10 +23,10 @@ return {
             -- Add other fixers as needed
         }
 
-        -- Keybindings for ALE functionality
-        vim.api.nvim_set_keymap('n', '<leader>a', ':ALEFix<CR>', {noremap = true, silent = true})
-        vim.api.nvim_set_keymap('n', '<leader>d', ':ALEDetail<CR>', {noremap = true, silent = true})
-        vim.api.nvim_set_keymap('n', '<leader>n', ':ALENext<CR>', {noremap = true, silent = true})
-        vim.api.nvim_set_keymap('n', '<leader>p', ':ALEPrevious<CR>', {noremap = true, silent = true})
+        -- -- Keybindings for ALE functionality
+        -- vim.api.nvim_set_keymap('n', '<leader>a', ':ALEFix<CR>', {noremap = true, silent = true})
+        -- vim.api.nvim_set_keymap('n', '<leader>d', ':ALEDetail<CR>', {noremap = true, silent = true})
+        -- vim.api.nvim_set_keymap('n', '<leader>n', ':ALENext<CR>', {noremap = true, silent = true})
+        -- vim.api.nvim_set_keymap('n', '<leader>p', ':ALEPrevious<CR>', {noremap = true, silent = true})
     end
 }
