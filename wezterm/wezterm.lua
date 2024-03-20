@@ -670,7 +670,7 @@ local config = {
 			},
 			repeat_x = "Repeat",
 			repeat_y = "Repeat",
-            opacity = 0.96,
+            opacity = 0.50,
 			hsb = foreground_hsb_0,
 		},
 		{
