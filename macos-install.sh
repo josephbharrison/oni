@@ -244,7 +244,7 @@ function configure_oni(){
 
     # Configure zsh
     null sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    null git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     [[ -f ~/.zshrc ]] && mv -f ~/.zshrc ~/.zshrc.${now}.bak
     cp -f $SOURCE_DIR/zsh/.zshrc ${HOME}/.zshrc
 
