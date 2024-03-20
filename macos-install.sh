@@ -157,43 +157,15 @@ function install_neovim(){
     brewster nvim neovim
 }
 
-# pip installer
-function install_pip(){
+# python notebook configuation
+function install_notebook(){
     pipster pip pip
-}
-
-# pynvim installer
-function install_pynvim(){
     pipster pynvim
-}
-
-# pillow installer
-function install_pillow(){
     pipster pillow
-}
-
-# jupyter installer
-function install_jupyter(){
     pipster jupyterlab jupyter-lab
-}
-
-# pnglatex installer
-function install_pnglatex(){
     pipster pnglatex
-}
-
-# pip installer
-function install_cairosvg(){
     pipster cairosvg
-}
-
-# plotly installer
-function install_plotly(){
     pipster plotly
-}
-
-# kaleido installer
-function install_kaleido(){
     pipster kaleido
 }
 
@@ -253,7 +225,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug pip pynvim jupyter pillow cairosvg pnglatex plotly kaleido"
+    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug notebook"
     for component in $components
     do
         installers="${installers} install_${component}"
