@@ -17,7 +17,7 @@ show_help() {
     fi
     a=$(alias $@)
     msg=$(echo -en "$a" | awk -F'help=' '{ print $2 }' | awk -F';' '{ print $1 }')
-    echo -en "$msg" | tr -d '"'
+    echo -e "$msg" | tr -d '"'
 }
 
 show_all_help() {
