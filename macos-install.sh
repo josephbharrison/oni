@@ -157,15 +157,43 @@ function install_neovim(){
     brewster nvim neovim
 }
 
-# python notebook configuation
-function install_notebook(){
+# pip installer
+function install_pip(){
     pipster pip pip
+}
+
+# pynvim installer
+function install_pynvim(){
     pipster pynvim
+}
+
+# pillow installer
+function install_pillow(){
     pipster pillow
+}
+
+# jupyter installer
+function install_jupyter(){
     pipster jupyterlab jupyter-lab
+}
+
+# pnglatex installer
+function install_pnglatex(){
     pipster pnglatex
+}
+
+# pip installer
+function install_cairosvg(){
     pipster cairosvg
+}
+
+# plotly installer
+function install_plotly(){
     pipster plotly
+}
+
+# kaleido installer
+function install_kaleido(){
     pipster kaleido
 }
 
@@ -216,6 +244,7 @@ function configure_oni(){
 
     # Configure zsh
     null sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     [[ -f ~/.zshrc ]] && mv -f ~/.zshrc ~/.zshrc.${now}.bak
     cp -f $SOURCE_DIR/zsh/.zshrc ${HOME}/.zshrc
 
@@ -225,7 +254,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug notebook"
+    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug pip pynvim jupyter pillow cairosvg pnglatex plotly kaleido"
     for component in $components
     do
         installers="${installers} install_${component}"
