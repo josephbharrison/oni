@@ -53,6 +53,6 @@ end
 
 -- Apply specific mapping for visual mode
 vim.keymap.set('v', '<C-m>', commands.evalVis[1], {desc=commands.evalVis["desc"]})
-vim.keymap.set('n', '<C-m>', commands.evalLine[1], {desc=commands.evalLine["desc"]})
+vim.keymap.set('n', '<M-m>', commands.evalLine[1], {desc=commands.evalLine["desc"]})
 vim.keymap.set('n', '<C-.>', commands.nextCell[1], {desc=commands.nextCell["desc"]})
 vim.keymap.set('n', '<C-,>', commands.prioCell[1], {desc=commands.prioCell["desc"]})
