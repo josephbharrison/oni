@@ -96,5 +96,5 @@ function fold_comments()
   vim.api.nvim_win_set_cursor(0, initial_cursor_pos)
 end
 
--- Map the function to a key, e.g., <leader>f
-vim.api.nvim_set_keymap('n', '<leader>f', ':lua fold_comments()<CR>', {noremap = true, silent = true})
+-- Map the function to a key, e.g., <leader>F
+vim.api.nvim_set_keymap('n', '<leader>F', ':lua fold_comments()<CR>', {noremap = true, silent = true, desc = "Fold comments"})
