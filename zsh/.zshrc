@@ -76,5 +76,5 @@ export TERM="xterm-256color"
 
 # omz
 export ZSH="$HOME/.oh-my-zsh"
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
