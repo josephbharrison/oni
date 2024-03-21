@@ -59,13 +59,13 @@ function brewster(){
 
 # pip package installer
 function pipster(){
-    piptest=$(which pip)
-    if [[ $? -ne 0 ]]; then
-        if [[ -f "/usr/bin/pip3" ]];then
-            sudo mkdir -p /usr/local/bin
-            sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
-        fi
-    fi
+    # piptest=$(which pip)
+    # if [[ $? -ne 0 ]]; then
+    #     if [[ -f "/usr/bin/pip3" ]];then
+    #         sudo mkdir -p /usr/local/bin
+    #         sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
+    #     fi
+    # fi
     package=$1
     name=$2
     [[ -z $name ]] && name=$package
