@@ -59,14 +59,11 @@ function brewster(){
 
 # pip package installer
 function pipster(){
-    echo pip 1
-    piptest=$(pip list)
-    echo pip 2
-    if [[ $? -ne 0 ]]; then
-        (null python3 -m ensurepip || true )
-        echo pip 3
-        sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
-        echo pip 4
+    piptest=$(which pip)
+    if [[ $? -ne 0 || $piptest == '']]; then
+        if [[ -f /usr/bin/pip3 ]]; then
+            sudo ln -s /usr/bin/pip3 /usr/bin/pip
+        fi
         pip install pip --upgrade
     fi
     package=$1
