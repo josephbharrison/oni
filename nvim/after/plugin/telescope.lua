@@ -11,18 +11,17 @@ local telescope = require("telescope.builtin")
 local commands = {
 	["fuzzy_finder"] = { telescope.find_files , desc = "Find files" },
 	["git_finder"] = { telescope.git_files,  desc = "Find Git" },
-	["grep_finder"] = {
-		function()
-			builtin.grep_string({ search = vim.fn.input("Grep > ") });
-		end, desc = "Grep files" },
-	}
+	["live_grep"] = { ":Telescope live_grep",  desc = "Live Git" },
+	["git_commit"] = { ":Telescope git_commit",  desc = "Git Commit" },
+}
 
 -- leader mappings
 local mappings = {
 	["<leader>f"] = false,
 	["<leader>ff"] = commands.fuzzy_finder,
 	["<leader>fg"] = commands.git_finder,
-	["<leader>fG"] = commands.grep_finder,
+	["<leader>fG"] = commands.live_grep,
+	["<leader>fc"] = commands.git_commit,
 }
 
 for k, v in pairs(mappings) do
