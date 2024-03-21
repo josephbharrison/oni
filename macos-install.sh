@@ -59,6 +59,11 @@ function brewster(){
 
 # pip package installer
 function pipster(){
+    piptest=(pip list)
+    if [[ $? -ne 0 ]]; then
+        null python3 -m ensurepip
+        pip install pip --upgrade
+    fi
     package=$1
     name=$2
     [[ -z $name ]] && name=$package
