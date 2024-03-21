@@ -126,6 +126,11 @@ function install_tldr(){
 }
 
 # fzf installer
+function install_rg(){
+    brewster rg ripgrep
+}
+
+# fzf installer
 function install_fzf(){
     brewster fzf
 }
@@ -262,7 +267,7 @@ function configure_oni(){
 function install(){
     # oni components
     # components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug pip pynvim jupyter pillow cairosvg pnglatex plotly kaleido"
-    components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim"
+    components="fonts rust starship tmux pass tldr rg fzf kubectl stern wezterm neovim"
     for component in $components
     do
         installers="${installers} install_${component}"
