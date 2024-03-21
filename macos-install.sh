@@ -61,7 +61,7 @@ function brewster(){
 function pipster(){
     piptest=(pip list)
     if [[ $? -ne 0 ]]; then
-        (null python3 -m ensurepip)
+        (null python3 -m ensurepip || true )
         sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
         pip install pip --upgrade
     fi
