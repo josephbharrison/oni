@@ -78,3 +78,8 @@ export TERM="xterm-256color"
 export ZSH="$HOME/.oh-my-zsh"
 plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
+
+# Remove annoying '%' on missing newline
+setopt PROMPT_CR
+setopt PROMPT_SP
+export PROMPT_EOL_MARK=""
