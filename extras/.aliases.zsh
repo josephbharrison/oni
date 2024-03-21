@@ -11,7 +11,6 @@ export CONFIG_DIR=${HOME}/.config
 [[ -z "${LOCAL_CONTEXT}"   ]] && export LOCAL_CONTEXT=my-local-context
 
 show_all_help() {
-    echo "made it"
     local aliases=$(alias | grep 'help=' | awk -F'=' '{ print $1 }' | awk '{ print $2 }')
     while read line; do
         name=$(echo $line | awk -F'=' '{ print $1 }')
