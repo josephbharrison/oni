@@ -54,7 +54,6 @@ alias nvc='help="reset neovim config"; cp $ONI_HOME/nvim/lua/user/init.lua $CONF
 alias palette='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
 alias dt='help="show diff in git tags"; $ONI_HOME/bin/diff-tags'
 alias '?'='help="show alias help message: ? [alias]"; show_help'
-# alias clear='export TERM=xterm-256color && clear && export TERM=tmux-256color'
 
 # K8S shortcuts
 alias h='help="helm alias for current project"; project && helm -n $PROJECT'

@@ -10,6 +10,16 @@ export CONFIG_DIR=${HOME}/.config
 [[ -z "${SANDBOX_CONTEXT}" ]] && export SANDBOX_CONTEXT=my-sandbox-context
 [[ -z "${LOCAL_CONTEXT}"   ]] && export LOCAL_CONTEXT=my-local-context
 
+show_all_help() {
+    echo "made it"
+    local aliases=$(alias | grep 'help=' | awk -F'=' '{ print $1 }' | awk '{ print $2 }')
+    while read line; do
+        name=$(echo $line | awk -F'=' '{ print $1 }')
+        msg=$(? $name)
+        printf "%15s    %-s\n" $name "$msg"
+    done < <(alias | grep 'help=')
+}
+
 show_help() {
     if [[ -z "$@" ]]; then
         show_all_help
@@ -18,14 +28,6 @@ show_help() {
     a=$(alias $@)
     msg=$(echo -en "$a" | awk -F'help=' '{ print $2 }' | awk -F';' '{ print $1 }')
     echo -e "$msg" | tr -d '"'
-}
-
-show_all_help() {
-    local aliases=$(alias | grep 'help=' | awk -F'=' '{ print $1 }' | awk '{ print $2 }')
-    for alias in $aliases; do
-        local help_msg=$(show_help $alias)
-        printf "%15s    %-s\n" $alias "$help_msg"
-    done
 }
 
 # Core aliases (update paths and commands as necessary for Zsh compatibility)
