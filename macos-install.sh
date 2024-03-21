@@ -60,11 +60,9 @@ function brewster(){
 # pip package installer
 function pipster(){
     piptest=$(which pip)
-    if [[ $? -ne 0 || $piptest == '']]; then
-        if [[ -f /usr/bin/pip3 ]]; then
-            sudo ln -s /usr/bin/pip3 /usr/bin/pip
-        fi
-        pip install pip --upgrade
+    if [[ $? -ne 0 || $piptest == "" ]]; then
+        sudo ln -s /usr/bin/pip3 /usr/bin/pip
+        null pip install pip --upgrade
     fi
     package=$1
     name=$2
