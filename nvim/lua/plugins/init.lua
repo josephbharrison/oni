@@ -39,6 +39,7 @@ local modules = {
     "omnisharp",
     "prettier",
     "rust-tools",
+    "scrollbar",
     "smart-splits",
     "symbols-outline",
     "telescope",
