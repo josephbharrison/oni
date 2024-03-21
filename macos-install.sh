@@ -61,7 +61,8 @@ function brewster(){
 function pipster(){
     piptest=$(which pip)
     if [[ $? -ne 0 || $piptest == "" ]]; then
-        sudo ln -s /usr/bin/pip3 /usr/bin/pip
+        null sudo mkdir -p /usr/local/bin
+        null sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
         null pip install pip --upgrade
     fi
     package=$1
