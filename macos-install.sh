@@ -59,7 +59,7 @@ function brewster(){
 
 # pip package installer
 function pipster(){
-    piptest=(pip list || return 1)
+    piptest=$(pip list || return 1)
     if [[ $? -ne 0 ]]; then
         (null python3 -m ensurepip || true )
         sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
