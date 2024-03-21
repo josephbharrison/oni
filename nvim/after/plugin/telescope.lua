@@ -11,8 +11,8 @@ local telescope = require("telescope.builtin")
 local commands = {
 	["fuzzy_finder"] = { telescope.find_files , desc = "Find files" },
 	["git_finder"] = { telescope.git_files,  desc = "Find Git" },
-	["live_grep"] = { ":Telescope live_grep",  desc = "Live Git" },
-	["git_commit"] = { ":Telescope git_commit",  desc = "Git Commit" },
+	["live_grep"] = { ":Telescope live_grep<cr>",  desc = "Live Git" },
+	["git_commit"] = { ":Telescope git_commit<cr>",  desc = "Git Commit" },
 }
 
 -- leader mappings
