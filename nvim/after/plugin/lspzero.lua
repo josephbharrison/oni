@@ -1,6 +1,9 @@
-local lsp = require("lsp-zero")
+local lsp_zero = require("lsp-zero")
 
-lsp.ensure_installed({
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed =
+{
     "java_language_server",
 	"tsserver",
 	"eslint",
@@ -9,12 +12,16 @@ lsp.ensure_installed({
     "rust_analyzer",
 	"pyright",
     "yamlls",
+},
+  handlers = {
+    lsp_zero.default_setup,
+  },
 })
 
-lsp.preset("recommended")
+lsp_zero.preset("recommended")
 
 -- override lsp presets
-lsp.preset({
+lsp_zero.preset({
   float_border = 'rounded',
   call_servers = 'local',
   configure_diagnostics = true,
@@ -37,7 +44,7 @@ lsp.preset({
 })
 
 -- configure language servers here --
-lsp.configure("yamlls", {
+lsp_zero.configure("yamlls", {
   settings = {
     yaml = {
       keyOrdering = false
@@ -46,7 +53,7 @@ lsp.configure("yamlls", {
 })
 
 -- configure language servers here --
-lsp.configure("rust_analyzer", {
+lsp_zero.configure("rust_analyzer", {
     filetypes = {"rust"},
     settings = {
         ["rust-analyzer"] = {
@@ -105,7 +112,7 @@ local i_mappings = {
 }
 
 -- map keys
-lsp.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
     local print_client = false
 	if print_client then
 		print(client)
@@ -129,13 +136,13 @@ lsp.on_attach(function(client, bufnr)
 	end
 end)
 
-lsp.setup()
+lsp_zero.setup()
 
 -- cmp commands
 local cmp = require("cmp")
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_action = require('lsp-zero').cmp_action()
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mappings = lsp_zero.defaults.cmp_mappings({
 	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
 	["<C-y>"] = cmp.mapping.confirm({ select = true }),
@@ -150,6 +157,6 @@ cmp.setup({
   }
 })
 
-lsp.setup_nvim_cmp({
+lsp_zero.setup_nvim_cmp({
 	mapping = cmp_mappings
 })
