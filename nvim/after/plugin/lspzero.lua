@@ -10,6 +10,7 @@ require('mason-lspconfig').setup({
     "rust_analyzer",
 	"pyright",
     "yamlls",
+    "tsserver",
 },
   handlers = {
     lsp_zero.default_setup,
