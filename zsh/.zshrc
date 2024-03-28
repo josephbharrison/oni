@@ -14,7 +14,7 @@ if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
 elif cmd /opt/homebrew/bin/brew; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-alias fb='/bin/zsh -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+alias fb='/bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
 # Local development environment
 export CODE_HOME=${HOME}/code
