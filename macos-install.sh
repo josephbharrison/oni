@@ -103,6 +103,21 @@ function install_rust(){
     return 0
 }
 
+# npm installer
+function install_npm(){
+    brewster npm
+}
+
+# npm installer
+function install_nvm(){
+    brewster nvm
+}
+
+# golang installer
+function install_golang(){
+    brewster golang
+}
+
 # starship installer
 function install_starship(){
     brewster starship
@@ -266,8 +281,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    # components="fonts rust starship tmux pass tldr fzf kubectl stern wezterm neovim ueberzug pip pynvim jupyter pillow cairosvg pnglatex plotly kaleido"
-    components="fonts rust starship tmux pass tldr rg fzf kubectl stern wezterm neovim"
+    components="fonts rust npm nvm golang starship tmux pass tldr rg fzf kubectl stern wezterm neovim"
     for component in $components
     do
         installers="${installers} install_${component}"
