@@ -26,6 +26,7 @@ function check_prereqs(){
         echo "Installing homebrew: "
         url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
         /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL ${url})"
+        softwareupdate --install-rosetta --agree-to-license
     fi
     null brew update || (echo "try running brew update manually for more info" && return 1)
 }
