@@ -85,3 +85,13 @@ source $ZSH/oh-my-zsh.sh
 setopt PROMPT_CR
 setopt PROMPT_SP
 export PROMPT_EOL_MARK=""
+
+# tmux pane titles
+update_tmux_pane_title() {
+    # Extract the last directory name from PWD
+    local dir_name="${PWD##*/}"
+    # Update the custom pane title in tmux
+    tmux set-option -g @custom_pane_title "$dir_name "
+}
+# Hook the function into precmd
+precmd_functions+=(update_tmux_pane_title)
