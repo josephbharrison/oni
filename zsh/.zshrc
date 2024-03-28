@@ -89,9 +89,10 @@ export PROMPT_EOL_MARK=""
 # tmux pane titles
 update_tmux_pane_title() {
     # Extract the last directory name from PWD
-    local dir_name="${PWD##*/}"
+    local title=$([[ -z $PROJECT ]] && project && echo $PROJECT || echo $PROJECT)
+    [[ -z $title ]] && title="${PWD##*/}"
     # Update the custom pane title in tmux
-    tmux set-option -g @custom_pane_title "$dir_name "
+    tmux set-option -g @custom_pane_title "$title "
 }
 # Hook the function into precmd
 precmd_functions+=(update_tmux_pane_title)
