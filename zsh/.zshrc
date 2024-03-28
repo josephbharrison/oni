@@ -46,6 +46,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Azure
 export GOPRIVATE=dev.azure.com
+autoload bashcompinit && bashcompinit
+[[ -f $(brew --prefix)/etc/bash_completion.d/az ]] && source $(brew --prefix)/etc/bash_completion.d/az
 
 # Node.js setup
 cmd node && source $(brew --prefix nvm)/nvm.sh
