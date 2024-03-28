@@ -86,13 +86,17 @@ function install_fonts(){
     echo -en "Installing fonts: "
     for font in $FONTS
     do
-        # res=$(null brew list --cask font-${font}-nerd-font)
-        # if [[ $? -ne 0 ]]; then
+        res=$(null brew list --cask font-${font}-nerd-font)
+        if [[ $? -ne 0 ]]; then
             [[ -f $HOME/Library/Fonts/${font}* ]] \
                 && null sudo rm -f $HOME/Library/Fonts/${font}*
             null brew tap homebrew/cask-fonts &&
             null brew install --cask font-${font}-nerd-font --force || return 1
-        # fi
+        fi
+        if [[ ! -f "$HOME/Library/Fonts/${font}*" ]]; then
+            null brew tap homebrew/cask-fonts &&
+            null brew reinstall --cask font-${font}-nerd-font || return 1
+	fi
     done
     return 0
 }
