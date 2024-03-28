@@ -20,7 +20,7 @@ function null(){
 # Prerequisite checker
 function check_prereqs(){
     echo -en "Checking prereqs: "
-    res=$(brew list || return 1)
+    res=$(brew list &> /dev/null || return 1)
     if [[ $? -ne 0 ]]; then
         echo "MISSING"
         echo "Installing homebrew: "
