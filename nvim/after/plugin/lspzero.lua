@@ -4,7 +4,6 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed =
 {
-    "java_language_server",
 	"eslint",
 	"lua_ls",
 	"gopls",
