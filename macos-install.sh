@@ -108,6 +108,11 @@ function install_rust(){
     return 0
 }
 
+# shell tools installer
+function install_cli_tools(){
+    brewster gnu-sed sed
+}
+
 # npm installer
 function install_npm(){
     brewster npm
@@ -286,7 +291,7 @@ function configure_oni(){
 # Main installer
 function install(){
     # oni components
-    components="fonts rust npm nvm golang starship tmux pass tldr rg fzf kubectl stern wezterm neovim"
+    components="fonts rust cli_tools npm nvm golang starship tmux pass tldr rg fzf kubectl stern wezterm neovim"
     for component in $components
     do
         installers="${installers} install_${component}"
