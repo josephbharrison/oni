@@ -90,17 +90,12 @@ function install_fonts(){
         if [[ $? -ne 0 ]]; then
             [[ -f $HOME/Library/Fonts/${font}* ]] \
                 && null sudo rm -f $HOME/Library/Fonts/${font}*
-            # # cask deprecated
-            # null brew tap homebrew/cask-fonts &&
-            # null brew install --cask font-${font}-nerd-font --force || return 1
-            null brew install font-${font}-nerd-font --force || return 1
         fi
         if [[ ! -f "$HOME/Library/Fonts/${font}*" ]]; then
-            # # cask deprecated
-            # null brew tap homebrew/cask-fonts &&
-            # null brew reinstall --cask font-${font}-nerd-font || return 1
             null brew install font-${font}-nerd-font --force || return 1
-	fi
+        else
+            null brew upgrade font-${font}-nerd-font --force || return 1
+	    fi
     done
     return 0
 }
