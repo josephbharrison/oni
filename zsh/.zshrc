@@ -86,16 +86,20 @@ setopt PROMPT_CR
 setopt PROMPT_SP
 export PROMPT_EOL_MARK=""
 
-# Hook the function into precmd
-precmd_functions+=(update_tmux_pane_title)
-
+export DISABLE_AUTO_TITLE="true"
 
 # tmux pane titles
 update_tmux_pane_title() {
-    local project=${${PWD##*/}#*/}
-    local pane_id=$(tmux display-message -p "#{pane_id}")
-    tmux select-pane -t "$pane_id" -T "$project"
+    if [[ -o interactive ]]; then
+        local project=${PWD##*/}
+        local pane_id=$(tmux display-message -p "#{pane_id}")
+        tmux select-pane -t "$pane_id" -T "$project"
+        tmux select-pane -t "$pane_id" -P "custom_pane_title:$project"
+    fi
 }
 
-# Hook the function into precmd
+# Hook the update_tmux_pane_title function into precmd
 precmd_functions+=(update_tmux_pane_title)
+
+# Ensure tmux pane titles update on directory change
+chpwd_functions+=(update_tmux_pane_title)
