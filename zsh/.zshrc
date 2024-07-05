@@ -86,13 +86,16 @@ setopt PROMPT_CR
 setopt PROMPT_SP
 export PROMPT_EOL_MARK=""
 
+# Hook the function into precmd
+precmd_functions+=(update_tmux_pane_title)
+
+
 # tmux pane titles
 update_tmux_pane_title() {
-    # Extract the last directory name from PWD
-    local title=$([[ -z $PROJECT ]] && project && echo $PROJECT || echo $PROJECT)
-    [[ -z $title ]] && title="${PWD##*/}"
-    # Update the custom pane title in tmux
-    tmux set-option -g @custom_pane_title "$title "
+    local project=${${PWD##*/}#*/}
+    local pane_id=$(tmux display-message -p "#{pane_id}")
+    tmux select-pane -t "$pane_id" -T "$project"
 }
+
 # Hook the function into precmd
 precmd_functions+=(update_tmux_pane_title)
