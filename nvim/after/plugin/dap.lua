@@ -9,7 +9,34 @@ vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
 -- Global DAP Setup
 local dap = require "dap"
+require('dap').set_log_level('DEBUG')
 require("dap.ext.vscode").load_launchjs()
+
+-- Mason and Mason-DAP Setup
+require('mason').setup()
+require('mason-nvim-dap').setup({
+    ensure_installed = { 'js-debug-adapter' }
+})
+
+-- Determine the actual path for vsDebugServer.js
+local mason_path = vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter'
+local vscode_js_debug_path = mason_path .. '/js-debug/src/dapDebugServer.js'
+
+-- Verify the existence of the path
+if not vim.loop.fs_stat(vscode_js_debug_path) then
+  vscode_js_debug_path = mason_path .. '/out/src/dapDebugServer.js'
+end
+
+-- Verify the existence of the path
+if not vim.loop.fs_stat(vscode_js_debug_path) then
+  vscode_js_debug_path = mason_path .. '/out/src/vsDebugServer.js'
+end
+
+-- -- Debug: Print the path
+-- print("vscode_js_debug_path:", vscode_js_debug_path)
+--
+-- -- Enable logging for nvim-dap
+-- require('dap.repl').open({}, 'vsplit')
 
 -- Adapters
 dap.adapters.go = { -- go adapter
@@ -24,6 +51,14 @@ dap.adapters.python = { -- python adapter
     type = "executable",
     command = os.getenv("HOME") .. "/.pyenv/versions/debugpy/bin/python",
     args = { "-m", "debugpy.adapter" },
+}
+dap.adapters.node = { -- node.js adapter using vscode-js-debug
+    type = "server",
+    host = "127.0.0.1",
+    port = "9230",
+    executable = {
+      command = "js-debug-adapter",
+    },
 }
 
 -- Configurations
@@ -79,6 +114,35 @@ dap.configurations.python = { -- python configuration
 		end,
 	},
 }
+dap.configurations.javascript = { -- node.js configuration for next.js
+    {
+        type = "node",
+        request = "launch",
+        name = "Launch Program",
+        program = "${file}",
+        cwd = vim.fn.getcwd(),
+        sourceMaps = true,
+        protocol = "inspector",
+        console = "integratedTerminal",
+    },
+    {
+        type = "node",
+        request = "attach",
+        name = "Attach to Process",
+        processId = require'dap.utils'.pick_process,
+    },
+    {
+        type = "node",
+        request = "server",
+        name = "Attach to Next.js Server",
+        restart = false,
+        sourceMaps = true,
+        cwd = vim.fn.getcwd(),
+        protocol = "inspector",
+        skipFiles = {"<node_internals>/**"},
+    },
+}
+
 
 local function all_trim(s)
 	return s:match("^%s*(.-)%s*$")
@@ -112,7 +176,7 @@ for _, config in pairs(dap.configurations.go) do
 end
 
 -- Placeholder expansion for launch directives
-local placeholders = { 
+local placeholders = {
     ["${file}"] = function(_) return vim.fn.expand("%:p") end,
     ["${fileBasename}"] = function(_) return vim.fn.expand("%:t") end,
     ["${fileBasenameNoExtension}"] = function(_) return vim.fn.fnamemodify(vim.fn.expand("%:t"), ":r") end,
