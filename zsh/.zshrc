@@ -103,3 +103,10 @@ precmd_functions+=(update_tmux_pane_title)
 
 # Ensure tmux pane titles update on directory change
 chpwd_functions+=(update_tmux_pane_title)
+
+
+# Ensure WEZTERM_SESSION is set and exported
+if [ -n "$WEZTERM_SESSION" ]; then
+  export WEZTERM_SESSION
+  alias tmux='tmux -L WEZTERM_SESSION &> /dev/null'
+fi
