@@ -56,6 +56,7 @@ alias uuid='help="generate uuid"; uuidgen | tr [:upper:] [:lower:]'
 alias nvc='help="reset neovim config"; cp $ONI_HOME/nvim/lua/user/init.lua $CONFIG_DIR/nvim/lua/user/init.lua && cp $ONI_HOME/nvim/init.lua $CONFIG_DIR/nvim/init.lua'
 alias palette='help="show terminal colors"; $ONI_HOME/bin/colors.sh'
 alias dt='help="show diff in git tags"; $ONI_HOME/bin/diff-tags'
+alias tokens='help="estimate GPT token count"; wc -w --libxo=json | jq ".wc.file[0].words"'
 alias '?'='help="show alias help message: ? [alias]"; show_help'
 
 # K8S shortcuts
