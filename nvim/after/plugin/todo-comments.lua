@@ -1,10 +1,9 @@
 
 -- which-key labels
 local wk = require("which-key")
-
-wk.register({
-	m = { name = "Todo"},
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>m", group = "Todo" },
+})
 
 -- todo commands
 local commands = {

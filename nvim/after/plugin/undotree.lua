@@ -10,12 +10,12 @@ local commands = {
 }
 
 -- leader mappings
-mappings = {
+local mappings = {
 	["<leader>u"] = commands.undo,
 }
 
 for k, v in pairs(mappings) do
-	if v then 
+	if v then
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end

@@ -1,8 +1,6 @@
 -- which-key labels
 local wk = require("which-key")
-wk.register({
-	g = { name = "Git"},
-}, { prefix = "<leader>" })
+wk.add({{ "<leader>g", group = "Git" }})
 
 -- commands
 local commands = {

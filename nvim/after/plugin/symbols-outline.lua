@@ -1,5 +1,5 @@
 -- which-key labels
-local wk = require("which-key")
+-- local wk = require("which-key")
 
 -- Symbols commands
 local commands = {

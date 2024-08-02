@@ -1,8 +1,9 @@
 -- which-key labels
 local wk = require("which-key")
-wk.register({
-	s = { name = "Color Schemes"},
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>s", group = "Color Schemes"}
+})
+
 
 -- commands
 local commands = {
@@ -57,7 +58,7 @@ local mappings = {
 
 -- map keys
 for k, v in pairs(mappings) do
-	if v then 
+	if v then
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end

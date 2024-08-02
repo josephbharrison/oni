@@ -37,10 +37,9 @@ local params = {
 
 -- which-key labels
 local wk = require("which-key")
-wk.register({
-	z = { name = "Zen"},
-}, { prefix = "<leader>" })
-
+wk.add({
+    { "<leader>z", group = "Zen" },
+})
 
 -- commands
 local commands = {
@@ -67,4 +66,3 @@ for k, v in pairs(mappings) do
         vim.keymap.set('n', k, v[1], {desc=v["desc"]})
     end
 end
-

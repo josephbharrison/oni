@@ -1,8 +1,8 @@
 -- which-key labels
 local wk = require("which-key")
-wk.register({
-	f = { name = "Finder"},
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>f", group = "Finder" },
+})
 
 -- functions
 local telescope = require("telescope.builtin")

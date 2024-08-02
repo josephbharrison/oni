@@ -216,9 +216,7 @@ end
 
 -- which-key labels
 local wk = require("which-key")
-wk.register({
-	D = { name = "DAP"},
-}, { prefix = "<leader>" })
+wk.add({{ "<leader>D", group = "DAP"}})
 
 
 -- commands

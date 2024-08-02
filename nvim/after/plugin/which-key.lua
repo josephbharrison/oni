@@ -1,5 +1,4 @@
 local wk = require("which-key")
-
-wk.register({
-	e = { desc = "Neovim Explorer" },
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>e", desc = "Neovim Explorer" },
+})

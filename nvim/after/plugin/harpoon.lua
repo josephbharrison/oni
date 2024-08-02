@@ -1,11 +1,10 @@
 -- which-key labels
 local wk = require("which-key")
-
-wk.register({
-	h = { name = "Harpoon"},
-	hm = { name = "Harpoon Tmux"},
-	ht = { name = "Harpoon Terminal"},
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>h", group = "Harpoon" },
+    { "<leader>hm", group = "Harpoon Tmux" },
+    { "<leader>ht", group = "Harpoon Terminal" },
+})
 
 -- harpoon functions
 local mark = require("harpoon.mark")
@@ -57,7 +56,7 @@ mappings = {
 }
 
 for k, v in pairs(mappings) do
-	if v then 
+	if v then
 		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
 	end
 end

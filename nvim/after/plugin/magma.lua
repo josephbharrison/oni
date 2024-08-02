@@ -1,9 +1,8 @@
 -- which-key labels
 local wk = require("which-key")
-
-wk.register({
-	m = { name = "Magma"},
-}, { prefix = "<leader>" })
+wk.add({
+    { "<leader>m", group = "Magma" },
+})
 
 vim.cmd('silent! UpdateRemotePlugins')
 vim.g.magma_automatically_open_output = true

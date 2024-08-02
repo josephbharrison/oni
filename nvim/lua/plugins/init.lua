@@ -53,6 +53,7 @@ local modules = {
     "undotree",
     "vim-tmux-navigator",
     "which-key",
+    "xbase",
     "zen-mode",
 }
 
