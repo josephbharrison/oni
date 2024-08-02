@@ -12,6 +12,7 @@ local modules = {
     "colorizer",
     "colorschemes",
     "comment",
+    "conform",
     -- "copilot",
     "docs-view",
     "dressing",
@@ -30,8 +31,10 @@ local modules = {
     "neoconf",
     "neodev",
     "neoformat",
+    "nvim-cmp",
     "nvim-dap",
     "nvim-dap-ui",
+    "nvim-lint",
     "nvim-ts-autotag",
     "nvim-ts-context-commentstring",
     "nvim-window-picker",
@@ -54,6 +57,7 @@ local modules = {
     "vim-tmux-navigator",
     "which-key",
     "xbase",
+    "xcodebuild",
     "zen-mode",
 }
 
