@@ -26,7 +26,7 @@ local modules = {
     "lspkind",
     "lspzero",
     "lspconfig",
-    "magma",
+    -- "magma",
     "neo-tree",
     "neoconf",
     "neodev",

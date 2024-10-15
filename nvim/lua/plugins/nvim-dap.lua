@@ -8,7 +8,6 @@ return {
         local xcodebuild = require("xcodebuild.integrations.dap")
         -- TODO: change it to your local codelldb path
         local codelldbPath = os.getenv("HOME") .. ".vscode/extensions/vadimcn.vscode-lldb-1.10.0/adapter/codelldb"
-        -- "/tools/codelldb-aarch64-darwin/extension/adapter/codelldb"
         xcodebuild.setup(codelldbPath)
         vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
         vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
