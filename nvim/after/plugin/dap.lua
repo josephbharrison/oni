@@ -10,13 +10,13 @@ vim.api.nvim_set_hl(0, "Comment", { italic = true })
 -- Global DAP Setup
 local dap = require "dap"
 require('dap').set_log_level('DEBUG')
-require("dap.ext.vscode").load_launchjs()
+-- require("dap.ext.vscode").load_launchjs()
 
 -- Mason and Mason-DAP Setup
 require('mason').setup()
-require('mason-nvim-dap').setup({
-    ensure_installed = { 'js-debug-adapter' }
-})
+-- require('mason-nvim-dap').setup({
+--     ensure_installed = { 'js-debug-adapter' }
+-- })
 
 -- Determine the actual path for vsDebugServer.js
 local mason_path = vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter'
@@ -24,12 +24,12 @@ local vscode_js_debug_path = mason_path .. '/js-debug/src/dapDebugServer.js'
 
 -- Verify the existence of the path
 if not vim.loop.fs_stat(vscode_js_debug_path) then
-  vscode_js_debug_path = mason_path .. '/out/src/dapDebugServer.js'
+    vscode_js_debug_path = mason_path .. '/out/src/dapDebugServer.js'
 end
 
 -- Verify the existence of the path
 if not vim.loop.fs_stat(vscode_js_debug_path) then
-  vscode_js_debug_path = mason_path .. '/out/src/vsDebugServer.js'
+    vscode_js_debug_path = mason_path .. '/out/src/vsDebugServer.js'
 end
 
 -- -- Debug: Print the path
@@ -57,7 +57,7 @@ dap.adapters.node = { -- node.js adapter using vscode-js-debug
     host = "127.0.0.1",
     port = "9230",
     executable = {
-      command = "js-debug-adapter",
+        command = "js-debug-adapter",
     },
 }
 
@@ -77,42 +77,42 @@ dap.configurations.go = { -- go configuration
     },
 }
 dap.configurations.python = { -- python configuration
-	{
-		type = "python",
-		request = "launch",
-		name = "Debug Current File",
-		program = "${file}",
-		pythonPath = function()
-			local venv = os.getenv("VIRTUAL_ENV")
-			if venv then
-				return venv .. "/bin/python"
-			else
-				return "/usr/bin/python"
-			end
-		end,
-	},
-	{
-		type = "python",
-		request = "attach",
-		name = "Attach to remote process...",
-		connect = {
-			host = function()
-				return vim.fn.input("Host: ")
-			end,
-			port = function()
-				return vim.fn.input("Port: ")
-			end,
-		},
-		mode = "remote",
-		pythonPath = function()
-			local venv = os.getenv("VIRTUAL_ENV")
-			if venv then
-				return venv .. "/bin/python"
-			else
-				return "/usr/bin/python"
-			end
-		end,
-	},
+    {
+        type = "python",
+        request = "launch",
+        name = "Debug Current File",
+        program = "${file}",
+        pythonPath = function()
+            local venv = os.getenv("VIRTUAL_ENV")
+            if venv then
+                return venv .. "/bin/python"
+            else
+                return "/usr/bin/python"
+            end
+        end,
+    },
+    {
+        type = "python",
+        request = "attach",
+        name = "Attach to remote process...",
+        connect = {
+            host = function()
+                return vim.fn.input("Host: ")
+            end,
+            port = function()
+                return vim.fn.input("Port: ")
+            end,
+        },
+        mode = "remote",
+        pythonPath = function()
+            local venv = os.getenv("VIRTUAL_ENV")
+            if venv then
+                return venv .. "/bin/python"
+            else
+                return "/usr/bin/python"
+            end
+        end,
+    },
 }
 dap.configurations.javascript = { -- node.js configuration for next.js
     {
@@ -129,7 +129,7 @@ dap.configurations.javascript = { -- node.js configuration for next.js
         type = "node",
         request = "attach",
         name = "Attach to Process",
-        processId = require'dap.utils'.pick_process,
+        processId = require 'dap.utils'.pick_process,
     },
     {
         type = "node",
@@ -139,13 +139,13 @@ dap.configurations.javascript = { -- node.js configuration for next.js
         sourceMaps = true,
         cwd = vim.fn.getcwd(),
         protocol = "inspector",
-        skipFiles = {"<node_internals>/**"},
+        skipFiles = { "<node_internals>/**" },
     },
 }
 
 
 local function all_trim(s)
-	return s:match("^%s*(.-)%s*$")
+    return s:match("^%s*(.-)%s*$")
 end
 
 -- Breakpoint def
@@ -216,24 +216,24 @@ end
 
 -- which-key labels
 local wk = require("which-key")
-wk.add({{ "<leader>D", group = "DAP"}})
+wk.add({ "<leader>D", group = "DAP" })
 
 
 -- commands
 local commands = {
-  ["debug_start"] = { function() require("dap").continue() end, desc = "Debugger: Start (F5)" },
-  ["debug_stop"] = { function() require("dap").terminate() end, desc = "Debugger: Stop (Shift+F5)" }, -- Shift+F5,
-  ["debug_restart"] = { function() require("dap").restart_frame() end, desc = "Debugger: Restart (Ctrl+F5)" }, -- Control+F5
-  ["dubug_pause"] = { function() require("dap").pause() end, desc = "Debugger: Pause" },
-  ["debug_breakpoint_toggle"] = { function() require("dap").toggle_breakpoint() end, desc = "Debugger: Toggle Breakpoint" },
-  ["debug_step_over"] = { function() require("dap").step_over() end, desc = "Debugger: Step Over" },
-  ["debug_stop_into"] = { function() require("dap").step_into() end, desc = "Debugger: Step Into" },
-  ["debug_setp_out"] = { function() require("dap").step_out() end, desc = "Debugger: Step Out (Shift+F11)" }, -- Shift+F11
-  ["debug_clear_breakpoints"] = { function() require("dap").clear_breakpoints() end, desc = "Clear Breakpoints" },
-  ["debug_close"] = { function() require("dap").close() end, desc = "Close Session" },
-  ["debug_repl_toggle"] = { function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
-  ["debug_ui"] = { function() require("dapui").toggle() end, desc = "Toggle Debugger UI" },
-  ["debug_hover"] = { function() require("dap.ui.widgets").hover() end, desc = "Debugger Hover" },
+    ["debug_start"] = { function() require("dap").continue() end, desc = "Debugger: Start (F5)" },
+    ["debug_stop"] = { function() require("dap").terminate() end, desc = "Debugger: Stop (Shift+F5)" },          -- Shift+F5,
+    ["debug_restart"] = { function() require("dap").restart_frame() end, desc = "Debugger: Restart (Ctrl+F5)" }, -- Control+F5
+    ["dubug_pause"] = { function() require("dap").pause() end, desc = "Debugger: Pause" },
+    ["debug_breakpoint_toggle"] = { function() require("dap").toggle_breakpoint() end, desc = "Debugger: Toggle Breakpoint" },
+    ["debug_step_over"] = { function() require("dap").step_over() end, desc = "Debugger: Step Over" },
+    ["debug_stop_into"] = { function() require("dap").step_into() end, desc = "Debugger: Step Into" },
+    ["debug_setp_out"] = { function() require("dap").step_out() end, desc = "Debugger: Step Out (Shift+F11)" }, -- Shift+F11
+    ["debug_clear_breakpoints"] = { function() require("dap").clear_breakpoints() end, desc = "Clear Breakpoints" },
+    ["debug_close"] = { function() require("dap").close() end, desc = "Close Session" },
+    ["debug_repl_toggle"] = { function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
+    ["debug_ui"] = { function() require("dapui").toggle() end, desc = "Toggle Debugger UI" },
+    ["debug_hover"] = { function() require("dap.ui.widgets").hover() end, desc = "Debugger Hover" },
 }
 
 -- leader mappings
@@ -264,7 +264,7 @@ local mappings = {
 
 -- map keys
 for k, v in pairs(mappings) do
-	if v then
-		vim.keymap.set('n', k, v[1], {desc=v["desc"]})
-	end
+    if v then
+        vim.keymap.set('n', k, v[1], { desc = v["desc"] })
+    end
 end
