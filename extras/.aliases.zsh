@@ -48,7 +48,7 @@ alias get='help="curl GET helper"; curl -H "Content-Type: application/json" -X G
 alias project='export PROJECT=${PWD##*/}; src; [[ -f venv/bin/activate ]] && source $ONI_HOME/extras/.aliases && source venv/bin/activate || echo $PROJECT &> /dev/null'
 alias remake='help="go clean make all"; make clean && go mod vendor && go mod tidy && make all'
 alias greset='help="git reset project"; git reset --hard $(branch)'
-alias start='help="start a python application"; project; kenv up; python app.py'
+alias start='help="start a python application"; project; kenv up; project; python app.py'
 alias src='help="source .env file"; setopt allexport; [[ -f .env ]] && source .env; unsetopt allexport'
 alias tag='help="show branch tag"; branch && [[ $BRANCH != "master" ]] || echo $(git tag | tail -1)'
 alias update='help="update python libraries"; project; pip uninstall -r requirements.txt --yes && pip install -r requirements.txt --upgrade --force --no-cache-dir'
