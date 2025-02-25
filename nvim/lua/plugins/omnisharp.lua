@@ -5,9 +5,9 @@ return {
         -- -- Set OmniSharp settings
         vim.g.OmniSharp_popup = 1
         vim.g.OmniSharp_popup_position = 'peek'
-        -- vim.g.OmniSharp_server_stdio = 1
-        -- vim.g.OmniSharp_server_use_net6 = 0
+        vim.g.OmniSharp_server_use_net6 = 1
         -- vim.g.OmniSharp_server_use_mono = 1
+        -- vim.g.OmniSharp_server_stdio = 1
 
         vim.g.OmniSharp_popup_options = {
             winblend = 30,
@@ -16,7 +16,7 @@ return {
         }
 
         -- ALE linter configuration for C#
-        vim.g.ale_linters = {cs = {'OmniSharp'}}
+        vim.g.ale_linters = { cs = { 'OmniSharp' } }
 
         -- OmniSharp highlight groups
         vim.g.OmniSharp_highlight_groups = {
@@ -30,7 +30,7 @@ return {
         }
 
         -- Autocommands and key mappings
-        vim.api.nvim_create_augroup('omnisharp_commands', {clear = true})
+        vim.api.nvim_create_augroup('omnisharp_commands', { clear = true })
 
         -- -- CursorHold for type information
         -- vim.api.nvim_create_autocmd('CursorHold', {
@@ -45,7 +45,7 @@ return {
             callback = function()
                 local buffer = vim.api.nvim_get_current_buf()
                 local function map(mode, lhs, rhs)
-                    vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, {noremap = true, silent = true})
+                    vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, { noremap = true, silent = true })
                 end
 
                 -- Key mappings
