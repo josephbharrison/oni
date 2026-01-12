@@ -4,17 +4,25 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
+        {
+            "antosha417/nvim-lsp-file-operations",
+            config = function()
+                require("lsp-file-operations").setup({
+                    debug = true,
+                })
+            end,
+        },
     },
-    config = function ()
+    config = function()
         vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
         vim.fn.sign_define("DiagnosticSignError",
-        {text = " ", texthl = "DiagnosticSignError"})
+            { text = " ", texthl = "DiagnosticSignError" })
         vim.fn.sign_define("DiagnosticSignWarn",
-        {text = " ", texthl = "DiagnosticSignWarn"})
+            { text = " ", texthl = "DiagnosticSignWarn" })
         vim.fn.sign_define("DiagnosticSignInfo",
-        {text = " ", texthl = "DiagnosticSignInfo"})
+            { text = " ", texthl = "DiagnosticSignInfo" })
         vim.fn.sign_define("DiagnosticSignHint",
-        {text = "", texthl = "DiagnosticSignHint"})
+            { text = "", texthl = "DiagnosticSignHint" })
         require("neo-tree").setup({
             source_selector = {
                 winbar = true,
@@ -123,7 +131,7 @@ return {
                 filtered_items = {
                     visible = false,
                     hide_dotfiles = true,
-                    hide_gitignored = true,
+                    hide_gitignored = false,
                     hide_hidden = true,
                     hide_by_name = {},
                     hide_by_pattern = {},
@@ -131,7 +139,7 @@ return {
                     never_show = {},
                     never_show_by_pattern = {},
                 },
-                follow_current_file = { enabled = false},
+                follow_current_file = { enabled = false },
                 group_empty_dirs = false,
                 hijack_netrw_behavior = "open_default",
                 use_libuv_file_watcher = false,
@@ -149,43 +157,43 @@ return {
                         ["]g"] = "next_git_modified",
                     },
                     fuzzy_finder_mappings = {
-                    ["<down>"] = "move_cursor_down",
-                    ["<C-n>"] = "move_cursor_down",
-                    ["<up>"] = "move_cursor_up",
-                    ["<C-p>"] = "move_cursor_up",
+                        ["<down>"] = "move_cursor_down",
+                        ["<C-n>"] = "move_cursor_down",
+                        ["<up>"] = "move_cursor_up",
+                        ["<C-p>"] = "move_cursor_up",
+                    },
+                },
+
+                commands = {}
+            },
+            buffers = {
+                follow_current_file = { enabled = true },
+                group_empty_dirs = true,
+                show_unloaded = true,
+                window = {
+                    mappings = {
+                        ["bd"] = "buffer_delete",
+                        ["<bs>"] = "navigate_up",
+                        ["."] = "set_root",
+                    }
                 },
             },
-
-            commands = {}
-        },
-        buffers = {
-            follow_current_file = {enabled = true},
-            group_empty_dirs = true,
-            show_unloaded = true,
-            window = {
-                mappings = {
-                    ["bd"] = "buffer_delete",
-                    ["<bs>"] = "navigate_up",
-                    ["."] = "set_root",
-                }
-            },
-        },
-        git_status = {
-            window = {
-                position = "float",
-                mappings = {
-                    ["A"]  = "git_add_all",
-                    ["gu"] = "git_unstage_file",
-                    ["ga"] = "git_add_file",
-                    ["gr"] = "git_revert_file",
-                    ["gc"] = "git_commit",
-                    ["gp"] = "git_push",
-                    ["gg"] = "git_commit_and_push",
+            git_status = {
+                window = {
+                    position = "float",
+                    mappings = {
+                        ["A"]  = "git_add_all",
+                        ["gu"] = "git_unstage_file",
+                        ["ga"] = "git_add_file",
+                        ["gr"] = "git_revert_file",
+                        ["gc"] = "git_commit",
+                        ["gp"] = "git_push",
+                        ["gg"] = "git_commit_and_push",
+                    }
                 }
             }
-        }
-    })
-    vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-end
+        })
+        vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+    end
 
 }

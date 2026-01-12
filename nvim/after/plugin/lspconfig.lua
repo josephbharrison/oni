@@ -8,6 +8,7 @@ require('mason-lspconfig').setup({
         "rust_analyzer",
         "pyright",
         "ts_ls",
+        "vtsls",
         "helm_ls",
         "yamlls",
     }
@@ -43,6 +44,17 @@ end
 
 -- Configure each language server
 local lspconfig = require('lspconfig')
+
+-- Set up capabilities with lsp-file-operations support
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local ok, lsp_file_operations = pcall(require, 'lsp-file-operations')
+if ok then
+    capabilities = vim.tbl_deep_extend(
+        "force",
+        capabilities,
+        lsp_file_operations.default_capabilities()
+    )
+end
 
 lspconfig.helm_ls.setup {
     on_attach = on_attach,
@@ -99,7 +111,11 @@ lspconfig.eslint.setup({ on_attach = on_attach })
 lspconfig.lua_ls.setup({ on_attach = on_attach })
 lspconfig.gopls.setup({ on_attach = on_attach })
 lspconfig.pyright.setup({ on_attach = on_attach })
-lspconfig.ts_ls.setup({ on_attach = on_attach }) -- Use `tsserver` for TypeScript
+-- Use ts_ls for TypeScript (supports willRenameFiles)
+lspconfig.ts_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
 -- Configure nvim-cmp for auto-completion
 local cmp = require("cmp")
