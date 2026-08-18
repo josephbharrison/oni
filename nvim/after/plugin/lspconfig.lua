@@ -1,5 +1,3 @@
--- Set up Mason and ensure language servers are installed
-require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
         "eslint",
@@ -8,7 +6,6 @@ require('mason-lspconfig').setup({
         "rust_analyzer",
         "pyright",
         "ts_ls",
-        "vtsls",
         "helm_ls",
         "yamlls",
     }
@@ -21,43 +18,7 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- on_attach function to set key mappings
-local function on_attach(_, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    local keymap = vim.keymap.set
-    keymap('n', 'K', vim.lsp.buf.hover, opts)
-    keymap('n', 'gd', vim.lsp.buf.definition, opts)
-    keymap('n', 'gD', vim.lsp.buf.declaration, opts)
-    keymap('n', 'gi', vim.lsp.buf.implementation, opts)
-    keymap('n', 'go', vim.lsp.buf.type_definition, opts)
-    keymap('n', 'gr', vim.lsp.buf.references, opts)
-    keymap('n', 'gs', vim.lsp.buf.signature_help, opts)
-    keymap('n', '<F2>', vim.lsp.buf.rename, opts)
-    keymap({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, opts)
-    keymap('n', '<F4>', vim.lsp.buf.code_action, opts)
-
-    -- Custom mappings
-    keymap('n', '[d', vim.diagnostic.goto_next, opts)
-    keymap('n', ']d', vim.diagnostic.goto_prev, opts)
-end
-
--- Configure each language server
-local lspconfig = require('lspconfig')
-
--- Set up capabilities with lsp-file-operations support
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local ok, lsp_file_operations = pcall(require, 'lsp-file-operations')
-if ok then
-    capabilities = vim.tbl_deep_extend(
-        "force",
-        capabilities,
-        lsp_file_operations.default_capabilities()
-    )
-end
-
-lspconfig.helm_ls.setup {
-    on_attach = on_attach,
+vim.lsp.config('helm_ls', {
     filetypes = { "helm.yaml" },
     settings = {
         ['helm-ls'] = {
@@ -84,10 +45,9 @@ lspconfig.helm_ls.setup {
             }
         }
     }
-}
+})
 
-lspconfig.yamlls.setup({
-    on_attach = on_attach,
+vim.lsp.config('yamlls', {
     settings = {
         yaml = {
             keyOrdering = false
@@ -95,8 +55,7 @@ lspconfig.yamlls.setup({
     }
 })
 
-lspconfig.rust_analyzer.setup({
-    on_attach = on_attach,
+vim.lsp.config('rust_analyzer', {
     filetypes = { "rust" },
     settings = {
         ["rust-analyzer"] = {
@@ -107,50 +66,25 @@ lspconfig.rust_analyzer.setup({
     }
 })
 
-lspconfig.eslint.setup({ on_attach = on_attach })
-lspconfig.lua_ls.setup({ on_attach = on_attach })
-lspconfig.gopls.setup({ on_attach = on_attach })
-lspconfig.pyright.setup({ on_attach = on_attach })
--- Use ts_ls for TypeScript (supports willRenameFiles)
-lspconfig.ts_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
-
--- Configure nvim-cmp for auto-completion
-local cmp = require("cmp")
-
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- assuming you're using luasnip
-        end,
+vim.lsp.config('pyright', {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "strict",
+                autoSearchPaths = true,
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true,
+                disableTaggedHints = true,
+                diagnosticSeverityOverrides = {
+                    reportUnusedVariable = false,
+                    reportUnusedImport = "warning",
+                    reportMissingImports = "error",
+                },
+                venvPath = ".",
+                venv = "venv",
+            },
+        },
     },
-    mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<C-f>'] = cmp.mapping(function(fallback)
-            if require('luasnip').jumpable(1) then
-                require('luasnip').jump(1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ['<C-b>'] = cmp.mapping(function(fallback)
-            if require('luasnip').jumpable(-1) then
-                require('luasnip').jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    },
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    }),
 })
 
 -- Additional diagnostic configuration

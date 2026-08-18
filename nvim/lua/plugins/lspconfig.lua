@@ -2,34 +2,32 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
-        'williamboman/mason-lspconfig.nvim',
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        'L3MON4D3/LuaSnip',
+        "hrsh7th/cmp-nvim-lsp",
+        "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-        local lspconfig = require("lspconfig")
-        local util = require("lspconfig.util")
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local capabilities = cmp_nvim_lsp.default_capabilities()
-        local opts = { noremap = true, silent = true }
-        local on_attach = function(_, bufnr)
-            opts.buffer = bufnr
-
-            opts.desc = "Show line diagnostics"
-            vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-            opts.desc = "Show documentation for what is under cursor"
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local ok, lsp_file_operations = pcall(require, "lsp-file-operations")
+        if ok then
+            capabilities = vim.tbl_deep_extend(
+                "force",
+                capabilities,
+                lsp_file_operations.default_capabilities()
+            )
         end
 
-        lspconfig["sourcekit"].setup({
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+        }
+
+        vim.lsp.config("*", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
-        lspconfig["yamlls"].setup {
+        vim.lsp.enable("sourcekit")
+
+        vim.lsp.config("yamlls", {
             settings = {
                 yaml = {
                     keyOrdering = false,
@@ -37,7 +35,7 @@ return {
                         ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
                     },
                 },
-            }
-        }
+            },
+        })
     end,
 }

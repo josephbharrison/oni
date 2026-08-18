@@ -1,5 +1,5 @@
 local modules = {
-    -- "aerial", -- prefer symbol-outline
+    "aerial",
     "ale",
     "alpha",
     "astrotheme",
@@ -44,7 +44,6 @@ local modules = {
     "rust-tools",
     "scrollbar",
     "smart-splits",
-    "symbols-outline",
     "telescope",
     "todo-comments",
     "toggleterm",

@@ -122,7 +122,7 @@ else
   maps.n["<C-Right>"] = { "<cmd>vertical resize +2<CR>", desc = "Resize split right" }
 end
 
--- SymbolsOutline
+-- Symbols outline
 if is_available "aerial.nvim" then
   maps.n["<leader>lS"] = { function() require("aerial").toggle() end, desc = "Symbols outline" }
 end
@@ -230,7 +230,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function()
     local bufmap = function(mode, lhs, rhs)
-      local opts = {buffer = true}
+      local opts = { buffer = true }
       vim.keymap.set(mode, lhs, rhs, opts)
     end
 
@@ -258,12 +258,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Renames all references to the symbol under the cursor
     bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
 
+    -- Format the current buffer without blocking edits
+    bufmap({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end)
+
     -- Selects a code action available at the current cursor position
     bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 
     -- Show diagnostics in a floating window
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+    bufmap('n', '<leader>ld', vim.diagnostic.open_float)
 
     -- Move to the previous diagnostic
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')

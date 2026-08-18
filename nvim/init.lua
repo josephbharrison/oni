@@ -1,5 +1,6 @@
 -- fast loader
 vim.loader.enable()
+vim.opt.termguicolors = true
 
 -- lazy.nvim loader setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -34,18 +35,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank { higroup = 'IncSearch', timeout = 500 }
     end,
 })
-
-local function preview_location_callback(_, method, result)
-    if result == nil or vim.tbl_isempty(result) then
-        vim.lsp.log.info(method, 'No location found')
-        return nil
-    end
-    if vim.tbl_islist(result) then
-        vim.lsp.util.preview_location(result[1])
-    else
-        vim.lsp.util.preview_location(result)
-    end
-end
 
 function fold_comments()
     -- Save the initial cursor position
