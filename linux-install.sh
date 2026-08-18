@@ -24,6 +24,9 @@ function check_prereqs(){
         echo "MISSING"
         echo "Installing homebrew: "
         url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+        if command -v sudo &> /dev/null && ! sudo -n -v &> /dev/null; then
+            sudo -v || return 1
+        fi
         /bin/bash -c "NONINTERACTIVE=1 $(curl -fsSL ${url})"
     fi
     null brew update
